@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const uri = "enter your uri";
+const uri = "mongodb+srv://shametijoan:mafia2001@staticvoidjoan.duwyxmk.mongodb.net/espcharts?retryWrites=true&w=majority";
 
 mongoose
   .connect(uri)
