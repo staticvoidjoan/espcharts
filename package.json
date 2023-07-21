@@ -1,0 +1,18 @@
+{
+  "name": "espcharts",
+  "version": "1.0.0",
+  "description": "Esport Tournament Tracking",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "author": "Joan Shameti",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^5.7.0",
+    "mongoose": "^7.4.0",
+    "nodemon": "^2.0.6",
+    "swagger": "^0.7.5"
+  }
+}
