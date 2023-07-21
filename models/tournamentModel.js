@@ -19,7 +19,7 @@ const tournamentSchema = mongoose.Schema({
   participatingTeams: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      reg: "Teams"
+      ref: "Teams"
     },
   ],
   startDate: {

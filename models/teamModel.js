@@ -6,8 +6,7 @@ const teamSchema = mongoose.Schema({
         required:true
     },
     teamCaptain: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId
     },
     players:[{
       type: mongoose.Schema.Types.ObjectId,
