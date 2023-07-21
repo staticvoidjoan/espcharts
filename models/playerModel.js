@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 const playerSchema = mongoose.Schema({
-  playerName: {
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+  userName: {
     type: String,
     required: true,
   },

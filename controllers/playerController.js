@@ -1,5 +1,5 @@
 const Player = require("../models/playerModel");
-const playerModel = require("../models/playerModel");
+
 
 module.exports.createPlayer = async (req, res) => {
   try {

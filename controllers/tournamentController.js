@@ -117,10 +117,10 @@ module.exports.updateTournament = async (req, res) => {
     });
 
     if (
-      selectedTournament.tournamentName == existingTournament.tournamentName &&
-      selectedTournament.location == existingTournament.location &&
-      selectedTournament.organizer == existingTournament.organizer &&
-      selectedTournament.startDate == existingTournament.startDate
+      existingTournament.tournamentName == tournamentName &&
+      existingTournament.location == location &&
+      existingTournament.organizer == organizer &&
+      existingTournament.startDate == startDate
     ) {
       return res.status(400).json({
         message:
