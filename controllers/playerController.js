@@ -1,6 +1,8 @@
 const Player = require("../models/playerModel");
 
 
+
+//Function to create a new Player
 module.exports.createPlayer = async (req, res) => {
   try {
     const player = await Player.create(req.body);
@@ -10,6 +12,8 @@ module.exports.createPlayer = async (req, res) => {
   }
 };
 
+
+//Function to get all players
 module.exports.getPlayers = async (req, res) => {
   try {
     const players = await Player.find({});
@@ -22,6 +26,8 @@ module.exports.getPlayers = async (req, res) => {
   }
 };
 
+
+//Function to get a player by its ID
 module.exports.getPlayerById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -36,6 +42,8 @@ module.exports.getPlayerById = async (req, res) => {
   }
 };
 
+
+//Function to update a player 
 module.exports.updatePlayer = async (req, res) => {
   try {
     const { id } = req.params;
@@ -50,6 +58,8 @@ module.exports.updatePlayer = async (req, res) => {
   }
 };
 
+
+//Function to delete a player
 module.exports.deletePlayer = async (req, res) => {
   try {
     const { id } = req.params;
