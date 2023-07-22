@@ -1,6 +1,5 @@
 const Team = require("../models/teamModel");
 const { getNames } = require("country-list");
-const Tournament = require("../models/tournamentModel");
 const validCountries = getNames();
 
 module.exports.createTeam = async (req, res) => {
@@ -21,6 +20,14 @@ module.exports.createTeam = async (req, res) => {
         .status(400)
         .json({ message: teamOrigin + "is not a valid country" });
     }
+
+    //Check if there already is a team with that name
+    const existingTeam = await Team.findOne({teamName})
+    if (existingTeam) {
+          return res
+          .status(400)
+          .json({ message: "A team with that name already exists" });
+        }
 
     //If everything is correct create the team
     const team = await Team.create(req.body);
@@ -65,33 +72,42 @@ module.exports.updateTeam = async (req, res) => {
 module.exports.getTeamById = async (req, res) => {
   try {
     const { id } = req.params;
-    const { teamName } = req.body;
+    const { teamName, teamOrigin } = req.body;
 
     //Check if the new team name is in the correct format
     const nameRegex = /^[a-zA-Z0-9_-]+$/;
     if (!nameRegex.test(teamName)) {
+      res.status(400).json({ message: "Invalid team name" });
+    }
+
+    //Check if the new country is an actual country
+    if (!validCountries.includes(teamOrigin)) {
       return res
         .status(400)
-        .json({ message: "Invalid team name please use the correct format" });
+        .json({ message: teamOrigin + "is not a valid country" });
     }
-
+    //Get the team we want to update
     const selectedTeam = await Team.findById(id);
-    //Check if the team we selected exists in the database
+    //Check if the team already exists if not send 404 status
     if (!selectedTeam) {
-      return res
-        .status(404)
-        .json({ message: "Error there is no Team with that Id" });
+      res.status(404).json({ message: "There is no team with that Id" });
     }
 
-    //Compares the name we wanna update
-    const existingTeam = await Tournament.findOne({
+    //Check if there already is a team with the name we want to use 
+    const existingTeam = await Team.findone({
       _id: { $ne: id },
       $or: [{ teamName }],
     });
-    if (existingTeam.teamName == teamName) {
+
+    if ((existingTeam.teamName = teamName)) {
       return res
         .status(400)
-        .json({ message: "A team with that name exists already" });
+        .json({
+          message:
+            "The name " +
+            teamName +
+            " already exists for another team please use another one ",
+        });
     }
 
     //If all the validations are good we update the team
@@ -102,9 +118,13 @@ module.exports.getTeamById = async (req, res) => {
   }
 };
 
+
+
+//Function to delete a team
 module.exports.deleteTeam = async (req, res) => {
   try {
     const { id } = req.params;
+
     const team = await Team.findByIdAndDelete(id);
     if (!team) {
       res.status(404).json({ message: "There is no team with that Id" });

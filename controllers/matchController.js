@@ -2,6 +2,7 @@ const Match = require("../models/matchModel");
 
 module.exports.createMatch = async (req, res) => {
   try {
+    
     const match = await Match.create(req.body);
     res.status(200).json(match);
   } catch (error) {

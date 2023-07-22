@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 const tournamentSchema = mongoose.Schema({
   tournamentName: {
     type: String,
+    min: [5,"The minimum length of the tournament name"],
+    max : [30,"The maximum length of the tournament name"],
     required: true,
+    
   },
   gameTitle: {
     type: String,
@@ -40,6 +43,8 @@ const tournamentSchema = mongoose.Schema({
   },
   organizer: {
     type: String,
+    min: [3, "The minimum length of the tournament organizer"],
+    max: [30, "The maximum length of the tournament organizer"],
     required: true
   },
 });

@@ -12,7 +12,7 @@ const matchSchema = mongoose.Schema({
   startDate: {
     type: Date,
   },
-  mapsPlayer: [
+  playedMaps: [
     {
       type: String,
     },
