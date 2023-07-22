@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const matchSchema = mongoose.Schema({
-  tournament: {},
+  tournament: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Tournament",
+  },
   team1: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Team",
