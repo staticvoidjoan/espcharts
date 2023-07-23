@@ -1,13 +1,11 @@
 const Tournament = require("../models/tournamentModel");
 
-
 //Function that creates a new tournament
 module.exports.createTournament = async (req, res) => {
   try {
     //Get the requested from the body
     const { tournamentName, location, organizer, startDate, gameTitle } =
       req.body;
-
 
     //Check if name formats are correct
     const regexOne = /^[a-zA-Z0-9_-]+$/;
@@ -30,15 +28,13 @@ module.exports.createTournament = async (req, res) => {
       return res.status(500).json({ message: "Tournament already exists" });
     }
 
-    
-    //If everything is validated create the tournament and add it to the database 
+    //If everything is validated create the tournament and add it to the database
     const tournament = await Tournament.create(req.body);
     res.status(200).json(tournament);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
-
 
 //Function that gets all the tournaments
 module.exports.getAllTournaments = async (req, res) => {
@@ -58,7 +54,6 @@ module.exports.getAllTournaments = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
 
 //Function that gets a tournament by id
 module.exports.getTournamentById = async (req, res) => {
@@ -84,8 +79,7 @@ module.exports.updateTournament = async (req, res) => {
     const { tournamentName, location, organizer, startDate, gameTitle } =
       req.body;
 
-
-    //Make the format checks 
+    //Make the format checks
     const regexOne = /^[a-zA-Z0-9_-]+$/;
     const regexTwo = /^[A-Za-z]+$/;
     if (!regexOne.test(tournamentName)) {
@@ -94,7 +88,6 @@ module.exports.updateTournament = async (req, res) => {
     if (!regexTwo.test(location) || !regexTwo.test(organizer)) {
       res.status(400).json({ message: "Invalid characters" });
     }
-
 
     //Get the tournament we want to update and compare and see if the things we want to update
     //exist on any other tournaments
@@ -135,7 +128,6 @@ module.exports.updateTournament = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
 
 //Function that deletes the tournament
 module.exports.deleteTournament = async (req, res) => {

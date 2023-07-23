@@ -13,7 +13,7 @@ module.exports.createMatch = async (req, res) => {
         .json({ message: "Map name is not in the correct format" });
     }
 
-    //Check if the match alreadt
+    //Check if the match already if not return an error message
     const existingMatch = await Match.findOne(
       { tournament },
       { team1 },

@@ -18,6 +18,8 @@ const matchSchema = mongoose.Schema({
   playedMaps: [
     {
       type: String,
+      min: [3,"Minimum length of map name"],
+      max: [30,"Maximum length of map name"]
     },
   ],
   matchMVPs: [

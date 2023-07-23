@@ -22,7 +22,7 @@ const tournamentSchema = mongoose.Schema({
   participatingTeams: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Teams"
+      ref: "Team"
     },
   ],
   startDate: {
@@ -33,6 +33,10 @@ const tournamentSchema = mongoose.Schema({
     type: Date,
     required: true
   },
+  matches:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Match" 
+  }],
   location: {
     type: String,
     required: true,
