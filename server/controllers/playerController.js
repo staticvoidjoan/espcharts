@@ -5,7 +5,7 @@ const validCountries = getNames();
 //Function to create a new Player
 module.exports.createPlayer = async (req, res) => {
   try {
-    const { firstName, lastName, userName, country } = req.params;
+    const { firstName, lastName, userName, country } = req.body;
 
     //Chheck if the first name and last name are in the same format
     const regexOne = /^[A-Za-z]+$/;
@@ -31,12 +31,12 @@ module.exports.createPlayer = async (req, res) => {
     }
 
     //Check if there already exists a player with a that username
-    const existingPlayer = players.findOne({userName})
-    if (existingPlayer) {
-          return res
-          .status(400)
-          .json({ message: userName + " is already taken" });
-        }
+    // const existingPlayer = Player.findOne({userName})
+    // if (existingPlayer) {
+    //       return res
+    //       .status(400)
+    //       .json({ message: userName + " is already taken" });
+    //     }
 
     const player = await Player.create(req.body);
     res.status(200).json(player);

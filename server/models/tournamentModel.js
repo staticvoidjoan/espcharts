@@ -16,8 +16,7 @@ const tournamentSchema = mongoose.Schema({
       "Valorant",
       "Overwatch",
       "Call Of Duty",
-    ],
-    required: true,
+    ]
   },
   participatingTeams: [
     {
@@ -27,11 +26,9 @@ const tournamentSchema = mongoose.Schema({
   ],
   startDate: {
     type: Date,
-    required: true
   },
   endDate: {
-    type: Date,
-    required: true
+    type: Date
   },
   matches:[{
     type: mongoose.Schema.Types.ObjectId,
@@ -39,17 +36,15 @@ const tournamentSchema = mongoose.Schema({
   }],
   location: {
     type: String,
-    required: true,
   },
   pricePool: {
     type: Number,
-    required: true
   },
   organizer: {
     type: String,
     min: [3, "The minimum length of the tournament organizer"],
     max: [30, "The maximum length of the tournament organizer"],
-    required: true
+   
   },
 });
 
