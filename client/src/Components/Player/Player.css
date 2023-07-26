@@ -10,11 +10,15 @@
     font-weight: 500px;
   }
   /* Style the table header */
-  .table thead tr th {
+  .table .thead tr th {
     background-color: #212121;
     color: white;
     padding: 12px;
     text-align: left;
+  }
+
+  .tr{
+    text-align: center;
   }
   
   /* Style the table body */

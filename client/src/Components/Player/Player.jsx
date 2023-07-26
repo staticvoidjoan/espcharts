@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./Player.css"
 
 function Player() {
@@ -18,8 +17,8 @@ function Player() {
       <div className="table-wrapper">
       <h1 className="Title">PLAYERS</h1>
         <table className="table">
-          <thead>
-            <tr>
+          <thead className="thead">
+            <tr className="tr">
               <th>First Name</th>
               <th>Last Name</th>
               <th>In Game Name</th>
