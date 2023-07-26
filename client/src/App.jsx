@@ -6,20 +6,23 @@ import "./App.css";
 //Components
 import Player from "./Components/Player/Player";
 import EditPlayer from "./Components/Player/EditPlayer";
+import AddPlayer from "./Components/Player/AddPlayer";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-      // <div>
-      //   <img src={espchartLogo} className="logo" alt="logo" />
-      // </div>
-      
+    <div>
+      <div>
+        <img src={espchartLogo} className="logo" alt="logo" />
+      </div>
+
       <Routes>
         <Route path="/" element={<Player />} />
         <Route path="/edit/:id" element={<EditPlayer />} />
+        <Route path="/add" element={<AddPlayer />} />
       </Routes>
-   
+    </div>
   );
 }
 

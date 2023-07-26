@@ -56,15 +56,19 @@ function Player() {
                 <td>{player.age}</td>
                 <td>{player.country}</td>
                 <td>
-                <Link to={`/edit/${player._id}`}>Edit</Link>
+                <Link to={`/edit/${player._id}`}  className="Link">Edit</Link>
                 
                 </td>
-                <td><button onClick={() => deletePlayer(player._id)}>Delete</button></td>
+                <td><button onClick={() => deletePlayer(player._id) }className="delete-button">Delete</button></td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <div className="add-player-link">
+        <Link to={`/add`}  className="Link">Add Player</Link>
+        </div>
+      
     </div>
   );
 }
