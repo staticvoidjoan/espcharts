@@ -111,7 +111,7 @@ module.exports.getTeamById = async (req, res) => {
     }
 
     //If all the validations are good we update the team
-    const team = await Team.findByIdAndUpdate(id);
+    const team = await Team.findByIdAndUpdate(id, rqe.body);
     res.status(200).json(team);
   } catch (error) {
     res.status(500).json({ message: error.message });

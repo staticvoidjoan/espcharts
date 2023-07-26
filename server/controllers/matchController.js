@@ -91,7 +91,7 @@ module.exports.updateMatch = async (req, res) => {
       res.status(400).json({ message: "Match already exists" });
     }
 
-    const match = await Match.findByIdAndUpdate(id);
+    const match = await Match.findByIdAndUpdate(id, req.body);
     if (!match) {
       res.status(404).json({ message: "There is no match with that id" });
     }

@@ -70,6 +70,7 @@ module.exports.getPlayerById = async (req, res) => {
         .status(404)
         .json({ message: "Error there is no player with that Id" });
     }
+    res.status(200).json(player);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -79,7 +80,7 @@ module.exports.getPlayerById = async (req, res) => {
 module.exports.updatePlayer = async (req, res) => {
   try {
     const { id } = req.params;
-    const { firstName, lastName, userName, country } = req.params;
+    const { firstName, lastName, userName, country } = req.body;
 
     //Check if the player name and last name are in the correct format
     const regexOne = /^[A-Za-z]+$/;
@@ -116,7 +117,7 @@ module.exports.updatePlayer = async (req, res) => {
       _id: {$ne: id},
       $or : [{userName}]
     })
-    if (existingPlayer.userName == userName){
+    if (existingPlayer && existingPlayer.userName == userName){
       return res
             .status(400)
             .json({ message: userName + " is already taken" });
@@ -124,12 +125,8 @@ module.exports.updatePlayer = async (req, res) => {
 
 
     //If all validation are successful update the player
-    const player = await Player.findByIdAndUpdate(id);
-    if (!player) {
-      res
-        .status(404)
-        .json({ message: "Error there is no player with that Id" });
-    }
+    const player = await Player.findByIdAndUpdate(id, req.body);
+    res.status(200).json(player);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -145,6 +142,7 @@ module.exports.deletePlayer = async (req, res) => {
         .status(404)
         .json({ message: "Error there is no player with that Id" });
     }
+    res.status(200).json(player);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

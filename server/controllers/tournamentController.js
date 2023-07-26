@@ -122,7 +122,7 @@ module.exports.updateTournament = async (req, res) => {
     }
 
     //If all the validations are good we update the tournament
-    const tournament = await Tournament.findByIdAndUpdate(id);
+    const tournament = await Tournament.findByIdAndUpdate(id, req.body);
     res.status(200).json(tournament);
   } catch (error) {
     res.status(500).json({ message: error.message });

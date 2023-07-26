@@ -1,16 +1,30 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./Player.css"
+import { Link } from 'react-router-dom';
+import EditPlayer from "./EditPlayer";
 
 function Player() {
   const [players, setPlayers] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/espcharts/player")
-      .then((response) => setPlayers(response.data)) // Changed parameter name to response
-      .catch((err) => console.log(err));
+    loadPlayers();
   }, []);
+
+  const loadPlayers = async() =>{
+    const response = await axios.get("http://localhost:5000/espcharts/player");
+    setPlayers(response.data);
+  }
+
+  const deletePlayer = async (id) =>{
+    try {
+      await axios.delete(`http://localhost:5000/espcharts/player/${id}`);
+      loadPlayers();
+    } catch (error) {
+      console.error('Error deleting player:', error);
+    }
+  }
+
 
   return (
     <div className="table-container">
@@ -19,6 +33,7 @@ function Player() {
         <table className="table">
           <thead className="thead">
             <tr className="tr">
+              <th>#</th>
               <th>First Name</th>
               <th>Last Name</th>
               <th>In Game Name</th>
@@ -26,18 +41,25 @@ function Player() {
               <th>Game Role</th>
               <th>Age</th>
               <th>Country</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody className="tbody">
             {players.map((player, index) => ( // Added a unique key (index) for each row
               <tr key={index}>
+                <td scope="row">{index+1}</td>
                 <td>{player.firstName}</td>
                 <td>{player.lastName}</td>
                 <td>{player.userName}</td> {/* Changed playerName to userName as per your schema */}
                 <td>{player.gameTitle}</td>
-                <td>{player.csgoRoles}</td>
+                <td>{player.gameRole}</td>
                 <td>{player.age}</td>
                 <td>{player.country}</td>
+                <td>
+                <Link to={`/edit/${player._id}`}>Edit</Link>
+                
+                </td>
+                <td><button onClick={() => deletePlayer(player._id)}>Delete</button></td>
               </tr>
             ))}
           </tbody>
