@@ -3,7 +3,7 @@ import axios from "axios";
 import "./Player.css"
 import { Link } from 'react-router-dom';
 import EditPlayer from "./EditPlayer";
-
+  
 function Player() {
   const [players, setPlayers] = useState([]);
 
@@ -56,7 +56,8 @@ function Player() {
                 <td>{player.age}</td>
                 <td>{player.country}</td>
                 <td>
-                <Link to={`/edit/${player._id}`}  className="Link">Edit</Link>
+                <Link to={`/player/view/${player._id}`}  className="Link">View</Link>
+                <Link to={`/player/edit/${player._id}`}  className="Link">Edit</Link>
                 
                 </td>
                 <td><button onClick={() => deletePlayer(player._id) }className="delete-button">Delete</button></td>
@@ -66,7 +67,7 @@ function Player() {
         </table>
       </div>
       <div className="add-player-link">
-        <Link to={`/add`}  className="Link">Add Player</Link>
+        <Link to={`/player/add`}  className="Link">Add Player</Link>
         </div>
       
     </div>

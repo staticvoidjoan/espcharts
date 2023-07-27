@@ -41,6 +41,9 @@
 
 
 /* Style the Link elements to look like purple buttons */
+/* ... (your existing styles) */
+
+/* Style the Link elements to look like purple buttons */
 .Link {
   background-color: #8e24aa;
   color: white;
@@ -48,11 +51,21 @@
   border: none;
   border-radius: 5px;
   text-decoration: none;
+  margin-right: 10px; /* Add margin between the links */
+}
+
+.Link:last-child {
+  margin-right: 0; /* Remove margin for the last link */
 }
 
 .Link:hover {
   background-color: #7b1fa2;
 }
+
+.add-player-link {
+  margin-top: 20px;
+}
+
 /* Player.css */
 
 /* ... (your existing styles) */

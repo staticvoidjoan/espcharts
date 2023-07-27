@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
+import { useParams, useNavigate, Link } from "react-router-dom"; // Import useNavigate from react-router-dom
 import "./EditPlayer.css"; // Import the CSS file
+
+
 
 const EditPlayer = () => {
   let navigate = useNavigate();
@@ -37,7 +39,7 @@ const EditPlayer = () => {
       console.log("Updating player...");
       await axios.put(`http://localhost:5000/espcharts/player/${id}`, player);
       console.log("Player updated successfully!");
-      navigate("/");
+      navigate("/player");
     } catch (error) {
       console.error("Error updating player:", error);
     }
@@ -101,7 +103,7 @@ const EditPlayer = () => {
   return (
     <div>
       <div>
-        <h2>Edit Player</h2>
+        <h2 className="h2Title">Edit Player</h2>
         <form onSubmit={(e) => onSubmit(e)}>
           <div className="form-group">
             <input
@@ -185,6 +187,7 @@ const EditPlayer = () => {
           </div>
           <button className="submitButton">Update Player</button>
         </form>
+          <Link to={"/player"}>Go back to players</Link>
       </div>
     </div>
   );

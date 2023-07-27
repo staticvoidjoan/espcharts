@@ -1,6 +1,7 @@
 import Reac, {useState} from "react";
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import "./EditPlayer.css"
 
 
 const AddPlayer = () => {
@@ -33,7 +34,7 @@ const AddPlayer = () => {
           console.log("Updating player...");
           await axios.post(`http://localhost:5000/espcharts/player`, player);
           console.log("Player posted successfully!");
-          navigate("/");
+          navigate("/player");
         } catch (error) {
           console.error("Error updating player:", error);
         }
@@ -87,7 +88,7 @@ const AddPlayer = () => {
   return (
     <div>
       <div>
-        <h2>Add Player</h2>
+        <h2 className="h2Title">Add Player</h2>
         <form onSubmit={(e) => onSubmit(e)}>
           <div className="form-group">
             <input
@@ -169,7 +170,7 @@ const AddPlayer = () => {
               onChange={(e) => onInputChange(e)}
             />
           </div>
-          <button className="submitButton">Update Player</button>
+          <button className="submitButton">Add New Player</button>
         </form>
       </div>
     </div>

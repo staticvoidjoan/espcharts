@@ -1,0 +1,10 @@
+/* NavBar.css */
+
+.nav-color {
+    background-color: #C0C0C0 !important;
+  }
+  
+  .nav-text-color,
+  .nav-text-color .nav-link {
+    color: #212121 !important;
+  }

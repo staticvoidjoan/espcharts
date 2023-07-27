@@ -55,7 +55,7 @@ module.exports.getTeams = async (req, res) => {
 };
 
 //Function that updates the team
-module.exports.updateTeam = async (req, res) => {
+module.exports.getTeamById = async (req, res) => {
   try {
     const { id } = req.params;
     const team = await Team.findById(id);
@@ -69,7 +69,7 @@ module.exports.updateTeam = async (req, res) => {
 };
 
 //Function that gets a team by id
-module.exports.getTeamById = async (req, res) => {
+module.exports.updateTeam = async (req, res) => {
   try {
     const { id } = req.params;
     const { teamName, teamOrigin } = req.body;
@@ -81,11 +81,11 @@ module.exports.getTeamById = async (req, res) => {
     }
 
     //Check if the new country is an actual country
-    if (!validCountries.includes(teamOrigin)) {
-      return res
-        .status(400)
-        .json({ message: teamOrigin + "is not a valid country" });
-    }
+    // if (!validCountries.includes(teamOrigin)) {
+    //   return res
+    //     .status(400)
+    //     .json({ message: teamOrigin + "is not a valid country" });
+    // }
     //Get the team we want to update
     const selectedTeam = await Team.findById(id);
     //Check if the team already exists if not send 404 status
@@ -94,12 +94,12 @@ module.exports.getTeamById = async (req, res) => {
     }
 
     //Check if there already is a team with the name we want to use 
-    const existingTeam = await Team.findone({
+    const existingTeam = await Team.findOne({
       _id: { $ne: id },
       $or: [{ teamName }],
     });
 
-    if ((existingTeam.teamName = teamName)) {
+    if (existingTeam && existingTeam.teamName === teamName) {
       return res
         .status(400)
         .json({
@@ -111,7 +111,7 @@ module.exports.getTeamById = async (req, res) => {
     }
 
     //If all the validations are good we update the team
-    const team = await Team.findByIdAndUpdate(id, rqe.body);
+    const team = await Team.findByIdAndUpdate(id, req.body);
     res.status(200).json(team);
   } catch (error) {
     res.status(500).json({ message: error.message });

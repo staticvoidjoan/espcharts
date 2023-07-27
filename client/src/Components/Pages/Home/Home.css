@@ -1,0 +1,17 @@
+/* Home.css */
+
+.bio-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+  }
+  
+  .bio {
+    color:aliceblue;
+    font-size: 24px;
+    text-align: center;
+    font-style: italic;
+    max-width: 500px;
+  }
+  
