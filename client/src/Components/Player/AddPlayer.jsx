@@ -1,50 +1,50 @@
-import Reac, {useState} from "react";
-import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
-import "./EditPlayer.css"
-import Alert from 'react-bootstrap/Alert';
-
-
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./EditPlayer.css";
+import Swal from "sweetalert2";
+import {Link} from "react-router-dom";
 const AddPlayer = () => {
-    let navigate = useNavigate();
-    const [player, setPlayer] = useState({
-        firstName: "",
-        lastName: "",
-        userName: "",
-        gameTitle: "",
-        gameRole: "",
-        age: 0,
-        country: "",
+  let navigate = useNavigate();
+  const [player, setPlayer] = useState({
+    firstName: "",
+    lastName: "",
+    userName: "",
+    gameTitle: "",
+    gameRole: "",
+    age: 0,
+    country: "",
+  });
+
+  const { firstName, lastName, userName, gameTitle, gameRole, age, country } =
+    player;
+
+  const onInputChange = (e) => {
+    setPlayer({
+      ...player,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Submitting the form...");
+
+    try {
+      console.log("Updating player...");
+      await axios.post(`http://localhost:5000/espcharts/player`, player);
+      console.log("Player posted successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Player Created Successfully',
       });
 
-      const { firstName, lastName, userName, gameTitle, gameRole, age, country } =
-      player;
+      navigate("/player");
+    } catch (error) {
+      console.error("Error updating player:", error);
+    }
+  };
 
-      const onInputChange = e => {
-        setPlayer({
-                ...player,
-                  [e.target.name]: e.target.value,
-                });
-      }
-
-      const onSubmit = async (e) => {
-        e.preventDefault();
-        console.log("Submitting the form...");
-    
-        try {
-          console.log("Updating player...");
-          await axios.post(`http://localhost:5000/espcharts/player`, player);
-          console.log("Player posted successfully!");
-          <Alert key="success" variant="success">
-          Player posted successfully
-        </Alert>
-          navigate("/player");
-        } catch (error) {
-          console.error("Error updating player:", error);
-        }
-      };
-
-      
   const availableGameRoles = [
     "Entry Frag",
     "Lurker",
@@ -90,10 +90,12 @@ const AddPlayer = () => {
     "Call Of Duty",
   ];
 
+
   return (
     <div>
       <div>
         <h2 className="h2Title">Add Player</h2>
+        {/* <Link to={"/player"} className="Link" style={{ float: "left" }}>Go Back</Link> */}
         <form onSubmit={(e) => onSubmit(e)}>
           <div className="form-group">
             <input
@@ -177,6 +179,7 @@ const AddPlayer = () => {
           </div>
           <button className="submitButton">Add New Player</button>
         </form>
+        <Link to={"/player"}>Go back to players</Link>
       </div>
     </div>
   );

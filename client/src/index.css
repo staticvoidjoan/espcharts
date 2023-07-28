@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #212121;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -27,8 +27,17 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
+  min-width: 100vh;
   min-height: 100vh;
+}
+
+body.custom-body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 100vh;
+  min-height: 100vh;
+  background-color: #212121; /* Your desired background color */
 }
 
 h1 {

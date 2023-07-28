@@ -1,49 +1,54 @@
 /* Assuming you have the .table class in your table JSX element */
+
+/* Style the table header */
+.table .thead tr th {
+  background-color: #212121;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+
+.player-title {
+  color: #ffffff; /* White color */
+  font-weight: 500; /* Medium font weight */
+  font-family: "Helvetica Neue", Arial, sans-serif; /* Modern font family */
+  font-size: 36px; /* Larger font size */
+  text-transform: uppercase; /* Uppercase text */
+  letter-spacing: 2px; /* Increased letter spacing */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow effect */
+  background: linear-gradient(
+    90deg,
+    #9c27b0,
+    #673ab7
+  ); /* Gradient background */
+  padding: 10px 20px; /* Padding around the title */
+  border-radius: 5px; /* Rounded corners */
+}
+
 .table {
-    background-color: #212121;
-    color: white;
-    border-collapse: collapse; /* Optional: To remove spacing between table cells */
-  }
-  
-  .Title{
-    color: white;
-    font-weight: 500px;
-  }
-  /* Style the table header */
-  .table .thead tr th {
-    background-color: #212121;
-    color: white;
-    padding: 12px;
-    text-align: left;
-  }
+  width: 100%;
+  border-collapse: collapse;
+  /* Add any other table styles as needed */
+}
 
-  .tr{
-    text-align: center;
-  }
-  
-  /* Style the table body */
-  .tbody {
-    background-color: #212121;
-    color: white;
-  }
-  
-  /* Style the table body rows */
-  .table tbody tr td {
-    padding: 12px;
-    border-bottom: 1px solid #444; /* Optional: Add a border between rows */
-  }
-  
-  /* Style the alternate row background color */
-  .table tbody tr:nth-child(even) {
-    background-color: #333; /* Optional: Change the background color for alternate rows */
-  }
-  
+.th {
+  white-space: nowrap; /* Prevent the th content from wrapping to the next line */
+}
+.tr {
+  text-align: center;
+}
 
+/* Style the table body */
+.tbody {
+  background-color: #212121;
+  color: white;
+}
 
-/* Style the Link elements to look like purple buttons */
-/* ... (your existing styles) */
+.tabW {
+  white-space: nowrap;
+}
 
-/* Style the Link elements to look like purple buttons */
 .Link {
   background-color: #8e24aa;
   color: white;
@@ -52,6 +57,15 @@
   border-radius: 5px;
   text-decoration: none;
   margin-right: 10px; /* Add margin between the links */
+}
+.DeleteLink {
+  background-color: gray;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-right: 10px;
 }
 
 .Link:last-child {
@@ -64,41 +78,4 @@
 
 .add-player-link {
   margin-top: 20px;
-}
-
-/* Player.css */
-
-/* ... (your existing styles) */
-
-/* Style the button to look like a very pale red */
-.delete-button {
-  background-color:  #e53935;; /* Pale red color */
-  color: #f9d5d5; /* Dark red color for text */
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.button:hover {
-  background-color: #f5c1c1;
-}
-
-/* Style the Link elements to look like purple buttons */
-.Link {
-  background-color: #8e24aa;
-  color: white;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-.Link:hover {
-  background-color: #7b1fa2;
-}
-
-.add-player-link {
-  margin-top: 20px; /* Adjust the value as needed */
 }

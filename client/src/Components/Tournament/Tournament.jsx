@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import "./Player.css"
 import { Link } from 'react-router-dom';
 import {format} from "date-fns"
+import './Tournament.css';
 
 function Tournament() {
   const [tournaments, setTournaments] = useState([]);
@@ -24,13 +24,14 @@ function Tournament() {
       console.error('Error deleting tournament:', error);
     }
   }
-
-
+  
+  
   return (
     <div className="table-container">
       <div className="table-wrapper">
-      <h1 className="Title">TOURNAMENTS</h1>
-        <table className="table">
+      <h1 className="title">TOURNAMENTS</h1>
+      <Link to={`/player/add`}  className="Link" style={{ float: "right" }}>Add Tournament</Link>
+        <table className="table table-responsive" >
           <thead className="thead">
             <tr className="tr">
               <th>#</th>
@@ -43,6 +44,7 @@ function Tournament() {
               <th>Location</th>
               <th>Price Pool</th>
               <th>Organizer</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody className="tbody">
@@ -58,20 +60,18 @@ function Tournament() {
                 <td>{tournament.location}</td>
                 <td>{tournament.pricePool}</td>
                 <td>{tournament.organizer}</td>
-                <td>Actions</td>
                 <td>
                 <Link to={`/tournament/view/${tournament._id}`}  className="Link">View</Link>
                 <Link to={`/tournament/edit/${tournament._id}`}  className="Link">Edit</Link>
+                <Link to={'/tournament'} onClick={() => deleteTournament(tournament._id) }className="DeleteLink">Delete</Link>
                 
                 </td>
-                <td><button onClick={() => deleteTournament(tournament._id) }className="delete-button">Delete</button></td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
       <div className="add-player-link">
-        <Link to={`/player/add`}  className="Link">Add Tournament</Link>
         </div>
       
     </div>

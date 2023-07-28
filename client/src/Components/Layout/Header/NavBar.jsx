@@ -5,12 +5,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import './NavBar.css'; // Import the custom CSS file
-
+import logo from "../../../assets/espfavicon.png"
 function NavBar() {
   return (
-    <Navbar expand="lg" className="nav-color">
+    <Navbar expand="lg" className="nav-color fixed-top"> {/* Add "fixed-top" class here */}
       <Container>
-        <Navbar.Brand as={Link} to={"/"} className="nav-text-color">ESPCharts</Navbar.Brand>
+      
+        <Navbar.Brand as={Link} to={"/"} className="nav-text-color"><img src={logo} className="navlogo" alt="logo" />ESPCharts</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
