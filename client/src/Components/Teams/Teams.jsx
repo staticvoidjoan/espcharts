@@ -38,12 +38,18 @@ function Teams() {
     <div className="table-container">
       <div className="table-wrapper">
         <h1 className="Title">Teams</h1>
+        <div className="add-player-link">
+        <Link to={`/team/add`} className="Link">
+          Add Team
+        </Link>
+      </div>
         <table className="table">
           <thead className="thead">
             <tr className="tr">
               <th>#</th>
               <th>Team Name</th>
               <th>Team Captain</th>
+              <th>Active Players</th>
               <th>Origin</th>
               <th>Actions</th>
             </tr>
@@ -54,6 +60,7 @@ function Teams() {
                 <td scope="row">{index + 1}</td>
                 <td>{team.teamName}</td>
                 <td><GetPlayerName teamCaptainId = {team.teamCaptain}/></td>
+                <td>{team.players.length}</td>
                 <td>{team.teamOrigin}</td>
                 <td>
                   <Link to={`/team/view/${team._id}`} className="Link">
@@ -73,11 +80,7 @@ function Teams() {
           </tbody>
         </table>
       </div>
-      <div className="add-player-link">
-        <Link to={`/team/add`} className="Link">
-          Add Team
-        </Link>
-      </div>
+     
     </div>
   );
 }

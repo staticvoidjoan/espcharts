@@ -30,6 +30,9 @@ function Player() {
     <div className="table-container">
       <div className="table-wrapper">
       <h1 className="Title">PLAYERS</h1>
+      <div className="add-player-link">
+        <Link to={`/player/add`}  className="Link">Add Player</Link>
+        </div>
         <table className="table">
           <thead className="thead">
             <tr className="tr">
@@ -66,9 +69,6 @@ function Player() {
           </tbody>
         </table>
       </div>
-      <div className="add-player-link">
-        <Link to={`/player/add`}  className="Link">Add Player</Link>
-        </div>
       
     </div>
   );

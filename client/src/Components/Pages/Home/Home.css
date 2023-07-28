@@ -14,4 +14,11 @@
     font-style: italic;
     max-width: 500px;
   }
+
+  .logo {
+    height: 25em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+  }
   
