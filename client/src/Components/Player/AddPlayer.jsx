@@ -105,6 +105,7 @@ const AddPlayer = () => {
               name="firstName"
               value={firstName}
               onChange={(e) => onInputChange(e)}
+              required
             />
           </div>
           <div className="form-group">

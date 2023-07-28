@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import "./Teams.css"
+import "./Teams.css"
 import { Link } from "react-router-dom";
 import GetPlayerName from "./GetPlayerName"
+import Swal from "sweetalert2"
 function Teams() {
   const [teams, setTeams] = useState([]);
 
@@ -21,7 +22,33 @@ function Teams() {
   };
 
 
-  const deleteTournament = async (id) => {
+  const deleteTeam = (id) =>{
+    try {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'Team has been deleted.',
+            'success'
+          )
+          proceedDelete(id);
+        }
+      })
+    } catch (error) {
+      console.error('Error deleting player:', error);
+    }
+  }
+
+
+  const proceedDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/espcharts/team/${id}`);
       loadTeams();
@@ -37,7 +64,7 @@ function Teams() {
   return (
     <div className="table-container">
       <div className="table-wrapper">
-        <h1 className="Title">Teams</h1>
+        <h1 className="title">Teams</h1>
         <div className="add-player-link">
         <Link to={`/team/add`} className="Link">
           Add Team
@@ -69,11 +96,10 @@ function Teams() {
                   <Link to={`/team/edit/${team._id}`} className="Link">
                     Edit
                   </Link>
+                  <Link to={'/team'} onClick={() => deleteTeam(team._id) }className="DeleteLink">Delete</Link>
                 </td>
                 <td>
-                  <button onClick={() => deleteTournament(team._id)} className="delete-button">
-                    Delete
-                  </button>
+        
                 </td>
               </tr>
             ))}

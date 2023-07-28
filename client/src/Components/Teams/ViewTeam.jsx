@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import GetPlayerName from "./GetPlayerName";
+import "./ViewTeam.css";
 
 const ViewTeam = () => {
   let navigate = useNavigate();
@@ -31,25 +32,33 @@ const ViewTeam = () => {
 
   return (
     <div>
-      {/* Player Info Display */}
-      <div className="player-info">
-        <h3>Team Info</h3>
-        <Link to="/team">Back to team list</Link>
-        {/* <p><strong>Team Name:</strong> {team.teamName}</p> */}
-        <p>
-          <strong>Players:</strong> 
-          {team.players.map((playerId, index) => (
-            <GetPlayerName key={index} teamCaptainId={playerId} />
-          ))}
-        </p>
-        <p>
-          <strong>TeamCaptain:</strong>{" "}
-          <GetPlayerName teamCaptainId={team.teamCaptain} />
-        </p>
-        <p>
-          <strong>Team Origin:</strong> {team.teamOrigin}
-        </p>
+      <h3 className="title">{team.teamName}</h3>
+      {/* Team Info Display */}
+      <div className="team-info">
+        <table className="player-info">
+          <tbody>
+            <tr>
+              <th>Players</th>
+              <td>
+                {team.players.map((playerId, index) => (
+                  <GetPlayerName key={index} teamCaptainId={playerId} />
+                ))}
+              </td>
+            </tr>
+            <tr>
+              <th>Team Captain</th>
+              <td>
+                <GetPlayerName teamCaptainId={team.teamCaptain} />
+              </td>
+            </tr>
+            <tr>
+              <th>Team Origin</th>
+              <td>{team.teamOrigin}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+        <Link to="/team">Back to team list</Link>
     </div>
   );
 };

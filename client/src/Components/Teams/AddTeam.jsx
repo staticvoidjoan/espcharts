@@ -1,8 +1,7 @@
-import Reac, {useState} from "react";
+import React, {useState} from "react";
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
-import "./EditTeam.css"
-
+import Swal from "sweetalert2"
 
 const AddTeam = () => {
     let navigate = useNavigate();
@@ -28,9 +27,13 @@ const AddTeam = () => {
         console.log("Submitting the form...");
     
         try {
-          console.log("Updating team...");
+          console.log("Creating team...");
           await axios.post(`http://localhost:5000/espcharts/team`, team);
           console.log("Team posted successfully!");
+          Swal.fire({
+            icon: 'success',
+            title: 'Team Created Successfully',
+          });
           navigate("/team");
         } catch (error) {
           console.error("Error updating player:", error);
@@ -61,7 +64,7 @@ const AddTeam = () => {
               onChange={(e) => onInputChange(e)}
             />
           </div>
-          {/* <div className="form-group">
+          <div className="form-group">
             <input
               type="text"
               className="form-control form-control-lg"
@@ -70,7 +73,7 @@ const AddTeam = () => {
               value={players}
               onChange={(e) => onInputChange(e)}
             />
-          </div> */}
+          </div>
           <div className="form-group">
             <input
               type="text"
