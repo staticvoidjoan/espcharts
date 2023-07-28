@@ -2,6 +2,7 @@ import Reac, {useState} from "react";
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import "./EditPlayer.css"
+import Alert from 'react-bootstrap/Alert';
 
 
 const AddPlayer = () => {
@@ -12,7 +13,7 @@ const AddPlayer = () => {
         userName: "",
         gameTitle: "",
         gameRole: "",
-        age: 16,
+        age: 0,
         country: "",
       });
 
@@ -34,6 +35,9 @@ const AddPlayer = () => {
           console.log("Updating player...");
           await axios.post(`http://localhost:5000/espcharts/player`, player);
           console.log("Player posted successfully!");
+          <Alert key="success" variant="success">
+          Player posted successfully
+        </Alert>
           navigate("/player");
         } catch (error) {
           console.error("Error updating player:", error);
@@ -85,6 +89,7 @@ const AddPlayer = () => {
     "Overwatch",
     "Call Of Duty",
   ];
+
   return (
     <div>
       <div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 // import "./Player.css"
 import { Link } from 'react-router-dom';
-
+import {format} from "date-fns"
 
 function Tournament() {
   const [tournaments, setTournaments] = useState([]);
@@ -52,8 +52,8 @@ function Tournament() {
                 <td>{tournament.tournamentName}</td>
                 <td>{tournament.gameTitle}</td>
                 <td><Link>View Teams</Link></td>
-                <td>{tournament.startDate}</td>
-                <td>{tournament.endDate}</td>
+                <td>{format(new Date(tournament.startDate), "MMMM d, yyyy")}</td>
+                <td>{format(new Date(tournament.endDate), "MMMM d, yyyy")}</td>
                 <td><Link> View Matches</Link></td>
                 <td>{tournament.location}</td>
                 <td>{tournament.pricePool}</td>
