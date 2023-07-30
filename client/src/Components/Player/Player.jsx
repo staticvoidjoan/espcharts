@@ -14,8 +14,16 @@ function Player() {
   }, []);
 
   const loadPlayers = async() =>{
-    const response = await axios.get("http://localhost:5000/espcharts/player");
-    setPlayers(response.data);
+    try {
+      const response = await axios.get("http://localhost:5000/espcharts/player");
+      setPlayers(response.data);
+      
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Database Error",
+        text: "There was an issue fetching data from the database. Please try again later.",});
+    }
   }
 
   const deletePlayer = (id) =>{

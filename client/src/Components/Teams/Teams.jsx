@@ -17,6 +17,10 @@ function Teams() {
       setTeams(response.data);
     
     } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Database Error",
+        text: "There was an issue fetching data from the database. Please try again later.",});
       console.error("Error loading teams:", error);
     }
   };

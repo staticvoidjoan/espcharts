@@ -12,7 +12,7 @@ app.use(express.json());
 
 
 
-const routeFiles = ["./routes/tournamentRoute", "./routes/teamRoute", "./routes/playerRoute"];
+const routeFiles = ["./routes/tournamentRoute", "./routes/teamRoute", "./routes/playerRoute", "./routes/matchRoute", "./routes/contactRoute"];
 
 routeFiles.forEach((routeFile) => {
   require(routeFile)(app);

@@ -1,6 +1,6 @@
 import Form from 'react-bootstrap/Form';
 import "./Contact.css"
-function Contact() {
+const  Contact() => {
   return (
     <div className="contact-form-container">
     <h2>Contact Us</h2>
