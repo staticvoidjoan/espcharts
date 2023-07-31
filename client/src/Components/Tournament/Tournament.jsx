@@ -27,6 +27,8 @@ function Tournament() {
   
   
   return (
+    <div className="tournament-table">
+
     <div className="table-container">
       <div className="table-wrapper">
       <h1 className="title">TOURNAMENTS</h1>
@@ -74,6 +76,7 @@ function Tournament() {
       <div className="add-player-link">
         </div>
       
+    </div>
     </div>
   );
 }

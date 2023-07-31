@@ -7,20 +7,18 @@ module.exports.createMatch = async (req, res) => {
 
     //Check if the map names are correct
     const regex = /^[A-Za-z0-9]+$/;
-    if (regex.test(playedMaps)) {
+    if (!playedMaps.every((map) => regex.test(map))) {
       res
         .status(400)
         .json({ message: "Map name is not in the correct format" });
+      return; // Return early if any map name is incorrect
     }
 
-    //Check if the match already if not return an error message
-    const existingMatch = await Match.findOne(
-      { tournament },
-      { team1 },
-      { team2 }
-    );
+    //Check if the match already exists, if not, return an error message
+    const existingMatch = await Match.findOne({ tournament, team1, team2 });
     if (existingMatch) {
       res.status(400).json({ message: "Match already exists" });
+      return; // Return early if the match already exists
     }
 
     const match = await Match.create(req.body);
@@ -34,11 +32,11 @@ module.exports.createMatch = async (req, res) => {
 module.exports.getMatches = async (req, res) => {
   try {
     const match = await Match.find({});
-    if (match.length == 0) {
-      res
-        .status(404)
-        .json({ message: "There is no match added to the database" });
-    }
+    // if (match.length == 0) {
+    //   res
+    //     .status(404)
+    //     .json({ message: "There is no match added to the database" });
+    // }
     res.status(200).json(match);
   } catch (error) {
     res.status(500).json({ message: error.message });

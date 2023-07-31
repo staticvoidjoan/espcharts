@@ -1,44 +1,43 @@
-import React, {useState} from "react";
-import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
-import Swal from "sweetalert2"
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AddTeam = () => {
-    let navigate = useNavigate();
-    const [team, setTeam] = useState({
-        teamName: "",
-        teamCaptain:"",
-        players: [],
-        teamOrigin: ""
+  let navigate = useNavigate();
+  const [team, setTeam] = useState({
+    teamName: "",
+    teamCaptain: "",
+    players: [],
+    teamOrigin: "",
+  });
+
+  const { teamName, teamCaptain, players, teamOrigin } = team;
+
+  const onInputChange = (e) => {
+    setTeam({
+      ...team,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Submitting the form...");
+
+    try {
+      console.log("Creating team...");
+      await axios.post(`http://localhost:5000/espcharts/team`, team);
+      console.log("Team posted successfully!");
+      Swal.fire({
+        icon: "success",
+        title: "Team Created Successfully",
       });
-
-      const { teamName, teamCaptain,players,teamOrigin } =
-      team;
-
-      const onInputChange = e => {
-        setTeam({
-                ...team,
-                  [e.target.name]: e.target.value,
-                });
-      }
-
-      const onSubmit = async (e) => {
-        e.preventDefault();
-        console.log("Submitting the form...");
-    
-        try {
-          console.log("Creating team...");
-          await axios.post(`http://localhost:5000/espcharts/team`, team);
-          console.log("Team posted successfully!");
-          Swal.fire({
-            icon: 'success',
-            title: 'Team Created Successfully',
-          });
-          navigate("/team");
-        } catch (error) {
-          console.error("Error updating player:", error);
-        }
-      };
+      navigate("/team");
+    } catch (error) {
+      console.error("Error updating player:", error);
+    }
+  };
   return (
     <div>
       <div>
@@ -87,6 +86,7 @@ const AddTeam = () => {
           <button className="submitButton">Add New Team</button>
         </form>
       </div>
+      <Link to={"/team"}>Go back to teams</Link>
     </div>
   );
 };

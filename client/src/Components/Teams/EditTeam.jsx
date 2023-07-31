@@ -111,7 +111,7 @@ const EditTeam = () => {
           </div>
           <button className="submitButton">Update Team</button>
         </form>
-        <Link to={"/team"}>Go back to players</Link>
+        <Link to={"/team"}>Go back to teams</Link>
       </div>
     </div>
   );

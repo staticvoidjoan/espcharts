@@ -35,7 +35,7 @@ function NavBar() {
               <NavDropdown.Item as={Link} to={"/team"}>
                 Teams
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Matches</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to={"/matches"}>Matches</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link as={Link} to={"/contact"} className="nav-text-color">Contact</Nav.Link>
           </Nav>

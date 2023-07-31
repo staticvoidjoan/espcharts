@@ -66,11 +66,13 @@ function Teams() {
   }
 
   return (
+    <div className="teams-table">
+
     <div className="table-container">
       <div className="table-wrapper">
         <h1 className="title">Teams</h1>
         <div className="add-player-link">
-        <Link to={`/team/add`} className="Link">
+        <Link to={`/team/add`} className="Link" style={{ float: "right" }}>
           Add Team
         </Link>
       </div>
@@ -93,7 +95,7 @@ function Teams() {
                 <td><GetPlayerName teamCaptainId = {team.teamCaptain}/></td>
                 <td>{team.players.length}</td>
                 <td>{team.teamOrigin}</td>
-                <td>
+                <td className="link-spaces">
                   <Link to={`/team/view/${team._id}`} className="Link">
                     View
                   </Link>
@@ -111,6 +113,7 @@ function Teams() {
         </table>
       </div>
      
+    </div>
     </div>
   );
 }

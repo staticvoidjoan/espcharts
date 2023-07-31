@@ -12,6 +12,15 @@
 }
 /* Style the table header */
 
+  
+.tournament-table {
+  position: absolute;
+  margin-top: 60px;
+  top: 100px; /* Adjust the top position based on your navbar height */
+  right: 180px;
+  left: 180px;
+}
+
 .table .thead tr th {
     background-color: #212121;
     color: white;

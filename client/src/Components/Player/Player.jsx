@@ -40,7 +40,7 @@ function Player() {
         if (result.isConfirmed) {
           Swal.fire(
             'Deleted!',
-            'Your file has been deleted.',
+            'Player has been deleted.',
             'success'
           )
           proceedDelete(id);
@@ -65,6 +65,8 @@ function Player() {
 
   
   return (
+    <div className="player-table">
+
     <div className="table-container">
       <div className="table-wrapper">
       <h1 className="player-title">PLAYERS</h1>
@@ -109,6 +111,7 @@ function Player() {
         </table>
       </div>
       
+    </div>
     </div>
   );
 }

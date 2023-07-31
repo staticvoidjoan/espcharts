@@ -21,7 +21,8 @@ import ViewTeamBox from "./Components/Teams/ViewTeamBox";
 import AddTeam from "./Components/Teams/AddTeam";
 import ViewTeam from "./Components/Teams/ViewTeam";
 import EditTeam from "./Components/Teams/EditTeam";
-
+import Matches from "./Components/Matches/Matches";
+import AddMatch from "./Components/Matches/AddMatch";
 function App() {
   return (
     <div>
@@ -40,6 +41,9 @@ function App() {
           <Route path="/player/add" element={<AddPlayer />} />
           <Route path="/player/edit/:id" element={<EditPlayer />} />
           <Route path="/player/view/:id" element={<ViewPlayer />} />
+          <Route path="/matches" element={<Matches/>}/>
+          <Route path="/matches/add" element={<AddMatch/>}/>
+          
         </Routes>
       </main>
     </div>

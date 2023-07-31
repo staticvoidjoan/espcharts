@@ -31,7 +31,7 @@ const AddPlayer = () => {
     console.log("Submitting the form...");
 
     try {
-      console.log("Updating player...");
+      console.log("Adding player...");
       await axios.post(`http://localhost:5000/espcharts/player`, player);
       console.log("Player posted successfully!");
       Swal.fire({

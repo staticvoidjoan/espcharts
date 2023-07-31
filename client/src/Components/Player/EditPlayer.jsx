@@ -20,6 +20,7 @@ const EditPlayer = () => {
 
   const { firstName, lastName, userName, gameTitle, gameRole, age, country } =
     player;
+    
   const onInputChange = (e) => {
     setPlayer({
       ...player,
