@@ -27,9 +27,9 @@ const ViewPlayer = ({ teamCaptainId }) => {
 
 
   return (
-    <p>
+    <>
       {player.userName}
-    </p>
+    </>
   );
   }  
 

@@ -41,7 +41,9 @@ const ViewTeam = () => {
               <th>Players</th>
               <td>
                 {team.players.map((playerId, index) => (
-                  <GetPlayerName key={index} teamCaptainId={playerId} />
+                  <>
+                  <GetPlayerName key={index} teamCaptainId={playerId} /> <br/>
+                  </>
                 ))}
               </td>
             </tr>

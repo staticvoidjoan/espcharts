@@ -62,38 +62,50 @@ module.exports.updateMatch = async (req, res) => {
   try {
     const { id } = req.params;
     const { tournament, team1, team2, playedMaps } = req.body;
+    console.log(req.body)
+const regex = /^[A-Za-z0-9]+$/;
 
-    //Check if the map names are correct
-    const regex = /^[A-Za-z0-9]+$/;
-    if (regex.test(playedMaps)) {
-      res
-        .status(400)
-        .json({ message: "Map name is not in the correct format" });
+// Check if the properties exist before accessing them
+if (tournament?.length > 0 && team1?.length > 0 && team2?.length > 0) {
+  // Check if the map names are correct
+  if (playedMaps && playedMaps.length > 0) {
+    if (playedMaps.some((map) => !regex.test(map))) {
+      res.status(400).json({ message: "Map name is not in the correct format" });
+      return;
     }
+  }
 
-    const selectedMatch = await Match.findById(id);
-    if (!selectedMatch) {
-      res.status(404).json({ message: "There is no match with that id" });
-    }
+  const selectedMatch = await Match.findById(id);
+  if (!selectedMatch) {
+    res.status(404).json({ message: "There is no match with that id" });
+  }
 
-    //Check if the match alreadt
-    const existingMatch = await Match.findOne({
-      _id: { $ne: id },
-      $or: [({ tournament }, { team1 }, { team2 })],
-    });
-    if (
-      existingMatch.tournament == tournament &&
-      existingMatch.team1 == team1 &&
-      existingMatch.team2 == team2
-    ) {
-      res.status(400).json({ message: "Match already exists" });
-    }
+  // Check if the match already exists
+  const existingMatch = await Match.findOne({
+    _id: { $ne: id },
+    $or: [{ tournament }, { team1 }, { team2 }],
+  });
+  if (
+    existingMatch &&
+    existingMatch.tournament === tournament &&
+    existingMatch.team1 === team1 &&
+    existingMatch.team2 === team2
+  ) {
+    res.status(400).json({ message: "Match already exists" });
+  }
 
-    const match = await Match.findByIdAndUpdate(id, req.body);
-    if (!match) {
-      res.status(404).json({ message: "There is no match with that id" });
-    }
-    res.status(200).json(match);
+  const match = await Match.findByIdAndUpdate(id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!match) {
+    res.status(404).json({ message: "There is no match with that id" });
+  }
+  res.status(200).json(match);
+} else {
+  res.status(400).json({ message: "Invalid request body" });
+}
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

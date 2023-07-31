@@ -5,6 +5,9 @@ import Swal from "sweetalert2";
 import { format } from "date-fns";
 import "./Matches.css";
 import GetPlayerName from "../Teams/GetPlayerName";
+import GetTeamName from "./GetTeamNames";
+
+
 function Matches() {
   const [matches, setMatches] = useState([]);
 
@@ -93,8 +96,8 @@ function Matches() {
                 <tr key={index}>
                   <td scope="row">{index + 1}</td>
                   <td>{match.tournament}</td>
-                  <td>{match.team1}</td>
-                  <td>{match.team2}</td>
+                  <td><GetTeamName teamId={match.team1}/></td>
+                  <td><GetTeamName teamId={match.team2}/></td>
                   <td>{format(new Date(match.startDate), "MMMM d, yyyy")}</td>
                   <td>
                     {match.playedMaps.map((map, index) => (
