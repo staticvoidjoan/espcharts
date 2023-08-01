@@ -10,9 +10,9 @@ import Home from "./Components/Pages/Home/Home";
 import Contact from "./Components/Pages/Contact/Contact";
 
 //Functionality Components
-import Player from "./Components/Player/Player";
+import Player from "./Components/Player/Player2";
 import EditPlayer from "./Components/Player/EditPlayer";
-import AddPlayer from "./Components/Player/AddPlayer";
+import AddPlayer from "./Components/Player/AddPlayer2";
 import ViewPlayer from "./Components/Player/ViewPlayer";
 import ViewBox from "./Components/Player/ViewBox";
 import Tournament from "./Components/Tournament/Tournament";
