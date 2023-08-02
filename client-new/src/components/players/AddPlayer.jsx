@@ -19,6 +19,7 @@ const AddPlayer = () => {
     country: "",
   });
 
+
   const { firstName, lastName, userName, gameTitle, gameRole, age, country } =
     player;
 
@@ -111,7 +112,8 @@ const AddPlayer = () => {
       "Coach",
     ];
   }
-  const availableGameRoles = roles;
+
+
 
   return (
     <div className="add-player-container mt-5 mb-5">

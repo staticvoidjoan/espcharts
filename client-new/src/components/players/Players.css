@@ -27,7 +27,7 @@
 
   .player-bg-image{
     width: 100%;
-    height: 105vh;
+    height: 130vh;
     object-fit: cover; /* Image will cover the entire container */
     position: absolute; /* Position the image absolutely within the container */
     top: 0;
