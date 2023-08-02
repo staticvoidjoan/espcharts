@@ -3,7 +3,6 @@ import axios from 'axios';
 import {useParams, useNavigate, Link} from 'react-router-dom'
 import "./EditPlayer.css";
 import Swal from "sweetalert2";
-
 import Form from "react-bootstrap/Form";
 import background from "../../assets/playerbg.png";
 
@@ -220,7 +219,7 @@ const EditPlayer = () => {
                   style={{ color: "#fff", width: "40px" }}
                 ></i>
               </Link>
-              <Button className="submitButton">Add New Player</Button>
+              <button className="submitButton">Add New Player</button>
               <button className="ClearLink" onClick={clearOnSubmit}>
                 Clear
               </button>
