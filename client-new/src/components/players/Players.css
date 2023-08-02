@@ -1,0 +1,69 @@
+
+
+.player-title {
+  color: #ffffff; /* White color */
+  font-weight: 500; /* Medium font weight */
+  font-family: "Helvetica Neue", Arial, sans-serif; /* Modern font family */
+  font-size: 36px; /* Larger font size */
+  text-transform: uppercase; /* Uppercase text */
+  letter-spacing: 2px; /* Increased letter spacing */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow effect */
+  background: linear-gradient(
+    90deg,
+    #9c27b0,
+    #673ab7
+  ); /* Gradient background */
+  padding: 10px 20px; /* Padding around the title */
+  border-radius: 5px; /* Rounded corners */
+  width:50%;
+  
+}
+
+.title-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  .player-bg-image{
+    width: 100%;
+    height: 105vh;
+    object-fit: cover; /* Image will cover the entire container */
+    position: absolute; /* Position the image absolutely within the container */
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+  }
+
+  .Link {
+    background-color: #8e24aa;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 10px; /* Add margin between the links */
+  }
+  .DeleteLink {
+    background-color: gray;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  .Link:last-child {
+    margin-right: 0; /* Remove margin for the last link */
+  }
+  
+  .Link:hover {
+    background-color: #7b1fa2;
+  }
+  
+  .add-player-link {
+    margin-top: 20px;
+  }
+  
