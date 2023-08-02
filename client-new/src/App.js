@@ -14,7 +14,7 @@ import Home from "./pages/home/Home";
 import Players from "./components/players/Players";
 import ViewPlayer from "./components/players/ViewPlayer";
 import AddPlayer from "./components/players/AddPlayer";
-
+import EditPlayer from "./components/players/EditPlayer";
 function App() {
   const [loading, setLoading] = useState(false);
   const location = useLocation(); // Get the current location
@@ -52,8 +52,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/players" element={<Players />} />
-            <Route path="/player/view/:id" element={<ViewPlayer />} />
             <Route path="/players/add" element={<AddPlayer />} />
+            <Route path="/player/view/:id" element={<ViewPlayer />} />
+            <Route path="/player/edit/:id" element={<EditPlayer/>}/>
             <Route path="*" element={<Navigate to ="/" replace/>}/>
           </Routes>
         </main>

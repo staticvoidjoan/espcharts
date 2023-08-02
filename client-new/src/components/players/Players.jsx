@@ -167,8 +167,8 @@ function Players() {
           <div className="container">
 
           <ReactPaginate
-            previousLabel={'Previous'}
-            nextLabel={'Next'}
+            previousLabel={'<Back'}
+            nextLabel={'Next>'}
             breakLabel={'...'}
             pageCount={20}
             marginPagesDisplayed={2}
