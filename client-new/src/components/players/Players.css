@@ -54,6 +54,7 @@
     text-decoration: none;
     margin-right: 10px;
   }
+ 
   
   .Link:last-child {
     margin-right: 0; /* Remove margin for the last link */

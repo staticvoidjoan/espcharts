@@ -48,7 +48,9 @@ module.exports.createPlayer = async (req, res) => {
 //Function to get all players
 module.exports.getPlayers = async (req, res) => {
   try {
-    const players = await Player.find({});
+      const {page, limit} = req.query;
+      const skip = (page-1) * 10
+    const players = await Player.find().skip(skip).limit(limit);
     if (players.length == 0) {
       return res
         .status(404)
@@ -59,6 +61,7 @@ module.exports.getPlayers = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 //Function to get a player by its ID
 module.exports.getPlayerById = async (req, res) => {

@@ -1,11 +1,11 @@
-import "./Home.css";
+
 import logo from "../../../assets/espchlogo.png";
 
 function Home() {
   return (
     <div>
       <div>
-        <img src={logo} className="logo" alt="logo" />
+        {/* <img src={logo} className="logo" alt="logo" /> */}
       </div>
       <div className="bio-container">
         <p className="bio">

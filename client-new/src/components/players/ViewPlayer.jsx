@@ -28,7 +28,7 @@ const ViewPlayer = () => {
 
   return (
     <>
-      <div className="container mt-5">
+      <div className="container mt-5 mb-5">
         <div className="view-player-container">
           <img src={background} alt="background" className="player-bg-image" />
           <div className="card-container">
@@ -52,23 +52,34 @@ const ViewPlayer = () => {
                 </Card.Text>
               </Card.Body>
               <ListGroup className="list-group-flush">
-                <ListGroup.Item><strong>Game: </strong>{player.gameTitle}</ListGroup.Item>
-                <ListGroup.Item><strong>Role: </strong>{player.gameRole}</ListGroup.Item>
-                <ListGroup.Item><strong>Age: </strong>{player.age}</ListGroup.Item>
-                <ListGroup.Item><strong>Country: </strong>{player.country}</ListGroup.Item>
+                <ListGroup.Item>
+                  <strong>Game: </strong>
+                  {player.gameTitle}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <strong>Role: </strong>
+                  {player.gameRole}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <strong>Age: </strong>
+                  {player.age}
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <strong>Country: </strong>
+                  {player.country}
+                </ListGroup.Item>
               </ListGroup>
               <Card.Body>
-                <Link to={`/player/view/${player._id}`} className="Link">
-                  View
+                <Link to={`/players`} className="Link">
+                  <i
+                    class="fa-solid fa-arrow-left"
+                    style={{ color: "#fff" }}
+                  ></i>
                 </Link>
                 <Link to={`/player/edit/${player._id}`} className="Link">
                   Edit
                 </Link>
-                <Link
-                  className="DeleteLink"
-                >
-                  Delete
-                </Link>
+                <Link className="DeleteLink">Delete</Link>
               </Card.Body>
             </Card>
           </div>

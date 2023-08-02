@@ -1,28 +1,64 @@
-import NavBar from "./layout/navbar/NavBar";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import PacmanLoader from "react-spinners/PacmanLoader";
 
+// Layout
+import NavBar from "./layout/navbar/NavBar";
+import Footer from "./layout/footer/Footer";
 
-//Pages
-import Home from "./pages/home/Home"
+// Pages
+import Home from "./pages/home/Home";
 
-//Player Components
+// Player Components
 import Players from "./components/players/Players";
 import ViewPlayer from "./components/players/ViewPlayer";
-
+import AddPlayer from "./components/players/AddPlayer";
 
 function App() {
+  const [loading, setLoading] = useState(false);
+  const location = useLocation(); // Get the current location
+
+  useEffect(() => {
+    setLoading(true);
+  
+    // Check if the location's pathname is in the loadingPaths array
+    const isMainRoute = loadingPaths.some(path => location.pathname.includes(path));
+  
+    if (isMainRoute) {
+      const timeout = setTimeout(() => {
+        setLoading(false);
+      }, 1200);
+  
+      return () => {
+        clearTimeout(timeout);
+      };
+    } else {
+      setLoading(false); // Don't show spinner for non-main routes
+    }
+  }, [location]);
+  // Define paths where you want to show the loading spinner
+  const loadingPaths = ['/players', '/player/view', '/players/add'];
+
   return (
     <div className="App">
-      <NavBar/>
-      <main>
-        
-         <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/players" element={<Players/>}/>
-            <Route path="/player/view/:id" element={<ViewPlayer/>}/>
+      <NavBar />
+      {(loading && loadingPaths.includes(location.pathname)) ? (
+        <div className="spinner-container">
+          <PacmanLoader color={'#ca28ba'} loading={loading} size={35} />
+        </div>
+      ) : (
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/players" element={<Players />} />
+            <Route path="/player/view/:id" element={<ViewPlayer />} />
+            <Route path="/players/add" element={<AddPlayer />} />
+            <Route path="*" element={<Navigate to ="/" replace/>}/>
           </Routes>
-      </main>
+        </main>
+      )}
+      <Footer />
     </div>
   );
 }

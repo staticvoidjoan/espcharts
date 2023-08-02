@@ -9,16 +9,17 @@ import Swal from "sweetalert2";
 import "./Players.css";
 import background from "../../assets/playerbg.png";
 import playerplaceholder from "../../assets/playerplch.svg"
+import ReactPaginate from 'react-paginate'
 function Players() {
   const [players, setPlayers] = useState([]);
-
+  const [pageCount, setPageCount] = useState(0);
   useEffect(() => {
     loadPlayers();
   }, []);
 
-  const loadPlayers = async () => {
+  const loadPlayers = async (currentPage) => {
     try {
-      const response = await axios.get("http://localhost:5000/espcharts/player");
+      const response = await axios.get(`http://localhost:5000/espcharts/player?page=${currentPage}&limit=6`);
       setPlayers(response.data);
     } catch (error) {
       Swal.fire({
@@ -53,11 +54,40 @@ function Players() {
   const proceedDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/espcharts/player/${id}`);
-      loadPlayers();
+      setTimeout(() => {
+        loadPlayers();
+      }, 2000);
     } catch (error) {
       console.error("Error deleting player:", error);
     }
   };
+
+
+
+  //Pagination
+
+
+  const fetchComments = async (currentPage) =>{
+    try {
+      const response = await axios.get(`http://localhost:5000/espcharts/player?page=${currentPage}&limit=6`);
+      const data = response.data;
+      return data;
+    
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+      return []; // Return an empty array or handle the error accordingly
+    }
+  }
+
+  const handlePageClick = async (data) => {
+    let currentPage = data.selected + 1
+    const newPlayersData = await fetchComments(currentPage);
+    setPlayers(newPlayersData)
+
+    
+
+  }
+
 
   return (
     <>
@@ -119,6 +149,7 @@ function Players() {
                         >
                           Edit
                         </Link>
+                        
                         <Link
                           onClick={() => deletePlayer(player._id)}
                           className="DeleteLink"
@@ -133,6 +164,24 @@ function Players() {
             ))}
           </Row>
         </Container>
+          <div className="container">
+
+          <ReactPaginate
+            previousLabel={'Previous'}
+            nextLabel={'Next'}
+            breakLabel={'...'}
+            pageCount={20}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={3}
+            onPageChange={handlePageClick}
+            containerClassName={'pagination justify-content-center'}
+            pageClassName={'page-item'}
+            pageLinkClassName={'page-link'}
+            previousClassName={'page-link'}
+            nextClassName={'page-link'}
+            activeClassName={"active"}
+          />
+          </div>
       </div>
     </>
   );

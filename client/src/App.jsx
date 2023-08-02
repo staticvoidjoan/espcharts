@@ -1,6 +1,6 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import espchartLogo from "./assets/espchlogo.png";
-import "./App.css";
+
 
 //Page Components
 import NavBar from "./Components/Layout/Header/NavBar";
@@ -43,6 +43,7 @@ function App() {
           <Route path="/player/view/:id" element={<ViewPlayer />} />
           <Route path="/matches" element={<Matches/>}/>
           <Route path="/matches/add" element={<AddMatch/>}/>
+          <Route path="*" element={<Navigate to="/" replace/>}/>
           
         </Routes>
       </main>
