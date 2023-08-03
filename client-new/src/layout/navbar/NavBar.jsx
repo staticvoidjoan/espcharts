@@ -18,12 +18,12 @@ function NavBar() {
             <Nav.Link href="#home">Tournaments</Nav.Link>
             <NavDropdown title="Charts" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to={"/players"}>Players</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item as={Link} to={"/teams"}>
                 Teams
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Matches</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#link">Contact Us</Nav.Link>
+            <Nav.Link as={Link} to={"/contact"}>Contact Us</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

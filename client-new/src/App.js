@@ -9,12 +9,21 @@ import Footer from "./layout/footer/Footer";
 
 // Pages
 import Home from "./pages/home/Home";
+import Contact from "./pages/contact/Contact";
+
 
 // Player Components
 import Players from "./components/players/Players";
 import ViewPlayer from "./components/players/ViewPlayer";
 import AddPlayer from "./components/players/AddPlayer";
 import EditPlayer from "./components/players/EditPlayer";
+
+
+//Team Components
+import Teams from "./components/teams/Teams";
+
+
+
 function App() {
   const [loading, setLoading] = useState(false);
   const location = useLocation(); // Get the current location
@@ -51,10 +60,19 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
+
+            {/* Players  */}
             <Route path="/players" element={<Players />} />
             <Route path="/players/add" element={<AddPlayer />} />
             <Route path="/player/view/:id" element={<ViewPlayer />} />
             <Route path="/player/edit/:id" element={<EditPlayer/>}/>
+
+            {/* Team */}
+            <Route path="/teams" element={<Teams />}/>
+
+            {/* Pages */}
+            <Route path="/contact" element={<Contact />} />
+
             <Route path="*" element={<Navigate to ="/" replace/>}/>
           </Routes>
         </main>

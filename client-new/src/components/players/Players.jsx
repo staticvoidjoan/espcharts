@@ -12,11 +12,42 @@ import playerplaceholder from "../../assets/playerplch.svg"
 import ReactPaginate from 'react-paginate'
 function Players() {
   const [players, setPlayers] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
+  const [allPLayers, setAllPlayers] =useState([]);
+
   useEffect(() => {
     loadPlayers();
+    getAllPlayers();
   }, []);
 
+
+  const getAllPlayers = async (currentPage) => {
+    try {
+      const response = await axios.get("http://localhost:5000/espcharts/playerAll");
+      setAllPlayers(response.data);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Database Error",
+        text: "There was an issue fetching data from the database. Please try again later.",
+      });
+    }
+  }
+
+
+  const handlePageClick = async (data) => {
+    let currentPage = data.selected + 1
+    loadPlayers(currentPage)
+    const totalPages = Math.ceil(allPLayers.length / 6);
+
+    if (currentPage <= totalPages) {
+      loadPlayers(currentPage);
+    } else {
+      // Handle the case where the user clicked on a non-existent page
+      console.log("Invalid page clicked.");
+    }
+    
+
+  }
   const loadPlayers = async (currentPage) => {
     try {
       const response = await axios.get(`http://localhost:5000/espcharts/player?page=${currentPage}&limit=6`);
@@ -29,6 +60,9 @@ function Players() {
       });
     }
   };
+  
+
+
 
   const deletePlayer = (id) => {
     try {
@@ -64,33 +98,10 @@ function Players() {
 
 
 
-  //Pagination
-
-
-  const fetchComments = async (currentPage) =>{
-    try {
-      const response = await axios.get(`http://localhost:5000/espcharts/player?page=${currentPage}&limit=6`);
-      const data = response.data;
-      return data;
-    
-    } catch (error) {
-      console.error("Error fetching comments:", error);
-      return []; // Return an empty array or handle the error accordingly
-    }
-  }
-
-  const handlePageClick = async (data) => {
-    let currentPage = data.selected + 1
-    const newPlayersData = await fetchComments(currentPage);
-    setPlayers(newPlayersData)
-
-    
-
-  }
-
 
   return (
     <>
+    {console.log(allPLayers.length)}
       <div >
         <div className="title-container mt-5">
           <h1 className="player-title">PLAYERS</h1>
@@ -107,6 +118,7 @@ function Players() {
           className="d-flex justify-content-center container"
         >
           <Row md={20} className="justify-content-center">
+            
             {players.map((player, index) => (
               <Col sm={4} key={index}>
                 <div className="container-md">
@@ -170,7 +182,7 @@ function Players() {
             previousLabel={'<Back'}
             nextLabel={'Next>'}
             breakLabel={'...'}
-            pageCount={20}
+            pageCount={Math.ceil(allPLayers.length/6)}
             marginPagesDisplayed={2}
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}

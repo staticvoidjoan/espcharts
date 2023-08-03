@@ -49,7 +49,7 @@ module.exports.createPlayer = async (req, res) => {
 module.exports.getPlayers = async (req, res) => {
   try {
       const {page, limit} = req.query;
-      const skip = (page-1) * 10
+      const skip = (parseInt(page) - 1) * parseInt(limit);
     const players = await Player.find().skip(skip).limit(limit);
     if (players.length == 0) {
       return res
@@ -61,6 +61,23 @@ module.exports.getPlayers = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+module.exports.getAllPlayers = async (req, res) => {
+  try {
+    const players = await Player.find({});
+    if (players.length == 0) {
+      return res
+        .status(404)
+        .json({ message: "No players have been added to the datbase" });
+    }
+    res.status(200).json(players);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
 
 
 //Function to get a player by its ID

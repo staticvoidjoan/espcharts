@@ -1,15 +1,14 @@
-import React from "react";
-import "./Contact.css";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import Form from "react-bootstrap/Form";
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import contactUslogo from "../../assets/contactUs.svg"
+
+import background from "../../assets/homebg.png"
 import "./Contact.css";
 
-function Contact() {
+const Contact = () => {
   let navigate = useNavigate();
   const [contact, setContact] = useState({
     name: "",
@@ -49,28 +48,52 @@ function Contact() {
       });
     }
   };
-  return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+  return (
+    <div className ="dflex container mt-5 mb-5">
+
+    <div className="contact-page-container">
+      <div className="contact-form-container">
+        <h2 className="contact-h2">Contact Us</h2>
+        <form id="contact-form" onSubmit={(e) => onSubmit(e)}>
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={(e) => onInputChange(e)}
+            required
+          />
+
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            onChange={(e) => onInputChange(e)}
+            required
+          />
+
+          <label htmlFor="message">Message:</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            value={message}
+            onChange={(e) => onInputChange(e)}
+            required
+          ></textarea>
+
+      <img src={contactUslogo} alt="Contact Us" className="contact-image" />
+          <button type="submit" className="submit-contact mt-2">Send Message</button>
+        </form>
+      </div>
+    </div>
+      <img src={background} alt="background" className="player-bg-image" />
+      </div>
   );
-}
+};
 
 export default Contact;

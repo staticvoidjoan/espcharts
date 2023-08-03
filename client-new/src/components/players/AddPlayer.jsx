@@ -113,10 +113,11 @@ const AddPlayer = () => {
     ];
   }
 
-
+  const availableGameRoles = roles
 
   return (
     <div className="add-player-container mt-5 mb-5">
+       <h1 style={{fontWeight:"650"}} >New Player</h1>
       <img src={background} alt="background" className="player-bg-image" />
       <Form onSubmit={onSubmit}>
         <Form.Group className="mb-3" controlId="firstName">

@@ -124,7 +124,10 @@ const EditPlayer = () => {
       }
       const availableGameRoles = roles;
       return (
+        <>
+         
         <div className="add-player-container mt-5 mb-5">
+         <h1 style={{fontWeight:"650"}} >Update Player</h1>
           <img src={background} alt="background" className="player-bg-image" />
           <Form onSubmit={onSubmit}>
             <Form.Group className="mb-3" controlId="firstName">
@@ -219,13 +222,14 @@ const EditPlayer = () => {
                   style={{ color: "#fff", width: "40px" }}
                 ></i>
               </Link>
-              <button className="submitButton">Add New Player</button>
+              <button className="submitButton">Update Player</button>
               <button className="ClearLink" onClick={clearOnSubmit}>
                 Clear
               </button>
             </div>
           </Form>
         </div>
+         </>
       );    
 
 }
