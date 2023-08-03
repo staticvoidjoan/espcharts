@@ -29,7 +29,7 @@ const EditPlayer = () => {
       });
     };
   
-    useEffect(() => {
+    useEffect(() => {   
       loadPlayer();
     }, []);
   
@@ -59,15 +59,8 @@ const EditPlayer = () => {
     };
 
     const clearOnSubmit = () => {
-        setPlayer({
-          firstName: player.firstName,
-          lastName: player.lastName,
-          userName: player.userName,
-          gameTitle: player.gameTitle,
-          gameRole: player.gameRole,
-          age: player.age,
-          country: player.country,
-        });
+        setPlayer({});
+        loadPlayer()
       };
 
     const availableGameTitles = [
@@ -223,7 +216,7 @@ const EditPlayer = () => {
                 ></i>
               </Link>
               <button className="submitButton">Update Player</button>
-              <button className="ClearLink" onClick={clearOnSubmit}>
+              <button className="clearButton" onClick={clearOnSubmit}>
                 Clear
               </button>
             </div>

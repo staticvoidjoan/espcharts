@@ -6,16 +6,34 @@
   border-radius: 5px;
   background-color: azure;
 }
+
 .submitButton {
   background-color: #7b1fa2;
   color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 8px 18px;
+  font-size: 14px;
   border-radius: 5px;
   cursor: pointer;
+  margin:auto;
+  margin: 10px;
 }
 .submitButton:hover {
+  background-color: #9628c5;
+  
+}
+.clearButton {
+  background-color: gray;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin:auto;
+  margin: 10px;
+}
+.clearButton:hover {
   background-color: #9628c5;
   
 }

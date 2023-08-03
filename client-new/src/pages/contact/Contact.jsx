@@ -83,10 +83,11 @@ const Contact = () => {
             rows="4"
             value={message}
             onChange={(e) => onInputChange(e)}
+            className = "mb-5"
             required
           ></textarea>
 
-      <img src={contactUslogo} alt="Contact Us" className="contact-image" />
+      {/* <img src={contactUslogo} alt="Contact Us" className="contact-image" /> */}
           <button type="submit" className="submit-contact mt-2">Send Message</button>
         </form>
       </div>

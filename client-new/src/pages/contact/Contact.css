@@ -4,8 +4,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom right, #6c31a0, #a146bd); /* Purple gradient background */
+  background-color: transparent; /* Purple gradient background */
   border-radius: 10px;
+  border-color: #59367e;
+  border: solid #59367e 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 40px;
   width: 90%;

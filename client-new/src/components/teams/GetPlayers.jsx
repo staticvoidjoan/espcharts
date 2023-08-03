@@ -4,12 +4,10 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import playerplaceholder from "../../assets/playerplch.svg";
-import "./ViewPlayer.css";
-import background from "../../assets/playerbg.png";
-import Swal from "sweetalert2"
-const ViewPlayer = () => {
+import "./GetPlayer.css"
+const ViewPlayer = ({playerId}) => {
   let navigate = useNavigate();
-  const { id } = useParams();
+
   const [player, setPlayer] = useState({});
 
   useEffect(() => {
@@ -19,26 +17,17 @@ const ViewPlayer = () => {
   const loadPlayer = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/espcharts/player/${id}`
+        `http://localhost:5000/espcharts/player/${playerId}`
       );
       setPlayer(res.data);
     } catch (error) {
       console.error("Error loading player:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Error :(",
-        text: "There was an issue. Please try again later.",
-      });
     }
   };
 
   return (
     <>
-      <div className="container mt-5 mb-5">
-        <div className="view-player-container">
-          <img src={background} alt="background" className="player-bg-image" />
-          <div className="card-container">
-            <Card style={{ width: "18rem" }} className="view-player-container">
+            <Card style={{ width: "100%" }} className="view-player-container">
               <Card.Title className="view-player-title">
                 {player.userName}
               </Card.Title>
@@ -46,6 +35,7 @@ const ViewPlayer = () => {
                 variant="top"
                 src={playerplaceholder}
                 className="mx-auto"
+                style={{ width: "50%", margin: "0 auto" }}
               />
               <Card.Body>
                 <Card.Text>
@@ -76,21 +66,12 @@ const ViewPlayer = () => {
                 </ListGroup.Item>
               </ListGroup>
               <Card.Body>
-                <Link to={`/players`} className="Link">
-                  <i
-                    class="fa-solid fa-arrow-left"
-                    style={{ color: "#fff" }}
-                  ></i>
+                <Link to={`/player/view/${player._id}`} className="Link">
+                  View
                 </Link>
-                <Link to={`/player/edit/${player._id}`} className="Link">
-                  Edit
-                </Link>
-                <Link className="DeleteLink">Delete</Link>
+                {/* <Link className="DeleteLink">Delete</Link> */}
               </Card.Body>
-            </Card>
-          </div>
-        </div>
-      </div>
+            </Card> 
     </>
   );
 };

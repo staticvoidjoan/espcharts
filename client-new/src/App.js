@@ -19,8 +19,11 @@ import AddPlayer from "./components/players/AddPlayer";
 import EditPlayer from "./components/players/EditPlayer";
 
 
+
 //Team Components
 import Teams from "./components/teams/Teams";
+import ViewTeam from "./components/teams/ViewTeam";
+
 
 
 
@@ -69,7 +72,7 @@ function App() {
 
             {/* Team */}
             <Route path="/teams" element={<Teams />}/>
-
+            <Route path="/team/view/:id" element={<ViewTeam/>}/>
             {/* Pages */}
             <Route path="/contact" element={<Contact />} />
 

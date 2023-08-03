@@ -27,14 +27,15 @@ function Players() {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Database Error",
-        text: "There was an issue fetching data from the database. Please try again later.",
+        title: "Error :(",
+        text: "There was an issue. Please try again later.",
       });
     }
   }
 
 
   const handlePageClick = async (data) => {
+    
     let currentPage = data.selected + 1
     loadPlayers(currentPage)
     const totalPages = Math.ceil(allPLayers.length / 6);
@@ -55,8 +56,8 @@ function Players() {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Database Error",
-        text: "There was an issue fetching data from the database. Please try again later.",
+        title: "Error :(",
+        text: "There was an issue. Please try again later.",
       });
     }
   };
@@ -125,9 +126,10 @@ function Players() {
                   <Card
                     className="centered-card" // Add this className
                     style={{
-                      width: "18rem",
+                      width: "100%",
                       height: "17rem",
                       marginBottom: "5rem",
+                      alignContent:"center"
                     }}
                   >
                       <Card.Img variant="top" src={playerplaceholder} style={{ width: "30%" }} className="mx-auto" />

@@ -18,6 +18,12 @@
     width:50%;
     
   }
+
+  .team-card-container {
+    margin: 10px; /* Add margin to separate cards */
+    display: flex;
+    justify-content: center;
+  }
   
   .title-container{
     display: flex;

@@ -9,7 +9,8 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import ReactPaginate from 'react-paginate'
-
+import teamlogo from "../../assets/teamlogo.png"
+import "./Teams.css"
 function Teams() {
   const [teams, setTeams] = useState([]);
 
@@ -24,8 +25,8 @@ function Teams() {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Database Error",
-        text: "There was an issue fetching data from the database. Please try again later.",
+        title: "Error :(",
+        text: "There was an issue. Please try again later.",
       });
       console.error("Error loading teams:", error);
     }
@@ -73,7 +74,7 @@ function Teams() {
         </div>
         <div className="add-player-link">
           <Link to={`/players/add`} className="Link">
-            Add Player  
+            Add Team  
           </Link>
         </div>
         <img src={background} alt="background" className="player-bg-image" />
@@ -85,19 +86,19 @@ function Teams() {
           <Row md={20} className="justify-content-center">
             {teams.map((team, index) => (
               <Col sm={4} key={index}>
-                <div className="container-md">
+                <div className="team-card-container ">
                   <Card
                     className="centered-card" // Add this className
                     style={{
-                      width: "18rem",
-                      height: "17rem",
+                      width: "25rem",
+                      height: "25rem",
                       marginBottom: "5rem",
                     }}
                   >
                     <Card.Img
                       variant="top"
-                      src={""}
-                      style={{ width: "30%" }}
+                      src={teamlogo}
+                      style={{ width: "80%" }}
                       className="mx-auto"
                     />
                     <Card.Body
@@ -148,6 +149,7 @@ function Teams() {
             ))}
           </Row>
         </Container>
+        
         <div className="container">
           {/* <ReactPaginate
             previousLabel={"<Back"}

@@ -117,7 +117,7 @@ const AddPlayer = () => {
 
   return (
     <div className="add-player-container mt-5 mb-5">
-       <h1 style={{fontWeight:"650"}} >New Player</h1>
+       <h1 style={{fontWeight:"650", color:"white"}} >New Player</h1>
       <img src={background} alt="background" className="player-bg-image" />
       <Form onSubmit={onSubmit}>
         <Form.Group className="mb-3" controlId="firstName">
@@ -206,14 +206,14 @@ const AddPlayer = () => {
           />
         </Form.Group>
         <div className="container d-flex justify-content-between align-items-center">
-          <Link to={`/players`} className="Link">
+          <Link as={Link} to={`/players`} className="submitButton">
             <i
               class="fa-solid fa-arrow-left"
               style={{ color: "#fff", width: "40px" }}
             ></i>
           </Link>
-          <button className="submitButton">Add New Player</button>
-          <button className="ClearLink" onClick={clearOnSubmit}>
+          <button className="submitButton">Add Player</button>
+          <button className="clearButton" onClick={clearOnSubmit}>
             Clear
           </button>
         </div>
