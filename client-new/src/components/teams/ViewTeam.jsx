@@ -37,10 +37,10 @@ const ViewTeam = () => {
   };
 
   return (
-    <>
+    <div className="container">
       <div className="container mt-5 mb-5">
         <div className="view-player-container">
-          <img src={background} alt="background" className="player-bg-image" />
+          <img src={background} alt="background" className="team-bg-image" />
           <div className="card-container">
             <Card style={{ width: "18rem" }} className="viewteam-bg-image">
               <Card.Title className="view-player-title">
@@ -68,7 +68,7 @@ const ViewTeam = () => {
                     style={{ color: "#fff" }}
                   ></i>
                 </Link>
-                <Link to={`/player/edit/${team._id}`} className="Link">
+                <Link to={`/team/edit/${team._id}`} className="Link">
                   Edit
                 </Link>
                 <Link className="DeleteLink">Delete</Link>
@@ -84,7 +84,7 @@ const ViewTeam = () => {
         <Container fluid style={{ marginTop: "2em" , zIndex:"-1"}}>
           <Row className="justify-content-center">
             {team.players.map((playerId, index) => (
-              <Col sm={2} key={index}>
+              <Col sm={4} md={3} ml={5} lg={2} key={index} style={{width:"20%"}}>
                 <div className="d-flex justify-content-center">
               
                   <GetPlayer playerId={playerId} />
@@ -95,7 +95,7 @@ const ViewTeam = () => {
         </Container>
       )}
       </div>
-    </>
+    </div>
   );
 };
 

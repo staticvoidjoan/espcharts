@@ -7,7 +7,8 @@ module.exports.createTeam = async (req, res) => {
     const { teamOrigin, teamName } = req.body;
 
     //Check if the Team Name is of the correct format
-    const nameRegex = /^[a-zA-Z0-9_-]+$/;
+    const nameRegex = /^[a-zA-Z0-9 _-]+$/
+    ;
     if (!nameRegex.test(teamName)) {
       return res
         .status(400)
@@ -39,6 +40,25 @@ module.exports.createTeam = async (req, res) => {
 
 //Function that gets all teams
 module.exports.getTeams = async (req, res) => {
+  try {
+    const {page,limit} = req.query;
+    const skip = (parseInt(page) - 1) * parseInt(limit);
+    const teams = await Team.find().skip(skip).limit(limit);
+
+    //Check if the database is empty
+    if (teams.length == 0) {
+      return res
+        .status(200)
+        .json({ message: "Error there is no teams in the database" });
+    }
+    res.status(200).json(teams);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+module.exports.getAllTeams = async (req, res) => {
   try {
     const teams = await Team.find({});
 

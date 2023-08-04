@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link , useParams} from "react-router-dom";
 import Swal from "sweetalert2";
 import { Form, Button } from 'react-bootstrap';
 import background from "../../assets/playerbg.png";
 import "./AddTeam.css";
 
 const AddTeam = () => {
+  const { id } = useParams();
   let navigate = useNavigate();
   const [team, setTeam] = useState({
     teamName: "",
@@ -33,6 +34,7 @@ const AddTeam = () => {
         console.error("Error fetching players:", error);
       }
     };
+    loadAllTeams();
     fetchPlayers();
   }, []);
 
@@ -41,6 +43,20 @@ const AddTeam = () => {
       ...team,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const loadAllTeams = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/espcharts/team/${id}`);
+      setTeam(response.data);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error :(",
+        text: "There was an issue. Please try again later.",
+      });
+      console.error("Error loading teams:", error);
+    }
   };
 
   const onPlayersChange = (e) => {
@@ -59,7 +75,7 @@ const AddTeam = () => {
 
     try {
       console.log("Creating team...");
-      await axios.post(`http://localhost:5000/espcharts/team`, team);
+      await axios.put(`http://localhost:5000/espcharts/${id}`, team);
       console.log("Team posted successfully!");
       Swal.fire({
         icon: "success",

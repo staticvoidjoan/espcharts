@@ -5,7 +5,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import {Link} from "react-router-dom";
 
 import logo from "../../assets/espchlogo.png";
-import './NavBar.css';
 
 function NavBar() {
   return (

@@ -24,7 +24,7 @@
     position: absolute; /* Position the image absolutely within the container */
     top: 0;
     left: 0;
-    z-index: -1;
+
   }
 
   .view-player-container {

@@ -8,20 +8,50 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import ReactPaginate from 'react-paginate'
-import teamlogo from "../../assets/teamlogo.png"
-import "./Teams.css"
+import ReactPaginate from "react-paginate";
+import teamlogo from "../../assets/teamlogo.png";
+import "./Teams.css";
 function Teams() {
   const [teams, setTeams] = useState([]);
+  const [allTeams, setAllTeams] = useState([]);
 
   useEffect(() => {
     loadTeams();
+    loadAllTeams();
   }, []);
 
-  const loadTeams = async () => {
+  const handlePageClick = (data) => {
+    let currentPage = data.selected + 1;
+    loadTeams(currentPage);
+    const totalPages = Math.ceil(allTeams.length / 6);
+
+    if (currentPage <= totalPages) {
+      loadTeams(currentPage);
+    } else {
+      // Handle the case where the user clicked on a non-existent page
+      console.log("Invalid page clicked.");
+    }
+  };
+  const loadTeams = async (currentPage) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/espcharts/team?page=${currentPage}&limit=6`
+      );
+      setTeams(response.data);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error :(",
+        text: "There was an issue. Please try again later.",
+      });
+      console.error("Error loading teams:", error);
+    }
+  };
+
+  const loadAllTeams = async () => {
     try {
       const response = await axios.get("http://localhost:5000/espcharts/team");
-      setTeams(response.data);
+      setAllTeams(response.data);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -68,16 +98,16 @@ function Teams() {
 
   return (
     <>
+        <img src={background} alt="background" className="team-bg-image" />
       <div>
         <div className="title-container mt-5">
           <h1 className="player-title">Teams</h1>
         </div>
         <div className="add-player-link">
           <Link to={`/teams/add`} className="Link">
-            Add Team  
+            Add Team
           </Link>
         </div>
-        <img src={background} alt="background" className="player-bg-image" />
         <Container
           fluid
           style={{ marginTop: "2em" }}
@@ -98,7 +128,7 @@ function Teams() {
                     <Card.Img
                       variant="top"
                       src={teamlogo}
-                      style={{ width: "80%" }}
+                      style={{ width: "40%" }}
                       className="mx-auto"
                     />
                     <Card.Body
@@ -111,11 +141,13 @@ function Teams() {
                       <Card.Title>{team.teamName}</Card.Title>
                       <Card.Text style={{ flex: 1 }}>
                         <>
+                        <div>
+                            <strong> Bio: </strong>
+                            {team.teamBio};
+                          </div>
                           <div>
                             <strong> TeamCaptain: </strong>
-                            <GetPlayerName
-                              teamCaptainId={team.teamCaptain}
-                            />
+                            <GetPlayerName teamCaptainId={team.teamCaptain} />
                           </div>
                           <div>
                             <strong> Active Players: </strong>
@@ -149,13 +181,13 @@ function Teams() {
             ))}
           </Row>
         </Container>
-        
+
         <div className="container">
-          {/* <ReactPaginate
+          <ReactPaginate
             previousLabel={"<Back"}
             nextLabel={"Next>"}
             breakLabel={"..."}
-            pageCount={Math.ceil(allPLayers.length / 6)}
+            pageCount={Math.ceil(allTeams.length / 6)}
             marginPagesDisplayed={2}
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}
@@ -165,7 +197,7 @@ function Teams() {
             previousClassName={"page-link"}
             nextClassName={"page-link"}
             activeClassName={"active"}
-          /> */}
+          />
         </div>
       </div>
     </>

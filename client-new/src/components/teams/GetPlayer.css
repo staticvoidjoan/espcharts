@@ -1,11 +1,11 @@
 
 
-.player-title {
-  color: #ffffff; /* White color */
-  font-weight: 500; /* Medium font weight */
+.get-view-player-title {
+  color: #ffffff !important; /* White color */
+  font-weight: 300; /* Medium font weight */
   font-family: "Helvetica Neue", Arial, sans-serif; /* Modern font family */
-  font-size: 36px; /* Larger font size */
-  text-transform: uppercase; /* Uppercase text */
+  font-size: 16px; /* Larger font size */
+white-space: nowrap;
   letter-spacing: 2px; /* Increased letter spacing */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow effect */
   background: linear-gradient(
@@ -15,14 +15,36 @@
   ); /* Gradient background */
   padding: 10px 20px; /* Padding around the title */
   border-radius: 5px; /* Rounded corners */
-  width:50%;
+  width:100%;
   
 }
+css
 
-.title-container{
+.view-player-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 80vh;
+}
+
+.view-player-card {
+  width: 250px;
+  margin: 20px; /* Add margin to create space between cards */
+  display: flex;
+  align-items: center;
+  padding: 10px; /* Add padding for content spacing */
+}
+
+.player-image-container {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px; /* Add margin for spacing below the image */
+}
+
+.player-image {
+  width: 50%;
+  max-width: 160px;
 }
 
   .player-bg-image{

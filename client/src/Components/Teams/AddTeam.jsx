@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
-// ... (previous imports and other code) ...
 import "./AddTeam.css";
 
 const AddTeam = () => {
@@ -16,23 +15,31 @@ const AddTeam = () => {
 
   const { teamName, teamCaptain, players, teamOrigin } = team;
 
-  // State to store the list of players fetched from the API
   const [playerList, setPlayerList] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredPlayers, setFilteredPlayers] = useState([]);
 
-  // Fetch all players from the API and store them in the playerList state
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/espcharts/player"
-        );
+        const response = await axios.get("http://localhost:5000/espcharts/player");
         setPlayerList(response.data);
+        setFilteredPlayers(response.data);
       } catch (error) {
         console.error("Error fetching players:", error);
       }
     };
     fetchPlayers();
   }, []);
+
+  useEffect(() => {
+    setFilteredPlayers(
+      playerList.filter((player) =>
+        player.userName.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  }, [searchQuery, playerList]);
 
   const onInputChange = (e) => {
     setTeam({
@@ -41,13 +48,13 @@ const AddTeam = () => {
     });
   };
 
-  const onPlayersChange = (e) => {
-    const selectedOptions = Array.from(e.target.options)
-      .filter((option) => option.selected)
-      .map((option) => option.value);
+  const onPlayerCheckboxChange = (playerId) => {
+    const updatedPlayers = players.includes(playerId)
+      ? players.filter((id) => id !== playerId)
+      : [...players, playerId];
     setTeam({
       ...team,
-      players: selectedOptions,
+      players: updatedPlayers,
     });
   };
 
@@ -92,15 +99,15 @@ const AddTeam = () => {
             />
           </div>
           <div className="form-group">
-          <label>Team Captain:</label>
+            <label>Team Captain:</label>
             <select
               className="form-control"
               name="teamCaptain"
-              value={teamCaptain} // Use teamCaptain from state
-              onChange={onTeamCaptainChange} // Use separate handler for Team Captain select
+              value={teamCaptain}
+              onChange={onTeamCaptainChange}
             >
               <option value="">Select Team Captain</option>
-              {playerList.map((player) => (
+              {filteredPlayers.map((player) => (
                 <option key={player._id} value={player._id}>
                   {player.userName}
                 </option>
@@ -109,20 +116,26 @@ const AddTeam = () => {
           </div>
           <div className="form-group">
             <label>Select Players:</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search players..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
             <select
               className="form-control"
               multiple={true}
               name="players"
-              value={players} // Ensure the selected options are set based on the players array
-              onChange={onPlayersChange}
+              value={players}
+              onChange={onPlayerCheckboxChange}
             >
-              {playerList.map((player) => (
+              {filteredPlayers.map((player) => (
                 <option
                   key={player._id}
                   value={player._id}
                   selected={players.includes(player._id)}
                 >
-                  {console.log(player)}
                   {player.userName}
                 </option>
               ))}

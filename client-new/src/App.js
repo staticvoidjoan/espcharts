@@ -24,6 +24,7 @@ import EditPlayer from "./components/players/EditPlayer";
 import Teams from "./components/teams/Teams";
 import ViewTeam from "./components/teams/ViewTeam";
 import AddTeam from "./components/teams/AddTeam";
+import EditTeam from "./components/teams/EditTeam";
 
 
 
@@ -74,6 +75,7 @@ function App() {
             <Route path="/teams" element={<Teams />}/>
             <Route path="/team/view/:id" element={<ViewTeam/>}/>
             <Route path="/teams/add" element={<AddTeam/>}/>
+            <Route path="/team/edit/:id" element={<EditTeam/>}/>
 
 
             {/* Pages */}
