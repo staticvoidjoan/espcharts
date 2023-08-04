@@ -73,7 +73,7 @@ function Teams() {
           <h1 className="player-title">Teams</h1>
         </div>
         <div className="add-player-link">
-          <Link to={`/players/add`} className="Link">
+          <Link to={`/teams/add`} className="Link">
             Add Team  
           </Link>
         </div>

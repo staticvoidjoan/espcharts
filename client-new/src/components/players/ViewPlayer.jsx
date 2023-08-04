@@ -7,6 +7,7 @@ import playerplaceholder from "../../assets/playerplch.svg";
 import "./ViewPlayer.css";
 import background from "../../assets/playerbg.png";
 import Swal from "sweetalert2"
+import ReactPlayer from 'react-player'
 const ViewPlayer = () => {
   let navigate = useNavigate();
   const { id } = useParams();
@@ -32,13 +33,33 @@ const ViewPlayer = () => {
     }
   };
 
+  let url;
+  if (player.gameTitle === "Counter Strike: Global Offensive") {
+    url = "https://www.youtube.com/watch?v=BzYGXyro0DM"
+  } else if (player.gameTitle === "League of Legends") {
+    url = "https://www.youtube.com/watch?v=z3b6SFaAGrg"
+  } else if (player.gameTitle === "Rainbow Six Siege") {
+    url ="https://www.youtube.com/watch?v=TMZJEVy0DDo"
+    
+  } else if (player.gameTitle === "Valorant") {
+   url="https://www.youtube.com/watch?v=0M1_q5ucJFo"
+  } else if (player.gameTitle === "Overwatch") {
+    url = "https://www.youtube.com/watch?v=u1SKXvonPJQ"
+  } else if (player.gameTitle === "Call of Duty") {
+   url="https://www.youtube.com/watch?v=oMoQOjPUoco" 
+  }
+
+
+
+
   return (
     <>
       <div className="container mt-5 mb-5">
         <div className="view-player-container">
           <img src={background} alt="background" className="player-bg-image" />
-          <div className="card-container">
-            <Card style={{ width: "18rem" }} className="view-player-container">
+          <div className="view-player-container">
+            <div> 
+            <Card style={{ width: "18rem" }} className="player-card">
               <Card.Title className="view-player-title">
                 {player.userName}
               </Card.Title>
@@ -88,6 +109,10 @@ const ViewPlayer = () => {
                 <Link className="DeleteLink">Delete</Link>
               </Card.Body>
             </Card>
+            </div>
+          </div>
+          <div className="react-player-wrapper">
+            <ReactPlayer url={url} />
           </div>
         </div>
       </div>
