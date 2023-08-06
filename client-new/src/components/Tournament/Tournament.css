@@ -1,0 +1,24 @@
+/* Add this CSS to your stylesheet */
+
+.tournament-table {
+    padding: 20px;
+  }
+  
+  
+  .table-wrapper {
+    overflow-x: auto;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .table-wrapper {
+      overflow-x: auto;
+      width: 100%;
+    }
+  }
+  
+  .tournament-div{
+    display: flex;
+    align-content: space-between;
+
+  }
