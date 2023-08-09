@@ -27,6 +27,7 @@ function Footer() {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log("Submitting the form...");
+    console.log(newsletter);
     try {
       console.log("Sending the message...");
       await axios.post("http://localhost:5000/espcharts/subscribe", newsletter);

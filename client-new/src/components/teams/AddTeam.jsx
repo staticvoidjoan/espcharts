@@ -19,6 +19,9 @@ const AddTeam = () => {
   const { teamName, teamCaptain, players, teamOrigin, teamBio } = team;
 
   const [playerList, setPlayerList] = useState([]);
+
+
+  
   const [searchTerm, setSearchTerm] = useState('');
   const [selectAll, setSelectAll] = useState(false);
 

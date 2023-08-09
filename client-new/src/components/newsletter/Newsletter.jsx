@@ -11,7 +11,8 @@ import Swal from "sweetalert2";
 function Newsletter() {
   const [emails, setEmails] = useState([]);
   const [allEmails, setAllEmails] = useState([]);
-
+  // const [subject, setSubject] = useState(); // Add subject state
+  // const [text, setText] = useState(); // Add text state
   useEffect(() => {
     getAllEmails();
     loadEmails();
@@ -57,7 +58,7 @@ function Newsletter() {
 
   const deleteEmail = async (id) => {
     try {
-      await axios.delete(`htttp://localhost:5000/espcharts/subscriber/${id}`);
+      await axios.delete(`http://localhost:5000/espcharts/subscriber/${id}`);
       loadEmails();
     } catch (error) {
       console.log(error);
@@ -66,9 +67,7 @@ function Newsletter() {
 
   const deleteUnsubscribed = async () => {
     try {
-      await axios.delete(
-        `http://localhost:5000/espcharts/subscriber`
-      );
+      await axios.delete(`http://localhost:5000/espcharts/subscriber`);
       loadEmails();
       Swal.fire({
         icon: "success",
@@ -78,8 +77,33 @@ function Newsletter() {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
+  const handleSubmit = () => {
+    // Get the values directly from the form inputs
+    const subjectValue = document.getElementById("subject").value;
+    const textValue = document.getElementById("text").value;
+
+    const emailAddresses =  emails
+    .filter(email => email.isSubscribed)
+    .map(email => email.email);
+
+    const data = {
+      subject: subjectValue,
+      text: textValue,
+      emails: emailAddresses,
+    };
+    try {
+      axios.post("http://localhost:5000/espcharts/sendNewsletter", data);
+      Swal.fire({
+        icon: "success",
+        title: "Success :)",
+        text: "Emails have been sent successfully",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="container newsletter-body">
@@ -87,7 +111,9 @@ function Newsletter() {
         <div className="table-container">
           <div className="table-wrapper">
             <div className="mt-5 md-0">
-            <Link onClick={deleteUnsubscribed} className="DeleteLink">Delete Unsubscribed Emails</Link>
+              <Link onClick={deleteUnsubscribed} className="DeleteLink">
+                Delete Unsubscribed Emails
+              </Link>
             </div>
 
             <Table
@@ -113,7 +139,7 @@ function Newsletter() {
                     <td>{email.isSubscribed ? "Yes" : "No"}</td>
                     <td>
                       <button
-                        onSubmit={() => deleteEmail(email._id)}
+                        onClick={() => deleteEmail(email._id)}
                         className="deleteButton"
                       >
                         Delete
@@ -141,6 +167,20 @@ function Newsletter() {
               nextClassName={"page-link"}
               activeClassName={"active"}
             />
+          </div>
+          <div className="email-form mb-5 mt-3">
+            <input className="mb-2 mt-2"
+              type="text"
+              id="subject" // Add this ID
+              placeholder="Subject"
+            />
+
+            <textarea className="mb-2 mt-2"
+              id="text" // Add this ID
+              placeholder="Text"
+            />
+
+            <button onClick={handleSubmit}>Send</button>
           </div>
         </div>
       </div>

@@ -35,6 +35,19 @@ module.exports.createTournament = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+//Function that gets paginated tournaments
+module.exports.getPaginatedTournaments = async (req,res) => {
+   try {
+    const {page,limit} = req.query;
+    const skip = (parseInt(page) - 1) * parseInt(limit);
+    const tournaments = await Tournament.find().skip(skip).limit(limit);
+  res.status(200).json(tournaments);   
+  } catch (error) {
+    res.status(500).json({error: error});
+  }
+}
+
+
 
 //Function that gets all the tournaments
 module.exports.getAllTournaments = async (req, res) => {
@@ -54,6 +67,8 @@ module.exports.getAllTournaments = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
 
 //Function that gets a tournament by id
 module.exports.getTournamentById = async (req, res) => {
@@ -98,28 +113,28 @@ module.exports.updateTournament = async (req, res) => {
         .status(404)
         .json({ message: "Error there is no Tournament with that Id" });
     }
-    const existingTournament = await Tournament.findOne({
-      _id: { $ne: id },
-      $or: [
-        { tournamentName },
-        { location },
-        { organizer },
-        { startDate },
-        { gameTitle },
-      ],
-    });
+    // const existingTournament = await Tournament.findOne({
+    //   _id: { $ne: id },
+    //   $or: [
+    //     { tournamentName },
+    //     { location },
+    //     { organizer },
+    //     { startDate },
+    //     { gameTitle },
+    //   ],
+    // });
 
-    if (
-      existingTournament.tournamentName == tournamentName &&
-      existingTournament.location == location &&
-      existingTournament.organizer == organizer &&
-      existingTournament.startDate == startDate
-    ) {
-      return res.status(400).json({
-        message:
-          "You cant use those values a tournament with those values already exists",
-      });
-    }
+    // if (
+    //   existingTournament.tournamentName == tournamentName &&
+    //   existingTournament.location == location &&
+    //   existingTournament.organizer == organizer &&
+    //   existingTournament.startDate == startDate
+    // ) {
+    //   return res.status(400).json({
+    //     message:
+    //       "You cant use those values a tournament with those values already exists",
+    //   });
+    // }
 
     //If all the validations are good we update the tournament
     const tournament = await Tournament.findByIdAndUpdate(id, req.body);

@@ -25,6 +25,7 @@ import EditTeam from "./components/teams/EditTeam";
 
 // Tournament Components
 import Tournament from "./components/Tournament/Tournament";
+import ViewTournament from "./components/Tournament/ViewTournament";
 
 
 //ADMIN TOOLS
@@ -84,6 +85,7 @@ function App() {
 
             {/*Tournament*/}
             <Route path="/tournaments" element={<Tournament />} />
+            <Route path ="/tournament/view/:id" element={<ViewTournament />}/>
 
             {/* Pages */}
             <Route path="/contact" element={<Contact />} />

@@ -1,4 +1,18 @@
 /* Add this CSS to your stylesheet */
+.tournament-title{
+  color: #ffffff; /* White color */
+  font-weight: 500; /* Medium font weight */
+  font-family: "Helvetica Neue", Arial, sans-serif; /* Modern font family */
+  font-size: 36px; /* Larger font size */
+  text-transform: uppercase; /* Uppercase text */
+  letter-spacing: 2px; /* Increased letter spacing */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow effect */
+  background: linear-gradient(
+    90deg,
+    #9c27b0,
+    #673ab7 )
+}
+
 
 .tournament-table {
     padding: 20px;
@@ -20,5 +34,6 @@
   .tournament-div{
     display: flex;
     align-content: space-between;
+    justify-content: center;
 
   }
