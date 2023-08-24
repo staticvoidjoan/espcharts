@@ -4,7 +4,6 @@ import {useParams, useNavigate, Link} from 'react-router-dom'
 import "./EditPlayer.css";
 import Swal from "sweetalert2";
 import Form from "react-bootstrap/Form";
-import background from "../../assets/playerbg.png";
 
 const EditPlayer = () => {
     let navigate = useNavigate();
@@ -39,7 +38,7 @@ const EditPlayer = () => {
   
       try {
         console.log("Updating player...");
-        await axios.put(`http://localhost:5000/espcharts/player/${id}`, player);
+        await axios.put(`https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/player/${id}`, player);
         console.log("Player updated successfully!");
         navigate("/player");
       } catch (error) {
@@ -121,7 +120,6 @@ const EditPlayer = () => {
          
         <div className="add-player-container mt-5 mb-5">
          <h1 style={{fontWeight:"650"}} >Update Player</h1>
-          <img src={background} alt="background" className="player-bg-image" />
           <Form onSubmit={onSubmit}>
             <Form.Group className="mb-3" controlId="firstName">
               <Form.Label style={{ float: "left" }}>First Name</Form.Label>

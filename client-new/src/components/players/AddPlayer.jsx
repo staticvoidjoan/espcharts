@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./AddPlayer.css";
-import background from "../../assets/playerbg.png";
 const AddPlayer = () => {
   let navigate = useNavigate();
   const [player, setPlayer] = useState({
@@ -47,7 +46,8 @@ const AddPlayer = () => {
 
     try {
       console.log("Adding player...");
-      await axios.post(`http://localhost:5000/espcharts/player`, player);
+      await axios.post("https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/player", player);
+      
       console.log("Player posted successfully!");
       Swal.fire({
         icon: "success",
@@ -116,12 +116,13 @@ const AddPlayer = () => {
   const availableGameRoles = roles
 
   return (
-    <div className="add-player-container mt-5 mb-5">
-       <h1 style={{fontWeight:"650", color:"white"}} >New Player</h1>
-      <img src={background} alt="background" className="player-bg-image" />
+    <div className="add-player-bg">
+
+    <div className="add-player-form">
+       <h1 style={{fontWeight:"650", color:"#fff"}} >New Player</h1>
       <Form onSubmit={onSubmit}>
         <Form.Group className="mb-3" controlId="firstName">
-          <Form.Label style={{ float: "left" }}>First Name</Form.Label>
+          <Form.Label style={{ float: "left",  }}>First Name</Form.Label>
           <Form.Control
             type="text"
             placeholder="First Name"
@@ -132,7 +133,7 @@ const AddPlayer = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="lastName">
-          <Form.Label style={{ float: "left" }}>Last Name</Form.Label>
+          <Form.Label style={{ float: "left",   }}>Last Name</Form.Label>
           <Form.Control
             type="text"
             placeholder="Last Name"
@@ -143,7 +144,7 @@ const AddPlayer = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="userName">
-          <Form.Label style={{ float: "left" }}>In Game Name</Form.Label>
+          <Form.Label style={{ float: "left",  }}>In Game Name</Form.Label>
           <Form.Control
             type="text"
             placeholder="User Name"
@@ -154,7 +155,7 @@ const AddPlayer = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="gameTitle">
-          <Form.Label style={{ float: "left" }}>Game Title</Form.Label>
+          <Form.Label style={{ float: "left",   }}>Game Title</Form.Label>
           <Form.Select
             aria-label="Default"
             name="gameTitle"
@@ -169,7 +170,7 @@ const AddPlayer = () => {
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3" controlId="gameRole">
-          <Form.Label style={{ float: "left" }}>Game Role</Form.Label>
+          <Form.Label style={{ float: "left",   }}>Game Role</Form.Label>
           <Form.Select
             aria-label="Default"
             name="gameRole"
@@ -184,7 +185,7 @@ const AddPlayer = () => {
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3" controlId="age">
-          <Form.Label style={{ float: "left" }}>Age</Form.Label>
+          <Form.Label style={{ float: "left",   }}>Age</Form.Label>
           <Form.Control
             type="text"
             placeholder="Age"
@@ -195,7 +196,7 @@ const AddPlayer = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="country">
-          <Form.Label style={{ float: "left" }}>Country</Form.Label>
+          <Form.Label style={{ float: "left",   }}>Country</Form.Label>
           <Form.Control
             type="text"
             placeholder="Country"
@@ -218,6 +219,7 @@ const AddPlayer = () => {
           </button>
         </div>
       </Form>
+    </div>
     </div>
   );
 };

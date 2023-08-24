@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Form, Button } from 'react-bootstrap';
-import background from "../../assets/playerbg.png";
 import "./AddTeam.css";
 
 const AddTeam = () => {
@@ -29,7 +28,7 @@ const AddTeam = () => {
     const fetchPlayers = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/espcharts/player"
+          "https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/player"
         );
         setPlayerList(response.data);
       } catch (error) {
@@ -62,13 +61,13 @@ const AddTeam = () => {
 
     try {
       console.log("Creating team...");
-      await axios.post(`http://localhost:5000/espcharts/team`, team);
+      await axios.post(`https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/team`, team);
       console.log("Team posted successfully!");
       Swal.fire({
         icon: "success",
         title: "Team Created Successfully",
       });
-      navigate("/team");
+      navigate("/teams");
     } catch (error) {
       console.error("Error updating player:", error);
     }
@@ -96,7 +95,6 @@ const AddTeam = () => {
 
   return (
     <div>
-      <img src={background} alt="background" className="team-bg-image" />
       <div className="add-player-container mt-5 mb-5">
         <div>
           <Link to={`/teams`} className="Link" style={{float:"left"}}>

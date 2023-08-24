@@ -10,7 +10,6 @@ import Row from "react-bootstrap/Row";
 import "./ViewTeam.css";
 import "../players/Players.css";
 import GetPlayer from "./GetPlayers";
-import background from "../../assets/playerbg.png";
 import teamlogo from "../../assets/teamlogo.png"  
 const ViewTeam = () => {
   let navigate = useNavigate();
@@ -29,7 +28,7 @@ const ViewTeam = () => {
 
   const loadTeam = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/espcharts/team/${id}`);
+      const res = await axios.get(`https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/team/${id}`);
       setTeam(res.data);
     } catch (error) {
       console.error("Error loading player:", error);
@@ -40,7 +39,6 @@ const ViewTeam = () => {
     <div className="container">
       <div className="container mt-5 mb-5">
         <div className="view-player-container">
-          <img src={background} alt="background" className="team-bg-image" />
           <div className="card-container">
             <Card style={{ width: "18rem" }} className="viewteam-bg-image">
               <Card.Title className="view-player-title">

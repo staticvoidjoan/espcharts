@@ -1,26 +1,35 @@
-.add-player-container {
+.add-player-form {
   max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
   border-radius: 5px;
-  background-color: azure;
+  background-color:#222632;
+}
+
+.add-player-bg {
+  background-color: #222632;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .submitButton {
-  background-color: #7b1fa2;
+  background-color: #20a4fc;
   color: white;
   border: none;
   padding: 8px 18px;
   font-size: 14px;
   border-radius: 5px;
   cursor: pointer;
-  margin:auto;
+  margin: auto;
   margin: 10px;
 }
 .submitButton:hover {
-  background-color: #9628c5;
-  
+  background-color: #20a4fc;
 }
 .clearButton {
   background-color: gray;
@@ -30,27 +39,24 @@
   font-size: 14px;
   border-radius: 5px;
   cursor: pointer;
-  margin:auto;
+  margin: auto;
   margin: 10px;
 }
 .clearButton:hover {
-  background-color: #9628c5;
-  
+  background-color: #20a4fc;
 }
 
 .ClearLink {
-    background-color: gray;
-    color: white;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-right: 10px;
-  }
-
-.mb-3 {
-  margin-bottom: 1rem;
+  background-color: gray;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-right: 10px;
 }
+
+
 
 .form-label {
   font-weight: bold;

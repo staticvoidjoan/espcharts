@@ -17,7 +17,7 @@ const ViewPlayer = ({ teamId }) => {
   const loadTeam = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/espcharts/team/${teamId}`
+        `https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/team/${teamId}`
       );
       setTeam(res.data);
     } catch (error) {

@@ -2,7 +2,7 @@ import React from "react";
 import background from "../../assets/homebg.png";
 import logoesp from "../../assets/espchlogo.png";
 import "./Home.css"; // Import the CSS file for styling
-
+import videobackground from "../../assets/wallpaper.mp4";
 function Home() {
   return (
     <div className="home">
@@ -16,7 +16,8 @@ function Home() {
           insights, and lead the competition. Join now!
         </p>
       </div>
-      <img src={background} alt="background" className="background-image" />
+      <video src={videobackground} autoPlay loop muted className="background-image" ></video>
+      {/* <img src={background} alt="background" className="background-image" /> */}
     </div>
   );
 }

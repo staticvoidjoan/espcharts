@@ -21,7 +21,7 @@ function Newsletter() {
   const getAllEmails = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/espcharts/subscribers"
+        "https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/subscribers"
       );
       setAllEmails(response.data);
     } catch (error) {
@@ -44,7 +44,7 @@ function Newsletter() {
   const loadEmails = async (currentPage) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/espcharts/subscriber?page=${currentPage}&limit=10`
+        `https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/subscriber?page=${currentPage}&limit=10`
       );
       setEmails(response.data);
     } catch (error) {
@@ -58,7 +58,7 @@ function Newsletter() {
 
   const deleteEmail = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/espcharts/subscriber/${id}`);
+      await axios.delete(`https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/subscriber/${id}`);
       loadEmails();
     } catch (error) {
       console.log(error);
@@ -67,7 +67,7 @@ function Newsletter() {
 
   const deleteUnsubscribed = async () => {
     try {
-      await axios.delete(`http://localhost:5000/espcharts/subscriber`);
+      await axios.delete(`https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/subscriber`);
       loadEmails();
       Swal.fire({
         icon: "success",
@@ -94,7 +94,7 @@ function Newsletter() {
       emails: emailAddresses,
     };
     try {
-      axios.post("http://localhost:5000/espcharts/sendNewsletter", data);
+      axios.post("https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/sendNewsletter", data);
       Swal.fire({
         icon: "success",
         title: "Success :)",

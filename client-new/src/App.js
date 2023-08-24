@@ -64,7 +64,7 @@ function App() {
       <NavBar />
       {loading && loadingPaths.includes(location.pathname) ? (
         <div className="spinner-container">
-          <PacmanLoader color={"#fff"} loading={loading} size={35} />
+          <PacmanLoader color={"#20a4fc"} loading={loading} size={35} />
         </div>
       ) : (
         <main>

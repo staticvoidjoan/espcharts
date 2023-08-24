@@ -1,12 +1,4 @@
 /* Add this CSS to your stylesheet */
-body{
-  background-image: url(../../assets//playerbg.png);
-  background-size: cover; /* This will make the background image cover the entire container */
-  background-repeat: repeat; /* Prevent the image from repeating */
-  background-position: center center; /* Center the background image */
-  
-}
-
 
 .newsletter-table {
     padding: 20px;

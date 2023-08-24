@@ -51,7 +51,7 @@
   }
 
 
-  .view-player-title{
+  .view-team-title{
     color: #ffffff !important;  /* White color */
     font-weight: 500; /* Medium font weight */
     font-family: "Helvetica Neue", Arial, sans-serif; /* Modern font family */
@@ -61,8 +61,8 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow effect */
     background: linear-gradient(
       90deg,
-      #9c27b0,
-      #673ab7
+      #20a4fc,
+      #167dc2
     ); /* Gradient background */
     padding: 10px 20px; /* Padding around the title */
     border-radius: 5px; /* Rounded corners */

@@ -8,7 +8,7 @@ import logo from "../../assets/espchlogo.png";
 
 function NavBar() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary d-flex justify-content-between" bg="dark" data-bs-theme="dark">
+    <Navbar expand="lg" className="bg-body-tertiary d-flex justify-content-between navbar-container" bg="dark" data-bs-theme="dark">
       <Container>
         <Navbar.Brand as={Link} to={"/"}><img src={logo} alt="logo" className="rounded float-left nav-image-style" />ESPCharts</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

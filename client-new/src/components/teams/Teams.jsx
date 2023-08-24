@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import GetPlayerName from "./GetPlayerName";
-import background from "../../assets/playerbg.png";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -35,7 +34,7 @@ function Teams() {
   const loadTeams = async (currentPage) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/espcharts/team?page=${currentPage}&limit=6`
+        `https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/team?page=${currentPage}&limit=6`
       );
       setTeams(response.data);
     } catch (error) {
@@ -50,7 +49,7 @@ function Teams() {
 
   const loadAllTeams = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/espcharts/team");
+      const response = await axios.get("https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/team");
       setAllTeams(response.data);
     } catch (error) {
       Swal.fire({
@@ -85,7 +84,7 @@ function Teams() {
 
   const proceedDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/espcharts/team/${id}`);
+      await axios.delete(`https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/team/${id}`);
       loadTeams();
     } catch (error) {
       console.error("Error deleting team:", error);
@@ -98,7 +97,6 @@ function Teams() {
 
   return (
     <>
-        <img src={background} alt="background" className="team-bg-image" />
       <div>
         <div className="title-container mt-5">
           <h1 className="player-title">Teams</h1>

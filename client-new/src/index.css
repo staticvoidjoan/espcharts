@@ -3,8 +3,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    background: rgb(172,209,235);
+    background: linear-gradient(304deg, rgba(172,209,235,1) 1%, rgba(237,237,237,1) 84%);
 }
 
 code {

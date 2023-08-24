@@ -1,82 +1,58 @@
-.Link {
-    background-color: #8e24aa;
-    color: white;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-right: 10px; /* Add margin between the links */
-  }
-  .DeleteLink {
-    background-color: gray;
-    color: white;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-right: 10px;
-  }
+.view-player-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
 
+.player-card {
+  box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.45);
+}
 
-  .view-player-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: start;
-    flex-wrap: nowrap;
-   
-  
-  }
+.react-player-wrapper {
+  display: flex;
+  align-items: baseline;
+  margin-left: 70px;
+  border: 9px solid #20a4fc;
+  box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: 10px 10px 5px -6px rgba(0, 0, 0, 0.45);
+}
 
-  .player-card{
-    box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.45);
--webkit-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.45);
--moz-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.45);
-  }
+.DeleteLink:hover {
+  background-color: #212121;
+}
 
-  .react-player-wrapper{
-    display: flex;
-    align-items: baseline;
-    margin-left: 70px;
-    border: 9px solid #8e24aa;
-    box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.45);
--webkit-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.45);
--moz-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.45);
-  }
-  
-  .DeleteLink:hover{
-    background-color: #212121;
-  }
-  
-  .Link:last-child {
-    margin-right: 0; /* Remove margin for the last link */
-  }
-  
-  .Link:hover {
-    background-color: #7b1fa2;
-  }
-  
-  .add-player-link {
-    margin-top: 20px;
-  }
+.Link:last-child {
+  margin-right: 0; /* Remove margin for the last link */
+}
 
+.Link:hover {
+  background-color: #7b1fa2;
+}
 
-  .view-player-title{
-    color: #ffffff !important;  /* White color */
-    font-weight: 500; /* Medium font weight */
-    font-family: "Helvetica Neue", Arial, sans-serif; /* Modern font family */
-    font-size: 36px; /* Larger font size */
-    text-transform: uppercase; /* Uppercase text */
-    letter-spacing: 2px; /* Increased letter spacing */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow effect */
-    background: linear-gradient(
-      90deg,
-      #9c27b0,
-      #673ab7
-    ); /* Gradient background */
-    padding: 10px 20px; /* Padding around the title */
-    border-radius: 5px; /* Rounded corners */
-    width: 100%;
-    white-space: nowrap; 
-  }
+.add-player-link {
+  margin-top: 20px;
+}
 
-    
+.view-player-title {
+  display: flex;
+  justify-content: center;
+  color: #ffffff !important; /* White color */
+  font-weight: 500; /* Medium font weight */
+  font-family: "Helvetica Neue", Arial, sans-serif; /* Modern font family */
+  font-size: 22px; /* Larger font size */
+  text-transform: uppercase; /* Uppercase text */
+  text-align: left;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow effect */
+  background: linear-gradient(
+    90deg,
+    #20a4fc,
+    #167dc2
+  ); /* Gradient background */
+  padding: 10px 20px; /* Padding around the title */
+  border-radius: 5px; /* Rounded corners */
+  width: 100%;
+  white-space: nowrap;
+}
