@@ -31,6 +31,7 @@ import ViewTournament from "./components/Tournament/ViewTournament";
 //ADMIN TOOLS
 import Newsletter from "./components/newsletter/Newsletter";
 
+import ScrollToTop from "./components/ScrollToTop"
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -68,6 +69,8 @@ function App() {
         </div>
       ) : (
         <main>
+          <ScrollToTop>
+
           <Routes>
             <Route path="/" element={<Home />} />
 
@@ -95,6 +98,7 @@ function App() {
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          </ScrollToTop>
         </main>
       )}
       <Footer />

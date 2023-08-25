@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useParams, useNavigate, Link} from 'react-router-dom'
-import "./EditPlayer.css";
+import "./AddPlayer.css";
 import Swal from "sweetalert2";
 import Form from "react-bootstrap/Form";
 
@@ -116,10 +116,10 @@ const EditPlayer = () => {
       }
       const availableGameRoles = roles;
       return (
-        <>
+        <div className='add-player-bg'>
          
-        <div className="add-player-container mt-5 mb-5">
-         <h1 style={{fontWeight:"650"}} >Update Player</h1>
+        <div className="add-player-form">
+         <h1 style={{fontWeight:"650", color:"#fff"}} >Update Player</h1>
           <Form onSubmit={onSubmit}>
             <Form.Group className="mb-3" controlId="firstName">
               <Form.Label style={{ float: "left" }}>First Name</Form.Label>
@@ -207,20 +207,20 @@ const EditPlayer = () => {
               />
             </Form.Group>
             <div className="container d-flex justify-content-between align-items-center">
-              <Link to={`/players`} className="Link">
+              <Link to={`/players`} className="player-link">
                 <i
                   class="fa-solid fa-arrow-left"
                   style={{ color: "#fff", width: "40px" }}
                 ></i>
               </Link>
-              <button className="submitButton">Update Player</button>
+              <button className="submitButton">Edit Player</button>
               <button className="clearButton" onClick={clearOnSubmit}>
                 Clear
               </button>
             </div>
           </Form>
         </div>
-         </>
+         </div>
       );    
 
 }

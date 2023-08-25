@@ -1,13 +1,14 @@
 /* Contact.css */
 
 .contact-page-container {
+  text-align: left;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: transparent; /* Purple gradient background */
   border-radius: 10px;
-  border-color: #59367e;
-  border: solid #59367e 5px;
+  border-color: #20a4fc;
+  border: solid #38afff 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 40px;
   width: 90%;
@@ -36,6 +37,7 @@ label {
   color: #ffffff; /* White label color on purple gradient background */
   margin-bottom: 10px;
   font-size: 20px; /* Increased font size for labels */
+  margin-top: 5px;
 }
 
 input,
@@ -57,7 +59,7 @@ textarea::placeholder {
 }
 
 button {
-  background-color: #59367e;
+  background-color: #20a4fc;
   color: #ffffff; /* White text color */
   border: none;
   border-radius: 5px;
@@ -69,7 +71,7 @@ button {
 }
 
 button:hover {
-  background-color: #41186c; 
+  background-color: #1d6fa6; 
   color: #fff;/* Darker purple button background color on hover */
 }
 
