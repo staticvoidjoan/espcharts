@@ -97,12 +97,12 @@ function Teams() {
 
   return (
     <>
-      <div>
+      <div className="teams-container">
         <div className="title-container mt-5">
-          <h1 className="player-title">Teams</h1>
+          <h1 className="team-title">Teams</h1>
         </div>
         <div className="add-player-link">
-          <Link to={`/teams/add`} className="Link">
+          <Link to={`/teams/add`} className="Team-Link">
             Add Team
           </Link>
         </div>
@@ -121,12 +121,13 @@ function Teams() {
                       width: "25rem",
                       height: "25rem",
                       marginBottom: "5rem",
+                      borderRadius:"20px"
                     }}
                   >
                     <Card.Img
                       variant="top"
                       src={teamlogo}
-                      style={{ width: "40%" }}
+                      style={{ width: "60%" }}
                       className="mx-auto"
                     />
                     <Card.Body
@@ -158,10 +159,10 @@ function Teams() {
                         </>
                       </Card.Text>
                       <div>
-                        <Link to={`/team/view/${team._id}`} className="Link">
+                        <Link to={`/team/view/${team._id}`} className="Team-Link">
                           View
                         </Link>
-                        <Link to={`/team/edit/${team._id}`} className="Link">
+                        <Link to={`/team/edit/${team._id}`} className="Team-Link">
                           Edit
                         </Link>
 

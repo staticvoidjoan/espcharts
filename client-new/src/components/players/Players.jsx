@@ -94,10 +94,11 @@ function Players() {
     }
   };
 
+
+
   return (
-    <>
-      {console.log(allPLayers.length)}
-      <div>
+    <div className="player-main-page">
+     
         <div className="title-container mt-5">
           <h1 className="player-title">PLAYERS</h1>
         </div>
@@ -114,20 +115,22 @@ function Players() {
           <Row md={20} className="justify-content-center">
             {players.map((player, index) => (
               <Col sm={4} key={index}>
-                <div className="container-md">
+                <div className="container">
                   <Card
-                    className="centered-card" // Add this className
+                    className="main-player-card" // Add this className
                     style={{
                       width: "100%",
                       height: "17rem",
                       marginBottom: "5rem",
                       alignContent: "center",
-                      borderRadius: "20px",
+                      borderRadius:"25px",
                       display:"flex",
                       flexDirection: "column",
                       justifyContent: "center",
                       alignItems: "center",
+                    
                     }}
+                    as={Link} to={`/player/view/${player._id}`}
                   >
                     <Card.Img
                       variant="top"
@@ -143,7 +146,9 @@ function Players() {
                           alignItems: "center", // Center the card content
                         }}
                       >
-                        <Card.Title>{player.userName}</Card.Title>
+                        <Card.Title style={{color:"#FFDB1C"}}><strong>
+                        {player.userName}
+                          </strong></Card.Title>
                         <Card.Text style={{ flex: 1 }}>
                           <>
                             <div>
@@ -154,9 +159,17 @@ function Players() {
                               <strong> Role: </strong>
                               {player.gameRole}
                             </div>
+                            <div>
+                              <strong> Age: </strong>
+                              {player.age}
+                            </div>
+                            <div>
+                              <strong> Country: </strong>
+                              {player.country}
+                            </div>
                           </>
                         </Card.Text>
-                        <div className="player-actions">
+                        {/* <div className="player-actions">
                           <Link
                             to={`/player/view/${player._id}`}
                             className="player-link"
@@ -176,7 +189,7 @@ function Players() {
                           >
                             Delete
                           </Link>
-                        </div>
+                        </div> */}
                       </Card.Body>
                     </div>
                   </Card>
@@ -202,8 +215,8 @@ function Players() {
             activeClassName={"active"}
           />
         </div>
-      </div>
-    </>
+
+    </div>
   );
 }
 

@@ -27,54 +27,53 @@ const ViewPlayer = ({ playerId }) => {
   };
 
   return (
-    <>
-      <div className="view-player-container">
-        <Card className="view-player-card">
-          <Card.Title className="get-view-player-title">
-            {player.userName}
-          </Card.Title>
-          <div className="player-image-container">
-            <Card.Img
-              variant="top"
-              src={playerplaceholder}
-              className="player-image"
-            />
-          </div>
-          <Card.Body>
-            <Card.Text>
-              <strong>
-                {player.firstName} {player.lastName}
-              </strong>
-              <br />
-              TO BE ADDED QUICK BIO FOR PLAYER
-            </Card.Text>
-          </Card.Body>
-          <ListGroup className="list-group-flush">
-            <ListGroup.Item>
-              <strong>Game: </strong>
-              {player.gameTitle}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Role: </strong>
-              {player.gameRole}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Age: </strong>
-              {player.age}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Country: </strong>
-              {player.country}
-            </ListGroup.Item>
-          </ListGroup>
-          <Card.Body>
-            <Link to={`/player/view/${player._id}`} className="Link">
-              View
-            </Link>
-          </Card.Body>
-        </Card>
-      </div>
-    </>
+    <div className= "view-playerteam-container">
+    <div className="view-player-card" style={{margin:"0"}}>
+      <Card  className="player-card">
+        <Card.Title className="view-player-title">
+          {player.userName}
+        </Card.Title>
+        <Card.Img variant="top" src={playerplaceholder} className="mx-auto" />
+        <Card.Body>
+          <Card.Text>
+            <strong>
+              {" "}
+              {player.firstName} {player.lastName}{" "}
+            </strong>
+            <br />
+            TO BE ADDED QUICK BIO FOR PLAYER
+          </Card.Text>
+        </Card.Body>
+        <ListGroup className="list-group-flush">
+          <ListGroup.Item>
+            <strong>Game: </strong>
+            {player.gameTitle}
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <strong>Role: </strong>
+            {player.gameRole}
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <strong>Age: </strong>
+            {player.age}
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <strong>Country: </strong>
+            {player.country}
+          </ListGroup.Item>
+        </ListGroup>
+        <Card.Body>
+          <Link to={`/players`} className="player-link">
+            <i class="fa-solid fa-arrow-left" style={{ color: "#fff" }}></i>
+          </Link>
+          <Link to={`/player/edit/${player._id}`} className="player-link">
+            Edit
+          </Link>
+          <Link className="DeleteLink">Delete</Link>
+        </Card.Body>
+      </Card>
+    </div>
+    </div>
   );
 };
 

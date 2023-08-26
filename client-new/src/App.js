@@ -59,10 +59,11 @@ function App() {
   }, [location]);
   // Define paths where you want to show the loading spinner
   const loadingPaths = ["/players", "/teams","/tournaments"];
-
+  const isHomePage = location.pathname === "/";
   return (
     <div className="App">
-      <NavBar />
+      {/* <NavBar /> */}
+      {!isHomePage && <NavBar />}
       {loading && loadingPaths.includes(location.pathname) ? (
         <div className="spinner-container">
           <PacmanLoader color={"#20a4fc"} loading={loading} size={35} />
@@ -70,7 +71,6 @@ function App() {
       ) : (
         <main>
           <ScrollToTop>
-
           <Routes>
             <Route path="/" element={<Home />} />
 
@@ -101,6 +101,7 @@ function App() {
           </ScrollToTop>
         </main>
       )}
+       
       <Footer />
     </div>
   );

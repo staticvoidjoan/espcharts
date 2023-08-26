@@ -1,4 +1,7 @@
+.player-main-page{
 
+  padding-top:100px 
+}
 
 .player-title {
   color: #ffffff; /* White color */
@@ -19,6 +22,8 @@
   
 }
 
+
+
 .title-container{
   display: flex;
   justify-content: center;
@@ -33,8 +38,9 @@
     top: 0;
     left: 0;
     z-index: -1;
-
+    
   }
+
 
   .player-link {
     background-color: #20a4fc;
@@ -69,6 +75,14 @@
     
   }
   
+  .main-player-card{
+    
+    transition : transform 0.2s;
+
+  }
+  .main-player-card:hover{
+    transform: scale(1.05)
+  }
 
   .player-card-body{
     background-color: #1c243c;
@@ -76,6 +90,8 @@
    box-shadow: 1px -8px 5px 0px rgba(0,0,0,0.16);
    width: 100%;
    height: 100%;
+   border-bottom-left-radius: 25px;
+   border-bottom-right-radius: 25px;
   }
 
   .player-actions{

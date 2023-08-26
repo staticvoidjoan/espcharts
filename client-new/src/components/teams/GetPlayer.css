@@ -20,7 +20,8 @@ white-space: nowrap;
 }
 css
 
-.view-player-container {
+.view-playerteam-container {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

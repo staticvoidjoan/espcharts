@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button } from "react-bootstrap";
 import "./AddTeam.css";
 
 const AddTeam = () => {
@@ -19,9 +19,7 @@ const AddTeam = () => {
 
   const [playerList, setPlayerList] = useState([]);
 
-
-  
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectAll, setSelectAll] = useState(false);
 
   useEffect(() => {
@@ -61,7 +59,10 @@ const AddTeam = () => {
 
     try {
       console.log("Creating team...");
-      await axios.post(`https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/team`, team);
+      await axios.post(
+        `https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/team`,
+        team
+      );
       console.log("Team posted successfully!");
       Swal.fire({
         icon: "success",
@@ -94,15 +95,15 @@ const AddTeam = () => {
   };
 
   return (
-    <div>
-      <div className="add-player-container mt-5 mb-5">
+    <div className="add-team-page">
+      <div className="add-team-container mt-5 mb-5">
         <div>
-          <Link to={`/teams`} className="Link" style={{float:"left"}}>
+          <Link to={`/teams`} className="Team-Link" style={{ float: "left" }}>
             <i class="fa-solid fa-arrow-left" style={{ color: "#fff" }}></i>
           </Link>
           <h2 className="h2Title d-flex justify-content-center">Add Team</h2>
         </div>
-        <Form.Label style={{color:"#212121", float:"left"}} >Team Name:</Form.Label>
+        <Form.Label style={{ float: "left" }}>Team Name:</Form.Label>
         <Form onSubmit={onSubmit}>
           <div className="form-group">
             <Form.Control
@@ -114,7 +115,7 @@ const AddTeam = () => {
               onChange={onInputChange}
             />
           </div>
-          <Form.Label style={{color:"#212121", float:"left"}}>Team Bio:</Form.Label>
+          <Form.Label style={{ float: "left" }}>Team Bio:</Form.Label>
           <div className="form-group">
             <Form.Control
               type="text"
@@ -126,7 +127,7 @@ const AddTeam = () => {
             />
           </div>
           <div className="form-group">
-            <Form.Label style={{color:"#212121", float:"left"}}>Team Captain:</Form.Label>
+            <Form.Label style={{ float: "left" }}>Team Captain:</Form.Label>
             <Form.Control
               as="select"
               name="teamCaptain"
@@ -142,7 +143,7 @@ const AddTeam = () => {
             </Form.Control>
           </div>
           <div className="form-group">
-            <Form.Label style={{color:"#212121", float:"left"}} >Select Players:</Form.Label>
+            <Form.Label style={{ float: "left" }}>Select Players:</Form.Label>
             <Form.Control
               as="select"
               multiple
@@ -150,29 +151,34 @@ const AddTeam = () => {
               value={players}
               onChange={onPlayersChange}
             >
-              {playerList.filter((player) =>
-                player.userName.toLowerCase().includes(searchTerm.toLowerCase())
-              ).map((player) => (
-                <option
-                  key={player._id}
-                  value={player._id}
-                  selected={players.includes(player._id)}
-                >
-                  {player.userName}
-                </option>
-              ))}
+              {playerList
+                .filter((player) =>
+                  player.userName
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase())
+                )
+                .map((player) => (
+                  <option
+                    key={player._id}
+                    value={player._id}
+                    selected={players.includes(player._id)}
+                  >
+                    {player.userName}
+                  </option>
+                ))}
             </Form.Control>
             <Form.Check
               type="checkbox"
               id="select-all-players"
-
               checked={selectAll}
               onChange={handleSelectAll}
-              label={<h5 style={{color:"black",display:"block", float:"left"}}>    Select All</h5>}
+              label={
+                <h5 style={{ display: "block", float: "left" }}> Select All</h5>
+              }
             />
           </div>
           <div className="form-group">
-          <Form.Label style={{color:"#212121", float:"left"}} >Country Origin:</Form.Label>
+            <Form.Label style={{ float: "left" }}>Country Origin:</Form.Label>
             <Form.Control
               type="text"
               className="form-control form-control-lg"
@@ -182,7 +188,9 @@ const AddTeam = () => {
               onChange={onInputChange}
             />
           </div>
-          <button className="submitButton" type="submit">Add New Team</button>
+          <div className="submitButton" type="submit">
+            <strong>Add New Team</strong>
+          </div>
         </Form>
       </div>
     </div>

@@ -1,37 +1,69 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import {Link} from "react-router-dom";
-import "./NavBar.css"
-import logo from "../../assets/espchlogo.png";
+import React, { useState, useEffect } from 'react';
 
-function NavBar() {
+import { Link } from 'react-router-dom';
+import './NavBar.css';
+import logo from "../../assets/navlogo.png"
+function Navbar() {
+  const [click, setClick] = useState(false);
+  const [button, setButton] = useState(true);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
+  const showButton = () => {
+    if (window.innerWidth <= 960) {
+      setButton(false);
+    } else {
+      setButton(true);
+    }
+  };
+
+  useEffect(() => {
+    showButton();
+  }, []);
+
+  window.addEventListener('resize', showButton);
+
   return (
-    <Navbar expand="lg" className="bg-body-tertiary d-flex justify-content-between navbar-container" bg="dark" data-bs-theme="dark">
-      <Container>
-        <Navbar.Brand as={Link} to={"/"}><img src={logo} alt="logo" className="rounded float-left nav-image-style" />ESPCharts</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to={"/tournaments"}>Tournaments</Nav.Link>
-            <NavDropdown title="Charts" id="basic-nav-dropdown">
-              <NavDropdown.Item as={Link} to={"/players"}>Players</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to={"/teams"}>
+    <>
+      <nav className='navbar-main'>
+        <div className='navbar-container'>
+          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+            <img src={logo} alt=""  style={{width:"50%"}}/>
+          </Link>
+          <div className='menu-icon' onClick={handleClick}>
+            <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+          </div>
+          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+            <li className='nav-item'>
+              <Link to='/players' className='nav-links' onClick={closeMobileMenu}>
+                Players
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/teams'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
                 Teams
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Matches</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Divider />
-              <NavDropdown.Item>*ADMIN*</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to={"/newsletter-control"}>Newsletter Emails</NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link as={Link} to={"/contact"}>Contact Us</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/tournaments'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Tournaments
+              </Link>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+    </>
   );
 }
 
-export default NavBar;
+export default Navbar;

@@ -11,7 +11,9 @@
 }
 
 /* Home.css */
-
+.home-container{
+  padding-top: 100px;
+}
 .bio-container {
   display: flex;
   justify-content: center;
@@ -34,26 +36,29 @@
 
 .logo {
   width: 45%;
-  will-change: filter;
-  transition: filter 300ms;
+
   filter: drop-shadow(2px 2px 5px #000);
 }
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
 
 /* Apply styling to the background image */
 .background-image {
   width: 120vw;
-  height: 120vh;
+  height: 160vh;
   object-fit: cover; /* Image will cover the entire container */
   position: absolute; /* Position the image absolutely within the container */
-
+  top: 0;
   z-index: -1;
   filter: blur(5px);
+}
+
+
+@media (max-width: 600px){
+  .logo{
+    margin-bottom: 30px;
+  }
+  .bio-container{
+    margin-top: 30px;
+    padding-top: 50px;
+  }
 }

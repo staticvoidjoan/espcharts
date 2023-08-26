@@ -1,4 +1,6 @@
-
+.teams-container{
+  padding-top: 100px;
+}
 
 .team-title {
     color: #ffffff; /* White color */
@@ -10,8 +12,8 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow effect */
     background: linear-gradient(
       90deg,
-      #9c27b0,
-      #673ab7
+      #20a4fc,
+    #167dc2
     ); /* Gradient background */
     padding: 10px 20px; /* Padding around the title */
     border-radius: 5px; /* Rounded corners */
@@ -23,6 +25,7 @@
     margin: 10px; /* Add margin to separate cards */
     display: flex;
     justify-content: center;
+    
   }
   
   .title-container{
@@ -43,14 +46,15 @@
   
     }
   
-    .Link {
-      background-color: #8e24aa;
+    .Team-Link {
+      background-color: #20a4fc;
       color: white;
       padding: 6px 12px;
       border: none;
       border-radius: 5px;
       text-decoration: none;
       margin-right: 10px; /* Add margin between the links */
+      box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.21);
     }
     .DeleteLink {
       background-color: gray;
@@ -68,7 +72,7 @@
     }
     
     .Link:hover {
-      background-color: #7b1fa2;
+      background-color: #1d84c9;
     }
     
     .add-player-link {
