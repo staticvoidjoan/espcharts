@@ -7,7 +7,6 @@
 }
 
 .navbar-container {
- 
   position: absolute;
   z-index: 999;
   background: rgba(229, 235, 244, 0.9);
@@ -31,6 +30,8 @@
   justify-content: center;
   width: 180px;
   height: 100%;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
   background-color: #fff;
   position: relative; /* Add this */
 }

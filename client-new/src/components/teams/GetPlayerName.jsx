@@ -6,29 +6,32 @@ import { useParams, useNavigate, Link } from "react-router-dom"; // Import useNa
 
 const ViewPlayer = ({ teamCaptainId }) => {
 
-  const [player, setPlayer] = useState([]);
-  useEffect(() => {
-    loadPlayer();
-  }, []);
-
+  // const [player, setPlayer] = useState(null);
+  // useEffect(() => {
+  //   loadPlayer();
+  // }, []);
+  
+  
+  // const loadPlayer = async () => {
+  //   try {
+  //     const res = await axios.get(
+  //       `https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${teamCaptainId}`
+  //     );
+  //     setPlayer(res.data);
+  //   } catch (error) {
+  //     console.error("Error loading player:", error);
+  //   }
+  // };
 
   
-  const loadPlayer = async () => {
-    try {
-      const res = await axios.get(
-        `https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/player/${teamCaptainId}`
-      );
-      setPlayer(res.data);
-    } catch (error) {
-      console.error("Error loading player:", error);
+    if(teamCaptainId == null){
+      return null;
     }
-  };
 
-
-
+  
   return (
     <>
-      {player.userName}
+      {/* {player.userName} */}
     </>
   );
   }  

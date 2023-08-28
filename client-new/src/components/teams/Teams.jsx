@@ -34,7 +34,7 @@ function Teams() {
   const loadTeams = async (currentPage) => {
     try {
       const response = await axios.get(
-        `https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/team?page=${currentPage}&limit=6`
+        `https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams?page=${currentPage}&limit=6`
       );
       setTeams(response.data);
     } catch (error) {
@@ -49,7 +49,7 @@ function Teams() {
 
   const loadAllTeams = async () => {
     try {
-      const response = await axios.get("https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/team");
+      const response = await axios.get("https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams");
       setAllTeams(response.data);
     } catch (error) {
       Swal.fire({
@@ -84,7 +84,7 @@ function Teams() {
 
   const proceedDelete = async (id) => {
     try {
-      await axios.delete(`https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/team/${id}`);
+      await axios.delete(`https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`);
       loadTeams();
     } catch (error) {
       console.error("Error deleting team:", error);
@@ -127,7 +127,7 @@ function Teams() {
                     <Card.Img
                       variant="top"
                       src={teamlogo}
-                      style={{ width: "60%" }}
+                      style={{ width: "40%" }}
                       className="mx-auto"
                     />
                     <Card.Body

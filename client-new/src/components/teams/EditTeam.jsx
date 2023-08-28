@@ -26,7 +26,7 @@ const AddTeam = () => {
     const fetchPlayers = async () => {
       try {
         const response = await axios.get(
-          "https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/player"
+          "https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams"
         );
         setPlayerList(response.data);
       } catch (error) {
@@ -47,7 +47,7 @@ const AddTeam = () => {
   const loadAllTeams = async () => {
     try {
       const response = await axios.get(
-        `https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/team/${id}`
+        `https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`
       );
       setTeam(response.data);
     } catch (error) {
@@ -77,7 +77,7 @@ const AddTeam = () => {
     try {
       console.log("Creating team...");
       await axios.put(
-        `https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/${id}`,
+        `https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`,
         team
       );
       console.log("Team posted successfully!");

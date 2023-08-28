@@ -38,7 +38,7 @@ const EditPlayer = () => {
   
       try {
         console.log("Updating player...");
-        await axios.put(`https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/player/${id}`, player);
+        await axios.put(`https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`, player);
         console.log("Player updated successfully!");
         navigate("/player");
       } catch (error) {
@@ -49,7 +49,7 @@ const EditPlayer = () => {
     const loadPlayer = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/espcharts/player/${id}`
+          `https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`
         );
         setPlayer(res.data);
       } catch (error) {

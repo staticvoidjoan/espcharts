@@ -21,7 +21,7 @@ function Players() {
   const getAllPlayers = async (currentPage) => {
     try {
       const response = await axios.get(
-        "https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/playerAll"
+        "https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers"
       );
       setAllPlayers(response.data);
     } catch (error) {
@@ -48,7 +48,7 @@ function Players() {
   const loadPlayers = async (currentPage) => {
     try {
       const response = await axios.get(
-        `https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/player?page=${currentPage}&limit=6`
+        `https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players?page=${currentPage}&limit=6`
       );
       setPlayers(response.data);
     } catch (error) {
@@ -60,39 +60,7 @@ function Players() {
     }
   };
 
-  const deletePlayer = (id) => {
-    try {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#e04338",
-        cancelButtonColor: "#8e24aa",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire("Deleted!", "Player has been deleted.", "success");
-          proceedDelete(id);
-        }
-      });
-    } catch (error) {
-      console.error("Error deleting player:", error);
-    }
-  };
-
-  const proceedDelete = async (id) => {
-    try {
-      await axios.delete(
-        `https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/player/${id}`
-      );
-      setTimeout(() => {
-        loadPlayers();
-      }, 2000);
-    } catch (error) {
-      console.error("Error deleting player:", error);
-    }
-  };
+  
 
 
 
@@ -136,7 +104,7 @@ function Players() {
                       variant="top"
                       src={playerplaceholder}
                       style={{ width: "30%" }}
-                      className="mx-auto"
+                      className="mx-auto player-pfp"
                     />
                     <div className="player-card-body">
                       <Card.Body
@@ -203,7 +171,7 @@ function Players() {
             previousLabel={"<Back"}
             nextLabel={"Next>"}
             breakLabel={"..."}
-            pageCount={Math.ceil(allPLayers.length / 6)}
+            pageCount={Math.ceil(allPLayers.length / 6)-1}
             marginPagesDisplayed={2}
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}

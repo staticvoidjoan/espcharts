@@ -46,7 +46,16 @@ const AddPlayer = () => {
 
     try {
       console.log("Adding player...");
-      await axios.post("https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/player", player);
+      await axios.post(
+        "https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players",
+        player,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
       
       console.log("Player posted successfully!");
       Swal.fire({

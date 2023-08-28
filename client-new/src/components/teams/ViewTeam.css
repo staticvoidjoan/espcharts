@@ -74,6 +74,7 @@
 
   .team-player-grid{
     display: grid;
+    justify-content: center;
     grid-auto-flow: column;
     scroll-behavior: auto;
     gap: 2px;
@@ -83,6 +84,7 @@
     scrollbar-width: none;
     scrollbar-color: transparent;
     overflow: auto;
+    margin-bottom: 30px;
   }
 
   @media(max-width:967px){

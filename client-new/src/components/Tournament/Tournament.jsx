@@ -19,7 +19,7 @@ function Tournament() {
   const loadAllTournaments = async () => {
     try {
       const response = await axios.get(
-        "https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/tournaments"
+        "https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTournaments"
       );
       setAllTournaments(response.data);
       
@@ -41,7 +41,7 @@ function Tournament() {
 
   const loadTournaments = async (currentPage) => {
     try {
-      const response = await axios.get(`https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/tournament?page=${currentPage}&limit=10`)
+      const response = await axios.get(`https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments?page=${currentPage}&limit=10`)
      setTournaments(response.data);
     } catch (error) {
       Swal.fire({
@@ -56,7 +56,7 @@ function Tournament() {
 
   const deleteTournament = async (id) => {
     try {
-      await axios.delete(`https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/tournament/${id}`);
+      await axios.delete(`https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments/${id}`);
       loadTournaments();
     } catch (error) {
       console.error("Error deleting tournament:", error);
@@ -67,8 +67,10 @@ function Tournament() {
     <div className="tournament-div">
       <div className="tournament-table">
         <div>
-          <h1 className="tournament-title">TOURNAMENTS</h1>
-          <Link to={`/player/add`} className="Link" style={{ float: "right" }}>
+        <div className="title-container mt-5">
+          <h1 className="tournament-title">Tournaments</h1>
+        </div>
+          <Link to={`/tournament/add`} className="Tournament-Link" style={{ float: "right", marginBottom:"10px" }}>
             Add Tournament
           </Link>
         </div>
@@ -83,7 +85,7 @@ function Tournament() {
                   <th>Participating Teams</th>
                   <th>Start Date</th>
                   <th>End Date</th>
-                  <th>Matches</th>
+                  {/* <th>Matches</th> */}
                   <th>Location</th>
                   <th>Price Pool</th>
                   <th>Organizer</th>
@@ -97,7 +99,7 @@ function Tournament() {
                     <td>{tournament.tournamentName}</td>
                     <td>{tournament.gameTitle}</td>
                     <td>
-                      <Link to="#">View Teams</Link>
+                      {tournament.participatingTeams.length}
                     </td>
                     <td>
                       {format(new Date(tournament.startDate), "MMMM d, yyyy")}
@@ -105,25 +107,25 @@ function Tournament() {
                     <td>
                       {format(new Date(tournament.endDate), "MMMM d, yyyy")}
                     </td>
-                    <td>
+                    {/* <td>
                       <Link to="#">View Matches</Link>
-                    </td>
+                    </td> */}
                     <td>{tournament.location}</td>
                     <td>{tournament.pricePool}</td>
                     <td>{tournament.organizer}</td>
-                    <td>
+                    <td className="mt-2">
                       <Link
                         to={`/tournament/view/${tournament._id}`}
-                        className="Link"
+                        className="Tournament-Link"
                       >
                         View
                       </Link>
-                      <Link
+                      {/* <Link
                         to={`/tournament/edit/${tournament._id}`}
-                        className="Link"
+                        className="Tournament-Link"
                       >
                         Edit
-                      </Link>
+                      </Link> */}
                       <Link
                         to="/tournament"
                         onClick={() => deleteTournament(tournament._id)}
@@ -142,7 +144,7 @@ function Tournament() {
             previousLabel={"<Back"}
             nextLabel={"Next>"}
             breakLabel={"..."}
-            pageCount={Math.ceil(allTournaments.length / 10)}
+            pageCount={Math.ceil(allTournaments.length / 10) - 1}
             marginPagesDisplayed={2}
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}

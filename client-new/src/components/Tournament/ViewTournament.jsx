@@ -9,7 +9,8 @@ import Row from "react-bootstrap/Row";
 import "../players/Players.css";
 import "../teams/ViewTeam.css"
 import GetTeams from "./GetTeams";
-import teamlogo from "../../assets/teamlogo.png"  
+import teamlogo from "../../assets/teamlogo.png" 
+import { format } from "date-fns"; 
 const ViewTeam = () => {
   let navigate = useNavigate();
   const { id } = useParams();
@@ -22,7 +23,7 @@ const ViewTeam = () => {
 
   const loadTournament = async () => {
     try {
-      const res = await axios.get(`https://9dje7gt0s8.execute-api.eu-north-1.amazonaws.com/deploy/espcharts/tournament/${id}`);
+      const res = await axios.get(`https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments/${id}`);
       setTournament(res.data);
     } catch (error) {
       console.error("Error loading player:", error);
@@ -45,6 +46,7 @@ const ViewTeam = () => {
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <strong>Timeline: </strong>
+          
                   {tournament.startDate} to {tournament.endDate}
                 </ListGroup.Item>
                 <ListGroup.Item>
