@@ -29,7 +29,7 @@ const ViewTeam = () => {
   const loadTeam = async () => {
     try {
       const res = await axios.get(
-        `https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`
+        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`
       );
       setTeam(res.data);
     } catch (error) {

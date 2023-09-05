@@ -19,7 +19,7 @@ function Tournament() {
   const loadAllTournaments = async () => {
     try {
       const response = await axios.get(
-        "https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTournaments"
+        "https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTournaments"
       );
       setAllTournaments(response.data);
       
@@ -41,7 +41,7 @@ function Tournament() {
 
   const loadTournaments = async (currentPage) => {
     try {
-      const response = await axios.get(`https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments?page=${currentPage}&limit=10`)
+      const response = await axios.get(`https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments?page=${currentPage}&limit=10`)
      setTournaments(response.data);
     } catch (error) {
       Swal.fire({
@@ -56,7 +56,7 @@ function Tournament() {
 
   const deleteTournament = async (id) => {
     try {
-      await axios.delete(`https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments/${id}`);
+      await axios.delete(`https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments/${id}`);
       loadTournaments();
     } catch (error) {
       console.error("Error deleting tournament:", error);

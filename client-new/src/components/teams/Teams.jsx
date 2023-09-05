@@ -34,7 +34,7 @@ function Teams() {
   const loadTeams = async (currentPage) => {
     try {
       const response = await axios.get(
-        `https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams?page=${currentPage}&limit=6`
+        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams?page=${currentPage}&limit=6`
       );
       setTeams(response.data);
     } catch (error) {
@@ -49,7 +49,7 @@ function Teams() {
 
   const loadAllTeams = async () => {
     try {
-      const response = await axios.get("https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams");
+      const response = await axios.get("https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams");
       setAllTeams(response.data);
     } catch (error) {
       Swal.fire({
@@ -84,7 +84,7 @@ function Teams() {
 
   const proceedDelete = async (id) => {
     try {
-      await axios.delete(`https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`);
+      await axios.delete(`https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`);
       loadTeams();
     } catch (error) {
       console.error("Error deleting team:", error);

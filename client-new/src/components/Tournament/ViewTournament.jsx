@@ -23,7 +23,7 @@ const ViewTeam = () => {
 
   const loadTournament = async () => {
     try {
-      const res = await axios.get(`https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments/${id}`);
+      const res = await axios.get(`https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments/${id}`);
       setTournament(res.data);
     } catch (error) {
       console.error("Error loading player:", error);

@@ -2,14 +2,31 @@
   const newsletterModel = require("../models/newsletterModel");
   const { v4: uuidv4 } = require("uuid");
   const fs = require("fs");
+const {google} = require("googleapis")
+  const CLIENT_ID = '214192467211-b25uht5oipaa73laoahfshvvs7kv3rp1.apps.googleusercontent.com';
+  const CLIENT_SECRET ='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';
+  const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
+  const REFRESH_TOKEN = '1//04KltGrgKGJ0iCgYIARAAGAQSNwF-L9IrbGQ3Moy7whRwyevlj3SyKxQ8ITS0aJftf9BBn-6dNLGWyzfEbVVUgc5WErNv2UfxgLA';
+  const oAuth2Client = new google.auth.OAuth2(CLIENT_ID,CLIENT_SECRET,REDIRECT_URI);
+  oAuth2Client.setCredentials({refresh_token: REFRESH_TOEKEN});
+  
 
-  const transport = nodemailer.createTransport({
-    service: "hotmail",
-    auth: {
-      user: "espchnews@hotmail.com",
-      pass: "mafia200190200",
-    },
-  });
+  const sendMail = async() => {
+    const accessToken = await oAuth2Client.getAccessToken
+    const transport = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "noreply.espnews@gmail.com",
+        pass: "mafia200190200",
+        clientId :CLIENT_ID,
+        clientSecret :CLIENT_SECRET,
+        refreshToken : REFRESH_TOEKEN,
+        accessToken : accessToken
+      },
+    });
+    
+  }
+
 
   module.exports.sendConfirmEmailfromServer = async (req, res) => {
     const { email } = req.body;

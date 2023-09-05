@@ -42,7 +42,7 @@ const AddTeam = () => {
     const fetchTeams = async () => {
       try {
         const response = await axios.get(
-          "https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams"
+          "https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams"
         );
         setTeamList(response.data);
       } catch (error) {
@@ -84,7 +84,7 @@ const AddTeam = () => {
     try {
       console.log("Creating tournament...");
       await axios.post(
-        `https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments`,
+        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments`,
         tournament
       );
       console.log("Team posted successfully!");

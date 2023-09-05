@@ -4,6 +4,7 @@ import logoesp from "../../assets/logo.png";
 import "./Home.css"; // Import the CSS file for styling
 import videobackground from "../../assets/wallpaper.mp4";
 import Navbar from "../../layout/navbar/NavBar";
+import {Link} from "react-router-dom"
 function Home() {
   return (
     <>
@@ -22,8 +23,12 @@ function Home() {
         </p>
       </div>
       {/* <img src={background} alt="background" className="background-image" /> */}
+        <div className="join-button">
+
+        <Link to="/signup" style={{color:"#fff", textDecoration:"none"}} >Join Now</Link>
+        </div>
     </div>
-      <video src={videobackground} autoPlay loop muted playsInline  className="background-image" ></video>
+      {/* <video src={videobackground} autoPlay loop muted playsInline  className="background-image" ></video> */}
     </div>
     </>
   );

@@ -20,7 +20,7 @@ const ViewPlayer = () => {
   const loadPlayer = async () => {
     try {
       const res = await axios.get(
-        `https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`
+        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`
       );
       setPlayer(res.data);
     } catch (error) {
@@ -72,7 +72,7 @@ const ViewPlayer = () => {
   const proceedDelete = async (id) => {
     try {
       await axios.delete(
-        `https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`
+        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`
       );
       setTimeout(() => {
        navigate("/players");

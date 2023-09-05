@@ -47,14 +47,8 @@ const AddPlayer = () => {
     try {
       console.log("Adding player...");
       await axios.post(
-        "https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players",
-        player,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
+        "https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players",
+        player
       );
       
       console.log("Player posted successfully!");

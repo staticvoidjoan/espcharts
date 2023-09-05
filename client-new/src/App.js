@@ -2,7 +2,9 @@ import "./App.css";
 import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import PacmanLoader from "react-spinners/PacmanLoader";
-
+import Amplify from "aws-amplify"
+import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 // Layout
 import NavBar from "./layout/navbar/NavBar";
 import Footer from "./layout/footer/Footer";
@@ -33,7 +35,7 @@ import AddTournament from "./components/Tournament/AddTournament";
 import Newsletter from "./components/newsletter/Newsletter";
 
 import ScrollToTop from "./components/ScrollToTop"
-
+import UserDash from "./pages/SignUp/UserDash"
 function App() {
   const [loading, setLoading] = useState(false);
   const location = useLocation(); // Get the current location
@@ -70,6 +72,8 @@ function App() {
           <PacmanLoader color={"#20a4fc"} loading={loading} size={35} />
         </div>
       ) : (
+         
+      
         <main>
           <ScrollToTop>
           <Routes>
@@ -97,11 +101,13 @@ function App() {
 
             {/*Admin */}
             <Route path="/newsletter-control" element={<Newsletter />} />
+            <Route path="/signup" element={<UserDash/>}/>
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
           </ScrollToTop>
         </main>
+      
       )}
        
       <Footer />

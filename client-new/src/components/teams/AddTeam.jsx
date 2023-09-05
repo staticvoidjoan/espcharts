@@ -26,7 +26,7 @@ const AddTeam = () => {
     const fetchPlayers = async () => {
       try {
         const response = await axios.get(
-          "https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers"
+          "https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers"
         );
         setPlayerList(response.data);
       } catch (error) {
@@ -60,7 +60,7 @@ const AddTeam = () => {
     try {
       console.log("Creating team...");
       await axios.post(
-        `https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams`,
+        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams`,
         team
       );
       console.log("Team posted successfully!");
@@ -152,10 +152,12 @@ const AddTeam = () => {
               onChange={onPlayersChange}
             >
               {playerList
-                .filter((player) =>
-                  player.userName
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
+                .filter(
+                  (player) =>
+                    player.userName &&
+                    player.userName
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
                 )
                 .map((player) => (
                   <option
@@ -188,9 +190,9 @@ const AddTeam = () => {
               onChange={onInputChange}
             />
           </div>
-          <div className="submitButton" type="submit">
+          <button className="submitButton" type="submit">
             <strong>Add New Team</strong>
-          </div>
+          </button>
         </Form>
       </div>
     </div>

@@ -1,0 +1,20 @@
+{
+  "authSelections": "userPoolOnly",
+  "resourceName": "espclient7d267d5f",
+  "serviceType": "imported",
+  "region": "eu-north-1",
+  "usernameAttributes": [
+    "email"
+  ],
+  "requiredAttributes": [
+    "given_name",
+    "family_name"
+  ],
+  "passwordPolicyMinLength": 6,
+  "passwordPolicyCharacters": [],
+  "mfaConfiguration": "OFF",
+  "autoVerifiedAttributes": [
+    "email"
+  ],
+  "mfaTypes": []
+}

@@ -21,7 +21,7 @@ function Players() {
   const getAllPlayers = async (currentPage) => {
     try {
       const response = await axios.get(
-        "https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers"
+        "https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers"
       );
       setAllPlayers(response.data);
     } catch (error) {
@@ -48,7 +48,7 @@ function Players() {
   const loadPlayers = async (currentPage) => {
     try {
       const response = await axios.get(
-        `https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players?page=${currentPage}&limit=6`
+        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players?page=${currentPage}&limit=6`
       );
       setPlayers(response.data);
     } catch (error) {

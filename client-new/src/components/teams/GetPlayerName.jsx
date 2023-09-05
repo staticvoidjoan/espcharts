@@ -15,7 +15,7 @@ const ViewPlayer = ({ teamCaptainId }) => {
   // const loadPlayer = async () => {
   //   try {
   //     const res = await axios.get(
-  //       `https://31t4a11ewb.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${teamCaptainId}`
+  //       `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${teamCaptainId}`
   //     );
   //     setPlayer(res.data);
   //   } catch (error) {

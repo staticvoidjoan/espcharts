@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-espclient-dev-225007-authRole",
+      "UnauthRoleArn": "arn:aws:iam::944511268761:role/amplify-espclient-dev-225007-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::944511268761:role/amplify-espclient-dev-225007-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-espclient-dev-225007-deployment",
+      "UnauthRoleName": "amplify-espclient-dev-225007-unauthRole",
+      "StackName": "amplify-espclient-dev-225007",
+      "StackId": "arn:aws:cloudformation:eu-north-1:944511268761:stack/amplify-espclient-dev-225007/a1cd4060-4b64-11ee-9035-0e07c654c048",
+      "AmplifyAppId": "d2gethl55sjsnv"
+    },
+    "categories": {
+      "auth": {
+        "espclient7d267d5f": {
+          "userPoolId": "eu-north-1_g5wyi2Ktn",
+          "userPoolName": "espcharts-serverless-backend-dev-user-pool-SLS",
+          "webClientId": "5l0ofuhghqn52bq8dsfkavi49",
+          "nativeClientId": "5l0ofuhghqn52bq8dsfkavi49"
+        }
+      }
+    }
+  }
+}
