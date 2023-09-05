@@ -34,6 +34,10 @@ import AddTournament from "./components/Tournament/AddTournament";
 //ADMIN TOOLS
 import Newsletter from "./components/newsletter/Newsletter";
 
+
+import Warning from "./pages/Warning/Warning"
+
+
 import ScrollToTop from "./components/ScrollToTop"
 import UserDash from "./pages/SignUp/UserDash"
 function App() {
@@ -86,15 +90,15 @@ function App() {
             <Route path="/player/edit/:id" element={<EditPlayer />} />
 
             {/* Team */}
-            <Route path="/teams" element={<Teams />} />
+            {/* <Route path="/teams" element={<Teams />} />
             <Route path="/team/view/:id" element={<ViewTeam />} />
             <Route path="/teams/add" element={<AddTeam />} />
-            <Route path="/team/edit/:id" element={<EditTeam />} />
+            <Route path="/team/edit/:id" element={<EditTeam />} /> */}
 
             {/*Tournament*/}
-            <Route path="/tournaments" element={<Tournament />} />
+            {/* <Route path="/tournaments" element={<Tournament />} />
             <Route path ="/tournament/view/:id" element={<ViewTournament />}/>
-            <Route path ="/tournament/add" element={<AddTournament />}/>
+            <Route path ="/tournament/add" element={<AddTournament />}/> */}
 
             {/* Pages */}
             <Route path="/contact" element={<Contact />}/>
@@ -102,6 +106,7 @@ function App() {
             {/*Admin */}
             <Route path="/newsletter-control" element={<Newsletter />} />
             <Route path="/signup" element={<UserDash/>}/>
+            <Route path="/nologinerror" element={<Warning/>}/>
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

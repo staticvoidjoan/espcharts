@@ -4,6 +4,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import "./AddPlayer.css";
 import Swal from "sweetalert2";
 import Form from "react-bootstrap/Form";
+import { Auth } from "aws-amplify";
 
 const EditPlayer = () => {
   let navigate = useNavigate();
@@ -35,12 +36,18 @@ const EditPlayer = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log("Submitting the form...");
-
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
     try {
       console.log("Updating player...");
       await axios.put(
-        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`,
-        player
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`,
+        player,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
       );
       console.log("Player updated successfully!");
       Swal.fire({
@@ -55,10 +62,12 @@ const EditPlayer = () => {
     }
   };
 
+  
+
   const loadPlayer = async () => {
     try {
       const res = await axios.get(
-        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`
       );
       setPlayer(res.data);
     } catch (error) {

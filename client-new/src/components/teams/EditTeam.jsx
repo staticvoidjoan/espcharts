@@ -4,7 +4,7 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Form, Button } from "react-bootstrap";
 import "./AddTeam.css";
-
+import { Auth } from "aws-amplify";
 const AddTeam = () => {
   const { id } = useParams();
   let navigate = useNavigate();
@@ -24,9 +24,15 @@ const AddTeam = () => {
 
   useEffect(() => {
     const fetchPlayers = async () => {
+      const user = await Auth.currentAuthenticatedUser();
+      const token = user.signInUserSession.idToken.jwtToken;
       try {
         const response = await axios.get(
-          "https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams"
+          "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams", {
+            headers: {
+              Authorization: token,
+            },
+          }
         );
         setPlayerList(response.data);
       } catch (error) {
@@ -45,9 +51,15 @@ const AddTeam = () => {
   };
 
   const loadAllTeams = async () => {
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
     try {
       const response = await axios.get(
-        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`, {
+          headers: {
+            Authorization: token,
+          },
+        }
       );
       setTeam(response.data);
     } catch (error) {
@@ -73,12 +85,17 @@ const AddTeam = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log("Submitting the form...");
-
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
     try {
       console.log("Creating team...");
       await axios.put(
-        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`,
-        team
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`,
+        team, {
+          headers: {
+            Authorization: token,
+          },
+        } 
       );
       console.log("Team posted successfully!");
       Swal.fire({

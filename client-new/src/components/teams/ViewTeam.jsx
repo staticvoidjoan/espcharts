@@ -11,6 +11,7 @@ import "./ViewTeam.css";
 import "../players/Players.css";
 import GetPlayer from "./GetPlayers";
 import teamlogo from "../../assets/teamlogo.png";
+import { Auth } from "aws-amplify";
 const ViewTeam = () => {
   let navigate = useNavigate();
   const { id } = useParams();
@@ -27,9 +28,15 @@ const ViewTeam = () => {
   }, []);
 
   const loadTeam = async () => {
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
     try {
       const res = await axios.get(
-        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`, {
+          headers: {
+            Authorization: token
+          },
+        }
       );
       setTeam(res.data);
     } catch (error) {

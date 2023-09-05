@@ -1,11 +1,31 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import background from "../../assets/homebg.png";
 import logoesp from "../../assets/logo.png";
 import "./Home.css"; // Import the CSS file for styling
 import videobackground from "../../assets/wallpaper.mp4";
 import Navbar from "../../layout/navbar/NavBar";
 import {Link} from "react-router-dom"
+import {Auth} from "aws-amplify"
 function Home() {
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect( ()=> {
+    checkAuthenticated();
+  }, []);
+
+  const checkAuthenticated = async () => {
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      if (user) {
+        setAuthenticated(true);
+      } else {
+        setAuthenticated(false);
+      }
+    } catch (error) {
+      setAuthenticated(false);
+    }
+  };
+
   return (
     <>
     <div className="home">
@@ -23,12 +43,14 @@ function Home() {
         </p>
       </div>
       {/* <img src={background} alt="background" className="background-image" /> */}
+        {!authenticated  ? (
         <div className="join-button">
-
-        <Link to="/signup" style={{color:"#fff", textDecoration:"none"}} >Join Now</Link>
+          <Link to="/signup" style={{color:"#fff", textDecoration:"none"}} >Join Now</Link>
         </div>
+
+        ) : null}
+      <video src={videobackground} autoPlay loop muted playsInline  className="background-image" ></video>
     </div>
-      {/* <video src={videobackground} autoPlay loop muted playsInline  className="background-image" ></video> */}
     </div>
     </>
   );

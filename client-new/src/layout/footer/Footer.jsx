@@ -30,7 +30,7 @@ function Footer() {
     console.log(newsletter);
     try {
       console.log("Sending the message...");
-      await axios.post("http://localhost:5000/espcharts/subscribe", newsletter);
+      await axios.post("https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/subscribe", newsletter);
       Swal.fire({
         icon: "success",
         title: "Thank you, an email confirming your subscription will be sent shortly",

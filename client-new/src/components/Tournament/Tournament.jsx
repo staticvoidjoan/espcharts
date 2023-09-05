@@ -6,6 +6,7 @@ import { Table } from "react-bootstrap";
 import "./Tournament.css";
 import Swal from "sweetalert2";
 import ReactPaginate from "react-paginate";
+import { Auth } from "aws-amplify";
 function Tournament() {
   const [tournaments, setTournaments] = useState([]);
   const [allTournaments, setAllTournaments] = useState([]);
@@ -17,9 +18,15 @@ function Tournament() {
   }, []);
 
   const loadAllTournaments = async () => {
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
     try {
       const response = await axios.get(
-        "https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTournaments"
+        "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTournaments",{
+          headers:{
+            Authorization : token
+          }
+        }
       );
       setAllTournaments(response.data);
       
@@ -40,8 +47,14 @@ function Tournament() {
   }
 
   const loadTournaments = async (currentPage) => {
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
     try {
-      const response = await axios.get(`https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments?page=${currentPage}&limit=10`)
+      const response = await axios.get(`https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments?page=${currentPage}&limit=10`, {
+        headers: {
+          Authorization: token
+        }
+      })
      setTournaments(response.data);
     } catch (error) {
       Swal.fire({
@@ -56,7 +69,7 @@ function Tournament() {
 
   const deleteTournament = async (id) => {
     try {
-      await axios.delete(`https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments/${id}`);
+      await axios.delete(`https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments/${id}`);
       loadTournaments();
     } catch (error) {
       console.error("Error deleting tournament:", error);

@@ -6,7 +6,7 @@ import { Form, Button } from "react-bootstrap";
 import "../teams/AddTeam.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import { Auth } from "aws-amplify";
 const AddTeam = () => {
   let navigate = useNavigate();
   const [tournament, setTournament] = useState({
@@ -40,9 +40,15 @@ const AddTeam = () => {
 
   useEffect(() => {
     const fetchTeams = async () => {
+      const user = await Auth.currentAuthenticatedUser();
+      const token = user.signInUserSession.idToken.jwtToken;
       try {
         const response = await axios.get(
-          "https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams"
+          "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams", {
+            headers: {
+              Authorization: token,
+            },
+          }
         );
         setTeamList(response.data);
       } catch (error) {
@@ -84,7 +90,7 @@ const AddTeam = () => {
     try {
       console.log("Creating tournament...");
       await axios.post(
-        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments`,
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments`,
         tournament
       );
       console.log("Team posted successfully!");

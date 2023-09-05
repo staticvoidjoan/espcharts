@@ -10,6 +10,7 @@ import Row from "react-bootstrap/Row";
 import ReactPaginate from "react-paginate";
 import teamlogo from "../../assets/teamlogo.png";
 import "./Teams.css";
+import { Auth } from "aws-amplify";
 function Teams() {
   const [teams, setTeams] = useState([]);
   const [allTeams, setAllTeams] = useState([]);
@@ -32,9 +33,15 @@ function Teams() {
     }
   };
   const loadTeams = async (currentPage) => {
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
     try {
       const response = await axios.get(
-        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams?page=${currentPage}&limit=6`
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams?page=${currentPage}&limit=6`, {
+          headers: {
+            Authorization: token,
+          },
+        }
       );
       setTeams(response.data);
     } catch (error) {
@@ -48,8 +55,15 @@ function Teams() {
   };
 
   const loadAllTeams = async () => {
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
     try {
-      const response = await axios.get("https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams");
+      const response = await axios.get("https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams", {
+        headers: {
+          Authorization: token,
+        }
+      }
+      )
       setAllTeams(response.data);
     } catch (error) {
       Swal.fire({
@@ -83,8 +97,13 @@ function Teams() {
   };
 
   const proceedDelete = async (id) => {
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
     try {
-      await axios.delete(`https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`);
+      await axios.delete(`https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`, {
+        headers: {
+          Authorization: token,
+        }});
       loadTeams();
     } catch (error) {
       console.error("Error deleting team:", error);

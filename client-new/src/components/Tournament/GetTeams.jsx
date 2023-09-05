@@ -4,7 +4,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import playerplaceholder from "../../assets/playerplch.svg";
-
+import { Auth } from "aws-amplify";
 const ViewPlayer = ({ teamId }) => {
   let navigate = useNavigate();
 
@@ -15,9 +15,15 @@ const ViewPlayer = ({ teamId }) => {
   }, []);
 
   const loadTeam = async () => {
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
     try {
       const res = await axios.get(
-        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${teamId}`
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${teamId}`, {
+          headers: {
+            Authorization: token
+          }
+        }
       );
       setTeam(res.data);
     } catch (error) {

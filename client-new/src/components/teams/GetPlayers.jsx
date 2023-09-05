@@ -5,7 +5,7 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import playerplaceholder from "../../assets/playerplch.svg";
 import "./GetPlayer.css";
-
+import { Auth } from "aws-amplify";
 const ViewPlayer = ({ playerId }) => {
   let navigate = useNavigate();
 
@@ -16,9 +16,15 @@ const ViewPlayer = ({ playerId }) => {
   }, []);
 
   const loadPlayer = async () => {
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
     try {
       const res = await axios.get(
-        `https://krgl0umfsc.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${playerId}`
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${playerId}`, {
+          headers: {
+            Authorization: token
+          }
+        }
       );
       setPlayer(res.data);
     } catch (error) {
