@@ -166,6 +166,7 @@ function Teams() {
                           <div>
                             <strong> TeamCaptain: </strong>
                             <GetPlayerName teamCaptainId={team.teamCaptain} />
+                            {console.log(team.teamCaptain)}
                           </div>
                           <div>
                             <strong> Active Players: </strong>

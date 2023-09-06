@@ -13,6 +13,7 @@ const ViewPlayer = ({ teamCaptainId }) => {
   
   
   const loadPlayer = async () => {
+    console.log(teamCaptainId)
     const user = await Auth.currentAuthenticatedUser();
     const token = user.signInUserSession.idToken.jwtToken;
     try {
@@ -37,7 +38,7 @@ const ViewPlayer = ({ teamCaptainId }) => {
   
   return (
     <>
-      {/* {player.userName} */}
+      {console.log(player.userName)}
     </>
   );
   }  

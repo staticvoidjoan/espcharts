@@ -90,15 +90,15 @@ function App() {
             <Route path="/player/edit/:id" element={<EditPlayer />} />
 
             {/* Team */}
-            {/* <Route path="/teams" element={<Teams />} />
+            <Route path="/teams" element={<Teams />} />
             <Route path="/team/view/:id" element={<ViewTeam />} />
             <Route path="/teams/add" element={<AddTeam />} />
-            <Route path="/team/edit/:id" element={<EditTeam />} /> */}
+            <Route path="/team/edit/:id" element={<EditTeam />} />
 
             {/*Tournament*/}
-            {/* <Route path="/tournaments" element={<Tournament />} />
+            <Route path="/tournaments" element={<Tournament />} />
             <Route path ="/tournament/view/:id" element={<ViewTournament />}/>
-            <Route path ="/tournament/add" element={<AddTournament />}/> */}
+            <Route path ="/tournament/add" element={<AddTournament />}/>
 
             {/* Pages */}
             <Route path="/contact" element={<Contact />}/>

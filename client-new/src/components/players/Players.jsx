@@ -13,7 +13,7 @@ import { Auth } from "aws-amplify";
 function Players() {
   const [players, setPlayers] = useState([]);
   const [allPLayers, setAllPlayers] = useState([]);
-  const [token, setToken] = useState()
+  const [token, setToken] = useState();
 
   useEffect(() => {
     async function fetchData() {
@@ -22,20 +22,22 @@ function Players() {
         const token = user.signInUserSession.idToken.jwtToken;
         setToken(token);
         loadPlayers();
-        getAllPlayers();
+        // getAllPlayers();
       } catch (error) {
         console.error("Error fetching user:", error);
       }
     }
-  
-    fetchData();
-  }, []);  
 
+    fetchData();
+  }, []);
 
   const getAllPlayers = async () => {
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
+    console.log("Loading all player", token);
     try {
       const response = await axios.get(
-        "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espchartnpm ss/allPlayers",
+        "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers",
         {
           headers: {
             Authorization: token,
@@ -66,6 +68,9 @@ function Players() {
   };
 
   const loadPlayers = async (currentPage) => {
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
+    console.log(token);
     try {
       const response = await axios.get(
         `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players?page=${currentPage}&limit=6`,
@@ -76,6 +81,15 @@ function Players() {
         }
       );
       setPlayers(response.data);
+      const allresponse = await axios.get(
+        "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers",
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      setAllPlayers(allresponse.data);
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -87,7 +101,6 @@ function Players() {
 
   return (
     <div className="player-main-page">
-
       <div className="title-container mt-5">
         <h1 className="player-title">PLAYERS</h1>
       </div>
@@ -192,7 +205,7 @@ function Players() {
           previousLabel={"<Back"}
           nextLabel={"Next>"}
           breakLabel={"..."}
-          pageCount={Math.ceil(allPLayers.length / 6)}
+          pageCount={Math.ceil(allPLayers.length / 6) -1}
           marginPagesDisplayed={2}
           pageRangeDisplayed={3}
           onPageChange={handlePageClick}

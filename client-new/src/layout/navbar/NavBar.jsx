@@ -56,10 +56,7 @@ function Navbar() {
         const givenName = userInfo.attributes.given_name;
         const lastName = userInfo.attributes.family_name;
         setLastName(lastName)
-        console.log(`Given Name: ${givenName}`);
         setGivenName(givenName);
-      } else {
-        console.log('Given name not found in user info');
       }
     })
     .catch(error => {
@@ -70,7 +67,7 @@ function Navbar() {
     <>
 
       <nav className='navbar-main'>
-        {console.log(userInfo())}
+      
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
             <img src={logo} alt=""  style={{width:"50%"}}/>
