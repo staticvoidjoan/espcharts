@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 import { Form, Button } from "react-bootstrap";
 import "./AddTeam.css";
 import { Auth } from "aws-amplify";
+import Select from "react-select";
+
 const AddTeam = () => {
   const { id } = useParams();
   let navigate = useNavigate();
@@ -28,7 +30,8 @@ const AddTeam = () => {
       const token = user.signInUserSession.idToken.jwtToken;
       try {
         const response = await axios.get(
-          "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams", {
+          "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams",
+          {
             headers: {
               Authorization: token,
             },
@@ -55,7 +58,8 @@ const AddTeam = () => {
     const token = user.signInUserSession.idToken.jwtToken;
     try {
       const response = await axios.get(
-        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`, {
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`,
+        {
           headers: {
             Authorization: token,
           },
@@ -72,13 +76,11 @@ const AddTeam = () => {
     }
   };
 
-  const onPlayersChange = (e) => {
-    const selectedOptions = Array.from(e.target.options)
-      .filter((option) => option.selected)
-      .map((option) => option.value);
+  const onPlayersChange = (selectedOptions) => {
+    const selectedPlayerIds = selectedOptions.map((option) => option.value);
     setTeam({
       ...team,
-      players: selectedOptions,
+      players: selectedPlayerIds,
     });
   };
 
@@ -91,11 +93,12 @@ const AddTeam = () => {
       console.log("Creating team...");
       await axios.put(
         `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`,
-        team, {
+        team,
+        {
           headers: {
             Authorization: token,
           },
-        } 
+        }
       );
       console.log("Team posted successfully!");
       Swal.fire({
@@ -127,6 +130,12 @@ const AddTeam = () => {
     });
     setSelectAll(!selectAll);
   };
+
+  // Define your player selector options
+  const playerSelectorOptions = playerList.map((player) => ({
+    value: player._id,
+    label: player.userName,
+  }));
 
   return (
     <div className="add-team-page">
@@ -178,29 +187,15 @@ const AddTeam = () => {
           </div>
           <div className="form-group">
             <Form.Label style={{ float: "left" }}>Select Players:</Form.Label>
-            <Form.Control
-              as="select"
-              multiple
-              name="players"
-              value={players}
+            <Select
+              closeMenuOnSelect={false}
+              isMulti
+              options={playerSelectorOptions}
+              value={playerSelectorOptions.filter((option) =>
+                players.includes(option.value)
+              )}
               onChange={onPlayersChange}
-            >
-              {playerList
-                .filter((player) =>
-                  player.userName
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
-                )
-                .map((player) => (
-                  <option
-                    key={player._id}
-                    value={player._id}
-                    selected={players.includes(player._id)}
-                  >
-                    {player.userName}
-                  </option>
-                ))}
-            </Form.Control>
+            />
             <Form.Check
               type="checkbox"
               id="select-all-players"

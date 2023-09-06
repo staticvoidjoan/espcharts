@@ -65,9 +65,16 @@ const EditPlayer = () => {
   
 
   const loadPlayer = async () => {
+      const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
     try {
       const res = await axios.get(
-        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
       );
       setPlayer(res.data);
     } catch (error) {

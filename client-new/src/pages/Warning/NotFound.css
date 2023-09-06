@@ -1,0 +1,24 @@
+.notfound-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    padding-top: 100px;
+    margin-top: 50px;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+}
+
+.notfound-icon{
+    scale: 5;
+    margin-bottom: 30px;
+    margin-right: 40px;
+    margin-top: 10px;
+}
+
+.notfound-icon-container{
+    display: flex;
+    flex-direction: row;
+}

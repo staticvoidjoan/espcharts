@@ -19,7 +19,6 @@ const AddPlayer = () => {
     country: "",
   });
 
-
   const { firstName, lastName, userName, gameTitle, gameRole, age, country } =
     player;
 
@@ -47,17 +46,18 @@ const AddPlayer = () => {
 
     try {
       console.log("Adding player...");
-       const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
+      const user = await Auth.currentAuthenticatedUser();
+      const token = user.signInUserSession.idToken.jwtToken;
       await axios.post(
         "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players",
-        player,  {
+        player,
+        {
           headers: {
             Authorization: token,
           },
         }
       );
-      
+
       console.log("Player posted successfully!");
       Swal.fire({
         icon: "success",
@@ -123,113 +123,112 @@ const AddPlayer = () => {
     ];
   }
 
-  const availableGameRoles = roles
+  const availableGameRoles = roles;
 
   return (
     <div className="add-player-bg">
-
-    <div className="add-player-form">
-       <h1 style={{fontWeight:"650", color:"#fff"}} >New Player</h1>
-      <Form onSubmit={onSubmit}>
-        <Form.Group className="mb-3" controlId="firstName">
-          <Form.Label style={{ float: "left",  }}>First Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="First Name"
-            name="firstName"
-            value={firstName}
-            onChange={(e) => onInputChange(e)}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="lastName">
-          <Form.Label style={{ float: "left",   }}>Last Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Last Name"
-            name="lastName"
-            value={lastName}
-            onChange={(e) => onInputChange(e)}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="userName">
-          <Form.Label style={{ float: "left",  }}>In Game Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="User Name"
-            name="userName"
-            value={userName}
-            onChange={(e) => onInputChange(e)}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="gameTitle">
-          <Form.Label style={{ float: "left",   }}>Game Title</Form.Label>
-          <Form.Select
-            aria-label="Default"
-            name="gameTitle"
-            value={gameTitle}
-            onChange={(e) => onInputChange(e)}
-          >
-            {availableGameTitles.map((title) => (
-              <option key={title} value={title}>
-                {title}
-              </option>
-            ))}
-          </Form.Select>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="gameRole">
-          <Form.Label style={{ float: "left",   }}>Game Role</Form.Label>
-          <Form.Select
-            aria-label="Default"
-            name="gameRole"
-            value={gameRole}
-            onChange={(e) => onInputChange(e)}
-          >
-            {availableGameRoles.map((role, index) => (
-              <option key={index} value={role}>
-                {role}
-              </option>
-            ))}
-          </Form.Select>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="age">
-          <Form.Label style={{ float: "left",   }}>Age</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Age"
-            name="age"
-            value={age}
-            onChange={(e) => onInputChange(e)}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="country">
-          <Form.Label style={{ float: "left",   }}>Country</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Country"
-            name="country"
-            value={country}
-            onChange={(e) => onInputChange(e)}
-            required
-          />
-        </Form.Group>
-        <div className="container d-flex justify-content-between align-items-center">
-          <Link as={Link} to={`/players`} className="submitButton">
-            <i
-              class="fa-solid fa-arrow-left"
-              style={{ color: "#fff", width: "40px" }}
-            ></i>
-          </Link>
-          <button className="submitButton">Add Player</button>
-          <button className="clearButton" onClick={clearOnSubmit}>
-            Clear
-          </button>
-        </div>
-      </Form>
-    </div>
+      <div className="add-player-form">
+        <h1 style={{ fontWeight: "650", color: "#fff" }}>New Player</h1>
+        <Form onSubmit={onSubmit}>
+          <Form.Group className="mb-3" controlId="firstName">
+            <Form.Label style={{ float: "left" }}>First Name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="First Name"
+              name="firstName"
+              value={firstName}
+              onChange={(e) => onInputChange(e)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="lastName">
+            <Form.Label style={{ float: "left" }}>Last Name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Last Name"
+              name="lastName"
+              value={lastName}
+              onChange={(e) => onInputChange(e)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="userName">
+            <Form.Label style={{ float: "left" }}>In Game Name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="User Name"
+              name="userName"
+              value={userName}
+              onChange={(e) => onInputChange(e)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="gameTitle">
+            <Form.Label style={{ float: "left" }}>Game Title</Form.Label>
+            <Form.Select
+              aria-label="Default"
+              name="gameTitle"
+              value={gameTitle}
+              onChange={(e) => onInputChange(e)}
+            >
+              {availableGameTitles.map((title) => (
+                <option key={title} value={title}>
+                  {title}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="gameRole">
+            <Form.Label style={{ float: "left" }}>Game Role</Form.Label>
+            <Form.Select
+              aria-label="Default"
+              name="gameRole"
+              value={gameRole}
+              onChange={(e) => onInputChange(e)}
+            >
+              {availableGameRoles.map((role, index) => (
+                <option key={index} value={role}>
+                  {role}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="age">
+            <Form.Label style={{ float: "left" }}>Age</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Age"
+              name="age"
+              value={age}
+              onChange={(e) => onInputChange(e)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="country">
+            <Form.Label style={{ float: "left" }}>Country</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Country"
+              name="country"
+              value={country}
+              onChange={(e) => onInputChange(e)}
+              required
+            />
+          </Form.Group>
+          <div className="container d-flex justify-content-between align-items-center">
+            <Link as={Link} to={`/players`} className="submitButton">
+              <i
+                class="fa-solid fa-arrow-left"
+                style={{ color: "#fff", width: "40px" }}
+              ></i>
+            </Link>
+            <button className="submitButton">Add Player</button>
+            <button className="clearButton" onClick={clearOnSubmit}>
+              Clear
+            </button>
+          </div>
+        </Form>
+      </div>
     </div>
   );
 };

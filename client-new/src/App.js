@@ -40,6 +40,7 @@ import Warning from "./pages/Warning/Warning"
 
 import ScrollToTop from "./components/ScrollToTop"
 import UserDash from "./pages/SignUp/UserDash"
+import NotFound from "./pages/Warning/NotFound";
 function App() {
   const [loading, setLoading] = useState(false);
   const location = useLocation(); // Get the current location
@@ -107,8 +108,8 @@ function App() {
             <Route path="/newsletter-control" element={<Newsletter />} />
             <Route path="/signup" element={<UserDash/>}/>
             <Route path="/nologinerror" element={<Warning/>}/>
-
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="/error-not-found" element={<NotFound/> } />
+            <Route path="*" element={<Navigate to="/error-not-found" replace />} />
           </Routes>
           </ScrollToTop>
         </main>

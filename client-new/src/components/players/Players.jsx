@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -13,46 +13,19 @@ import { Auth } from "aws-amplify";
 function Players() {
   const [players, setPlayers] = useState([]);
   const [allPLayers, setAllPlayers] = useState([]);
-  const [token, setToken] = useState();
-
+  const navigate = useNavigate();
   useEffect(() => {
     async function fetchData() {
       try {
-        const user = await Auth.currentAuthenticatedUser();
-        const token = user.signInUserSession.idToken.jwtToken;
-        setToken(token);
         loadPlayers();
         // getAllPlayers();
       } catch (error) {
-        console.error("Error fetching user:", error);
+        navigate("/error-not-found");
       }
     }
 
     fetchData();
   }, []);
-
-  const getAllPlayers = async () => {
-    const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
-    console.log("Loading all player", token);
-    try {
-      const response = await axios.get(
-        "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers",
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
-      setAllPlayers(response.data);
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Error :(",
-        text: "There was an issue. Please try again later.",
-      });
-    }
-  };
 
   const handlePageClick = async (data) => {
     let currentPage = data.selected + 1;
@@ -205,7 +178,7 @@ function Players() {
           previousLabel={"<Back"}
           nextLabel={"Next>"}
           breakLabel={"..."}
-          pageCount={Math.ceil(allPLayers.length / 6) -1}
+          pageCount={Math.ceil(allPLayers.length / 6) - 1}
           marginPagesDisplayed={2}
           pageRangeDisplayed={3}
           onPageChange={handlePageClick}
