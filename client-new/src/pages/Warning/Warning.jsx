@@ -27,7 +27,7 @@ const Warning = () => {
   }
 
   function gohome() {
-    navigate("/home");
+    navigate("/");
   }
 
   return (

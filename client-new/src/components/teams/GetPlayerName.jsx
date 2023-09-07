@@ -7,13 +7,11 @@ const ViewPlayer = ({ teamCaptainId }) => {
   
   const [player, setPlayer] = useState(null);
   useEffect(() => {
-    console.log(teamCaptainId)
     loadPlayer();
   }, []);
   
   
   const loadPlayer = async () => {
-    console.log(teamCaptainId)
     const user = await Auth.currentAuthenticatedUser();
     const token = user.signInUserSession.idToken.jwtToken;
     try {
@@ -25,7 +23,6 @@ const ViewPlayer = ({ teamCaptainId }) => {
         }
       );
       setPlayer(res.data);
-      console.log(res.data);
     
     } catch (error) {
       console.error("Error loading player:", error);

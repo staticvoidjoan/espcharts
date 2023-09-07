@@ -162,11 +162,12 @@ function Teams() {
                         <div>
                             <strong> Bio: </strong>
                             {team.teamBio};
+                           { console.log(team.teamBio)}
                           </div>
                           <div>
                             <strong> TeamCaptain: </strong>
                             <GetPlayerName teamCaptainId={team.teamCaptain} />
-                            {console.log(team.teamCaptain)}
+                          
                           </div>
                           <div>
                             <strong> Active Players: </strong>
@@ -206,7 +207,7 @@ function Teams() {
             previousLabel={"<Back"}
             nextLabel={"Next>"}
             breakLabel={"..."}
-            pageCount={Math.ceil(allTeams.length / 6)}
+            pageCount={Math.ceil(allTeams.length / 6) -1}
             marginPagesDisplayed={2}
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}

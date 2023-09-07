@@ -1,4 +1,55 @@
 .user-dash-container{
     padding-top: 100px;
     margin: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 25px;
+    
 }
+
+.dash-logo{
+    width: 70px;
+}
+
+/* UserDash.css */
+.user-dash-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .user-dash-content {
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    
+  }
+  
+  .user-dash-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .user-dash-subtitle {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .user-dash-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .user-dash-button:hover {
+    background-color: #0056b3;
+  }
+  

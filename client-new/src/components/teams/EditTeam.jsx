@@ -4,9 +4,7 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Form, Button } from "react-bootstrap";
 import "./AddTeam.css";
-import { Auth } from "aws-amplify";
-import Select from "react-select";
-
+import {Auth} from "aws-amplify"
 const AddTeam = () => {
   const { id } = useParams();
   let navigate = useNavigate();
@@ -30,7 +28,7 @@ const AddTeam = () => {
       const token = user.signInUserSession.idToken.jwtToken;
       try {
         const response = await axios.get(
-          "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams",
+          "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers",
           {
             headers: {
               Authorization: token,
@@ -76,11 +74,13 @@ const AddTeam = () => {
     }
   };
 
-  const onPlayersChange = (selectedOptions) => {
-    const selectedPlayerIds = selectedOptions.map((option) => option.value);
+  const onPlayersChange = (e) => {
+    const selectedOptions = Array.from(e.target.options)
+      .filter((option) => option.selected)
+      .map((option) => option.value);
     setTeam({
       ...team,
-      players: selectedPlayerIds,
+      players: selectedOptions,
     });
   };
 
@@ -131,12 +131,6 @@ const AddTeam = () => {
     setSelectAll(!selectAll);
   };
 
-  // Define your player selector options
-  const playerSelectorOptions = playerList.map((player) => ({
-    value: player._id,
-    label: player.userName,
-  }));
-
   return (
     <div className="add-team-page">
       <div className="add-team-container mt-5 mb-5">
@@ -144,7 +138,7 @@ const AddTeam = () => {
           <Link to={`/teams`} className="Team-Link" style={{ float: "left" }}>
             <i class="fa-solid fa-arrow-left" style={{ color: "#fff" }}></i>
           </Link>
-          <h2 className="h2Title d-flex justify-content-center">Add Team</h2>
+          <h2 className="h2Title d-flex justify-content-center">Edit Team</h2>
         </div>
         <Form.Label style={{ float: "left" }}>Team Name:</Form.Label>
         <Form onSubmit={onSubmit}>
@@ -187,15 +181,29 @@ const AddTeam = () => {
           </div>
           <div className="form-group">
             <Form.Label style={{ float: "left" }}>Select Players:</Form.Label>
-            <Select
-              closeMenuOnSelect={false}
-              isMulti
-              options={playerSelectorOptions}
-              value={playerSelectorOptions.filter((option) =>
-                players.includes(option.value)
-              )}
+            <Form.Control
+              as="select"
+              multiple
+              name="players"
+              value={players}
               onChange={onPlayersChange}
-            />
+            >
+              {playerList
+                .filter((player) =>
+                  (player.userName?.toLowerCase() || "").includes(
+                    searchTerm.toLowerCase()
+                  )
+                )
+                .map((player) => (
+                  <option
+                    key={player._id}
+                    value={player._id}
+                    selected={players.includes(player._id)}
+                  >
+                    {player.userName}
+                  </option>
+                ))}
+            </Form.Control>
             <Form.Check
               type="checkbox"
               id="select-all-players"
@@ -221,7 +229,7 @@ const AddTeam = () => {
             />
           </div>
           <div className="submitButton">
-            <button type="submit">Add New Team</button>
+            <button type="submit">Edit Team</button>
           </div>
         </Form>
       </div>
