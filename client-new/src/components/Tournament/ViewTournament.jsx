@@ -11,7 +11,6 @@ import "../teams/ViewTeam.css"
 import GetTeams from "./GetTeams";
 import teamlogo from "../../assets/teamlogo.png" 
 import { format } from "date-fns"; 
-import { Auth } from "aws-amplify";
 const ViewTeam = () => {
   let navigate = useNavigate();
   const { id } = useParams();
@@ -23,14 +22,9 @@ const ViewTeam = () => {
   }, []);
 
   const loadTournament = async () => {
-    const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
+ 
     try {
-      const res = await axios.get(`https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments/${id}`, {
-        headers: {
-          Authorization: token,
-        },
-      });
+      const res = await axios.get(`https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments/${id}`);
       setTournament(res.data);
     } catch (error) {
       console.error("Error loading player:", error);

@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Auth } from "aws-amplify";
 import "./AddPlayer.css";
 const AddPlayer = () => {
   let navigate = useNavigate();
@@ -46,16 +45,9 @@ const AddPlayer = () => {
 
     try {
       console.log("Adding player...");
-      const user = await Auth.currentAuthenticatedUser();
-      const token = user.signInUserSession.idToken.jwtToken;
       await axios.post(
         "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players",
-        player,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
+        player
       );
 
       console.log("Player posted successfully!");

@@ -9,7 +9,6 @@ import Swal from "sweetalert2";
 import "./Players.css";
 import playerplaceholder from "../../assets/playerplch.svg";
 import ReactPaginate from "react-paginate";
-import { Auth } from "aws-amplify";
 function Players() {
   const [players, setPlayers] = useState([]);
   const [allPLayers, setAllPlayers] = useState([]);
@@ -41,26 +40,14 @@ function Players() {
   };
 
   const loadPlayers = async (currentPage) => {
-    const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
-    console.log(token);
     try {
       const response = await axios.get(
-        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players?page=${currentPage}&limit=6`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players?page=${currentPage}&limit=6`
       );
       setPlayers(response.data);
       const allresponse = await axios.get(
-        "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers",
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
+        "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers"
+        
       );
       setAllPlayers(allresponse.data);
     } catch (error) {

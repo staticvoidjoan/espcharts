@@ -47,14 +47,9 @@ function Tournament() {
   }
 
   const loadTournaments = async (currentPage) => {
-    const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
+
     try {
-      const response = await axios.get(`https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments?page=${currentPage}&limit=10`, {
-        headers: {
-          Authorization: token
-        }
-      })
+      const response = await axios.get(`https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/tournaments?page=${currentPage}&limit=10`)
      setTournaments(response.data);
     } catch (error) {
       Swal.fire({

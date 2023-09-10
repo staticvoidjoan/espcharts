@@ -18,17 +18,9 @@ const ViewPlayer = () => {
   }, []);
 
   const loadPlayer = async () => {
-    const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
-  
     try {
       const res = await axios.get(
-        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`
       );
       setPlayer(res.data);
     } catch (error) {
@@ -78,16 +70,9 @@ const ViewPlayer = () => {
   };
 
   const proceedDelete = async (id) => {
-    const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
     try {
       await axios.delete(
-        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`
-      , {
-          headers: {
-            Authorization: token,
-          },
-        });
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`);
       setTimeout(() => {
         navigate("/players");
       }, 2000);
@@ -97,8 +82,8 @@ const ViewPlayer = () => {
   };
 
   const getToken = async () => {
-    const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
+    const session = await Auth.currentSession();
+    const token = session.getIdToken().getJwtToken();
     return token;
   };
 

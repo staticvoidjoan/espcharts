@@ -24,16 +24,9 @@ const AddTeam = () => {
 
   useEffect(() => {
     const fetchPlayers = async () => {
-      const user = await Auth.currentAuthenticatedUser();
-      const token = user.signInUserSession.idToken.jwtToken;
       try {
         const response = await axios.get(
-          "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers",
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
+          "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers"
         );
         setPlayerList(response.data);
       } catch (error) {
@@ -52,16 +45,9 @@ const AddTeam = () => {
   };
 
   const loadAllTeams = async () => {
-    const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
     try {
       const response = await axios.get(
-        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`
       );
       setTeam(response.data);
     } catch (error) {
@@ -93,12 +79,7 @@ const AddTeam = () => {
       console.log("Creating team...");
       await axios.put(
         `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`,
-        team,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
+        team
       );
       console.log("Team posted successfully!");
       Swal.fire({

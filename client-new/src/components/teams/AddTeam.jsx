@@ -4,7 +4,6 @@ import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Form, Button } from "react-bootstrap";
 import "./AddTeam.css";
-import { Auth } from "aws-amplify";
 const AddTeam = () => {
   let navigate = useNavigate();
   const [team, setTeam] = useState({
@@ -24,16 +23,9 @@ const AddTeam = () => {
 
   useEffect(() => {
     const fetchPlayers = async () => {
-      const user = await Auth.currentAuthenticatedUser();
-      const token = user.signInUserSession.idToken.jwtToken;
       try {
         const response = await axios.get(
-          "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers",
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
+          "https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allPlayers"
         );
         setPlayerList(response.data);
       } catch (error) {
@@ -63,18 +55,11 @@ const AddTeam = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log("Submitting the form...");
-    const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
     try {
       console.log("Creating team...");
       await axios.post(
         `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams`,
-        team,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
+        team
       );
       console.log("Team posted successfully!");
       Swal.fire({

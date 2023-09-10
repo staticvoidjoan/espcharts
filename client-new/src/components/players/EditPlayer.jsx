@@ -36,18 +36,12 @@ const EditPlayer = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log("Submitting the form...");
-    const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
     try {
       console.log("Updating player...");
       await axios.put(
         `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`,
         player,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
+
       );
       console.log("Player updated successfully!");
       Swal.fire({
@@ -65,16 +59,9 @@ const EditPlayer = () => {
   
 
   const loadPlayer = async () => {
-      const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
     try {
       const res = await axios.get(
-        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${id}`
       );
       setPlayer(res.data);
     } catch (error) {

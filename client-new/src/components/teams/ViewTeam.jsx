@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import GetPlayerName from "./GetPlayerName";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
 import "./ViewTeam.css";
 import "../players/Players.css";
 import GetPlayer from "./GetPlayers";
 import teamlogo from "../../assets/teamlogo.png";
-import { Auth } from "aws-amplify";
+
 const ViewTeam = () => {
   let navigate = useNavigate();
   const { id } = useParams();
@@ -28,15 +24,9 @@ const ViewTeam = () => {
   }, []);
 
   const loadTeam = async () => {
-    const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
     try {
       const res = await axios.get(
-        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`, {
-          headers: {
-            Authorization: token
-          },
-        }
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`
       );
       setTeam(res.data);
     } catch (error) {

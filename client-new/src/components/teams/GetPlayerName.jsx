@@ -16,11 +16,7 @@ const ViewPlayer = ({ teamCaptainId }) => {
     const token = user.signInUserSession.idToken.jwtToken;
     try {
       const res = await axios.get(
-        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${teamCaptainId}`, {
-          headers: {
-            Authorization: token,
-          },
-        }
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/players/${teamCaptainId}`
       );
       setPlayer(res.data);
     

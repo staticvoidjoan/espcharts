@@ -10,7 +10,7 @@ import Row from "react-bootstrap/Row";
 import ReactPaginate from "react-paginate";
 import teamlogo from "../../assets/teamlogo.png";
 import "./Teams.css";
-import { Auth } from "aws-amplify";
+
 function Teams() {
   const [teams, setTeams] = useState([]);
   const [allTeams, setAllTeams] = useState([]);
@@ -33,15 +33,9 @@ function Teams() {
     }
   };
   const loadTeams = async (currentPage) => {
-    const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
     try {
       const response = await axios.get(
-        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams?page=${currentPage}&limit=6`, {
-          headers: {
-            Authorization: token,
-          },
-        }
+        `https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams?page=${currentPage}&limit=6`
       );
       setTeams(response.data);
     } catch (error) {
@@ -55,14 +49,8 @@ function Teams() {
   };
 
   const loadAllTeams = async () => {
-    const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
     try {
-      const response = await axios.get("https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams", {
-        headers: {
-          Authorization: token,
-        }
-      }
+      const response = await axios.get("https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/allTeams",
       )
       setAllTeams(response.data);
     } catch (error) {
@@ -97,13 +85,9 @@ function Teams() {
   };
 
   const proceedDelete = async (id) => {
-    const user = await Auth.currentAuthenticatedUser();
-    const token = user.signInUserSession.idToken.jwtToken;
+   
     try {
-      await axios.delete(`https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`, {
-        headers: {
-          Authorization: token,
-        }});
+      await axios.delete(`https://h9bo5rmthl.execute-api.eu-north-1.amazonaws.com/dev/espcharts/teams/${id}`);
       loadTeams();
     } catch (error) {
       console.error("Error deleting team:", error);
